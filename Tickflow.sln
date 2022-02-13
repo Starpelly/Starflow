@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExample", "GameExample\GameExample.csproj", "{053A475A-F11A-4254-AC26-96763DF3BC1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickflow", "Tickflow.Framework\Tickflow.csproj", "{96A534B9-F0D7-4221-990A-0B9C086E3475}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{053A475A-F11A-4254-AC26-96763DF3BC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{053A475A-F11A-4254-AC26-96763DF3BC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{053A475A-F11A-4254-AC26-96763DF3BC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{053A475A-F11A-4254-AC26-96763DF3BC1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96A534B9-F0D7-4221-990A-0B9C086E3475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A534B9-F0D7-4221-990A-0B9C086E3475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A534B9-F0D7-4221-990A-0B9C086E3475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A534B9-F0D7-4221-990A-0B9C086E3475}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3958B249-23B1-4D8B-A9F4-E039FD9F8F13}
+	EndGlobalSection
+EndGlobal

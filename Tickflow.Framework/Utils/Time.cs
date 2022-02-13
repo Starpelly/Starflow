@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Tickflow
+{
+    public static class Time
+    {
+        /// <summary>
+        /// The interval in seconds from the last frame to the current one.
+        /// </summary>
+        public static float deltaTime { get; set; }
+
+        /// <summary>
+        /// The time in seconds since the game started.
+        /// </summary>
+        public static float time { get; set; }
+    }
+}
