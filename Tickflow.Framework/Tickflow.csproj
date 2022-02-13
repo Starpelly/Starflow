@@ -49,10 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Debug\Debug.cs" />
+    <Compile Include="Behaviour.cs" />
+    <Compile Include="BehaviourList.cs" />
+    <Compile Include="Component.cs" />
+    <Compile Include="Debug.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="Graphics\Rendering\Graphics.cs" />
+    <Compile Include="Graphics\Graphics.cs" />
+    <Compile Include="Graphics\Rendering\Sprite.cs" />
+    <Compile Include="Graphics\Rendering\SpriteRenderer.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="Input\Keyboard.cs" />
     <Compile Include="Input\KeyCode.cs" />

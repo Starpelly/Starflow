@@ -5,7 +5,7 @@ namespace Tickflow
     public class Input
     {
         public static readonly Keyboard keyboard = new Keyboard();
-        public static readonly Mouse mouse = new Mouse();
+        private static readonly Mouse mouse = new Mouse();
 
         /// <summary>
         /// The current mouse position in pixel coordinates.

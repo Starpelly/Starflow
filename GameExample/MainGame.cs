@@ -9,13 +9,16 @@ namespace GameExample
     public class MainGame : GameManager
     {
         GameObject gameObject;
+
         public override void Start()
         {
-            Texture2D tex = Graphics.Rectangle(Color.Magenta, 32, 32);
+            Texture2D tex = Content.Load<Texture2D>("AMONGCOLON");
             gameObject = new GameObject("Test", tex);
+
+            TestBehaviour testBehaviour = gameObject.AddComponent<TestBehaviour>();
         }
 
-        public override void Update()
+        public void Update()
         {
             if (Input.GetKey(KeyCode.D))
             {
@@ -37,13 +40,7 @@ namespace GameExample
             if (Input.GetKeyDown(KeyCode.Escape))
                 Exit();
 
-            Debug.Log(Input.mousePosition);
+            // Debug.Log(Input.mousePosition);
         }
-
-        public override void Draw(SpriteBatch sb)
-        {
-            gameObject.Draw(sb);
-        }
-
     }
 }
