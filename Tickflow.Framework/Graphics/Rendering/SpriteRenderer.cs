@@ -6,6 +6,7 @@ namespace Tickflow
    public sealed class SpriteRenderer : Component
    {
         public Sprite sprite;
+        public Vector2 offset;
         public Color color = Color.White;
         public bool flipX;
         public bool flipY;
@@ -15,7 +16,7 @@ namespace Tickflow
         {
             get
             {
-                return new Rectangle(transform.position.ToPoint(), transform.scale.ToPoint() * sprite.texture.Bounds.Size);
+                return new Rectangle(transform.position.ToPoint() + offset.ToPoint(), new Point((int)(transform.scale.X * sprite.texture.Bounds.Size.X), (int)(transform.scale.Y * sprite.texture.Bounds.Size.Y)));
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Tickflow
@@ -8,6 +9,7 @@ namespace Tickflow
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        public static ContentManager ContentManager;
 
         public Color bgColor = Color.Black;
 
@@ -18,13 +20,14 @@ namespace Tickflow
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            ContentManager = Content;
         }
 
         protected override void Initialize()
         {
             Graphics.Init(this);
             base.Initialize();
-            _graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false; // VSYNC?
         }
 
         protected override void LoadContent()
@@ -40,6 +43,13 @@ namespace Tickflow
 
             Time.deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Time.time = (float)gameTime.TotalGameTime.TotalSeconds;
+            Time.frameCount++;
+            if ((DateTime.Now - Time._lastTime).TotalSeconds >= 1) // One second has elapsed
+            {
+                Time._fps = Time.frameCount;
+                Time.frameCount = 0;
+                Time._lastTime = DateTime.Now;
+            }
 
             Components.EarlyUpdate();
             Components.Update();
