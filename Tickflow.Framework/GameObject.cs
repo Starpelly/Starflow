@@ -14,30 +14,24 @@ namespace Tickflow
 
         private List<Component> components = new List<Component>();
 
-        public Rectangle Rect
-        {
-            get
-            {
-                return new Rectangle(transform.position.ToPoint(), transform.scale.ToPoint() * texture.Bounds.Size);
-            }
-        }
-
-        public T AddComponent<T>() where T : Behaviour, new()
+        public T AddComponent<T>() where T : Component, new()
         {
             T t = new T();
-            t.Start();
             t.gameObject = this;
-
-            GameManager.Behaviours.Add(t);
+            if (t.GetType().IsSubclassOf(typeof(Behaviour)))
+            {
+                Behaviour b = (Behaviour)(object)t;
+                b.Start();
+                GameManager.Components.Add(b);
+            }
 
             components.Add(t);
             return t;
         }
 
-        public GameObject(string _name, Texture2D _texture)
+        public GameObject(string name)
         {
-            name = _name;
-            texture = _texture;
+            this.name = name;
             transform = new Transform()
             {
                 position = new Vector2(0, 0),

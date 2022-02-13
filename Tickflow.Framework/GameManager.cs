@@ -11,7 +11,7 @@ namespace Tickflow
 
         public Color bgColor = Color.Black;
 
-        public static readonly BehaviourList Behaviours = new BehaviourList();
+        public static readonly new ComponentList Components = new ComponentList();
 
         public GameManager()
         {
@@ -24,6 +24,7 @@ namespace Tickflow
         {
             Graphics.Init(this);
             base.Initialize();
+            _graphics.SynchronizeWithVerticalRetrace = false;
         }
 
         protected override void LoadContent()
@@ -40,9 +41,9 @@ namespace Tickflow
             Time.deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Time.time = (float)gameTime.TotalGameTime.TotalSeconds;
 
-            Behaviours.EarlyUpdate();
-            Behaviours.Update();
-            Behaviours.LateUpdate();
+            Components.EarlyUpdate();
+            Components.Update();
+            Components.LateUpdate();
 
             base.Update(gameTime);
         }
@@ -53,7 +54,7 @@ namespace Tickflow
 
             _spriteBatch.Begin();
 
-            // draw(_spriteBatch);
+            Components.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
@@ -61,7 +62,5 @@ namespace Tickflow
         }
 
         public abstract void Start();
-        // public abstract void Update();
-        // public abstract void Draw(SpriteBatch sb);
     }
 }

@@ -2,7 +2,9 @@
 {
     public abstract class Behaviour : Component
     {
-        public abstract void Start();
-        public abstract void Update();
+        public virtual void Start() { }
+        public virtual void EarlyUpdate() { }
+        public virtual void Update() { }
+        public virtual void LateUpdate() { }
     }
 }

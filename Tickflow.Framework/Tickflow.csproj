@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviour.cs" />
-    <Compile Include="BehaviourList.cs" />
+    <Compile Include="ComponentList.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="GameManager.cs" />

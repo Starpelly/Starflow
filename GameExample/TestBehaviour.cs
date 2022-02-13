@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Tickflow;
 
 namespace GameExample
@@ -11,12 +14,14 @@ namespace GameExample
 
         public override void Start()
         {
-            Debug.Log("Start");
+            Texture2D tex = Graphics.Rectangle(Color.Blue, 64, 64);
+            SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+            spriteRenderer.sprite = new Sprite(tex);
         }
 
         public override void Update()
         {
-            Debug.Log("Update" + "  " + Input.mousePosition);
+            gameObject.transform.position = Input.mousePosition;
         }
     }
 }

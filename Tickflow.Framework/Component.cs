@@ -9,7 +9,7 @@ namespace Tickflow
     public class Component
     {
         public GameObject gameObject;
-        public Transform transform;
+        public Transform transform { get { return gameObject.transform; } }
 
         public Component()
         {
