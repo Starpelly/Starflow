@@ -19,6 +19,8 @@ namespace Tickflow
 
         static internal Camera currentCamera;
 
+        public static RenderTarget2D TestRenderTarget;
+
         public static GameManager Instance { get; set; }
 
         public GameManager()
@@ -39,12 +41,21 @@ namespace Tickflow
             base.Initialize();
             Init();
             IsFixedTimeStep = false; // VSYNC?
+
+            TestRenderTarget = new RenderTarget2D(
+                GraphicsDevice,
+                GraphicsDevice.PresentationParameters.BackBufferWidth,
+                GraphicsDevice.PresentationParameters.BackBufferHeight,
+                false,
+                GraphicsDevice.PresentationParameters.BackBufferFormat,
+                DepthFormat.Depth24);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            GraphicsDevice.SetRenderTarget(TestRenderTarget);
             Start();
         }
 
@@ -76,6 +87,23 @@ namespace Tickflow
 
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.SetRenderTarget(TestRenderTarget);
+            GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+
+            DrawScene(gameTime);
+
+            GraphicsDevice.SetRenderTarget(null);
+
+            Draw(_spriteBatch, gameTime);
+            base.Draw(gameTime);
+
+            /*_spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Draw(TestRenderTarget, new Rectangle(0, 0, 1280, 720), Color.White);
+            _spriteBatch.End();*/
+        }
+
+        private void DrawScene(GameTime gameTime)
+        {
             GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
 
             if (currentCamera != null)
@@ -83,12 +111,9 @@ namespace Tickflow
             else
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
-            Draw(_spriteBatch, gameTime);
             Components.Draw();
 
             _spriteBatch.End();
-
-            base.Draw(gameTime);
         }
 
         public static void ChangeScene(Scene newScene)

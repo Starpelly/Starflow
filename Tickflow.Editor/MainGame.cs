@@ -7,7 +7,7 @@ using Tickflow;
 using MonoGame.ImGui;
 using ImGuiNET;
 
-namespace GameExample
+namespace Tickflow.Editor
 {
     public class MainGame : GameManager
     {
@@ -15,7 +15,8 @@ namespace GameExample
         public static SpriteBatch spriteBatch;
         bool p_open = true;
 
-        public static System.Numerics.Vector3 testColor;
+        public static System.Numerics.Vector3 testColor = new System.Numerics.Vector3(1, 1, 1);
+        public static System.Numerics.Vector3 testPosition = new System.Numerics.Vector3(0, 0, 0);
 
         public override void Start()
         {
@@ -34,11 +35,12 @@ namespace GameExample
         {
             ImGuiRenderer.BeginLayout(gameTime);
             Dockspace();
-            // MainMenuBar();
             ImGui.ShowDemoWindow();
-
+            GameViewWindow.imgui();
+            // MainMenuBar();
             ImGui.Begin("Test");
             ImGui.ColorEdit3("Color Editor", ref testColor);
+            ImGui.DragFloat3("Position", ref testPosition);
             ImGui.End();
 
             ImGuiRenderer.EndLayout();

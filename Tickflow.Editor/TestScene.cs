@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Tickflow;
 
-namespace GameExample
+namespace Tickflow.Editor
 {
     public class TestScene : Scene
     {

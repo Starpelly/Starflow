@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameExample
+namespace Tickflow.Editor
 {
     public static class Program
     {

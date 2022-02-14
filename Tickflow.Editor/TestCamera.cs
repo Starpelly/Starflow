@@ -1,6 +1,6 @@
 ﻿using Tickflow;
 
-namespace GameExample
+namespace Tickflow.Editor
 {
     public class TestCamera : Behaviour
     {
