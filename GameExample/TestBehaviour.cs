@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Tickflow;
 
+using ImGuiNET;
+
 namespace GameExample
 {
     public class TestBehaviour : Behaviour
@@ -23,16 +25,9 @@ namespace GameExample
 
         public override void Update()
         {
+            spriteRenderer.color = new Color(MainGame.testColor.X, MainGame.testColor.Y, MainGame.testColor.Z);
             gameObject.transform.rotation = (float)Math.Sin(Time.time);
-            /// gameObject.transform.position = Input.mousePosition;
-            if (Input.GetKey(KeyCode.D))
-                gameObject.transform.position.X += 500f * Time.deltaTime;
-            if (Input.GetKey(KeyCode.A))
-                gameObject.transform.position.X -= 500f * Time.deltaTime;
-            if (Input.GetKey(KeyCode.S))
-                gameObject.transform.position.Y += 500f * Time.deltaTime;
-            if (Input.GetKey(KeyCode.W))
-                gameObject.transform.position.Y -= 500f * Time.deltaTime;
+            gameObject.transform.position = Input.mousePosition;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Tickflow
             GameManager.Components.Add(this);
         }
 
-        public void Draw(SpriteBatch sb)
+        public override void Draw()
         {
             SpriteEffects spriteEffects = SpriteEffects.None;
             if (flipX) spriteEffects = SpriteEffects.FlipHorizontally;
@@ -33,8 +33,7 @@ namespace Tickflow
 
             // temp solution rn
             sprite.pivot = new Vector2(sprite.texture.Width / 2, sprite.texture.Height / 2);
-
-            sb.Draw(sprite.texture, Rect, null, color, gameObject.transform.rotation, sprite.pivot, spriteEffects, 0f);
+            GameManager._spriteBatch.Draw(sprite.texture, Rect, null, color, gameObject.transform.rotation, sprite.pivot, spriteEffects, 0f);
         }
    }
 }

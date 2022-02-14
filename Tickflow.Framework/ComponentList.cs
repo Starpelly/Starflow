@@ -9,62 +9,75 @@ namespace Tickflow
 {
     public class ComponentList : IEnumerable<Behaviour>
     {
-        private readonly List<Behaviour> behaviours = new List<Behaviour>();
-        private readonly List<SpriteRenderer> sprites = new List<SpriteRenderer>(); // should be renderers in general, but we get there when we get there
+        private readonly List<Component> components = new List<Component>();
 
         public void Add<T>(T type)
         {
-            if (type.GetType().IsSubclassOf(typeof(Behaviour)))
-            {
-                behaviours.Add((Behaviour)(object)type);
-            }
-            else if (type.GetType() == typeof(SpriteRenderer))
-            {
-                sprites.Add((SpriteRenderer)(object)type);
-            }
+            components.Add((Component)(object)type);
         }
 
-        internal void Draw(SpriteBatch spriteBatch)
+        internal void Draw()
         {
-            for (int i = 0; i < sprites.Count; i++)
+            for (int i = 0; i < components.Count; i++)
             {
-                sprites[i].Draw(spriteBatch);
+                components[i].Draw();
             }
         }
 
         internal void EarlyUpdate()
         {
-            for (int i = 0; i < behaviours.Count; i++)
-                behaviours[i].EarlyUpdate();
+            for (int i = 0; i < components.Count; i++)
+            {
+                if (components[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                {
+                    Behaviour b = (Behaviour)(object)components[i];
+                    b.EarlyUpdate();
+                }
+            }
         }
 
         internal void Update()
         {
-            for (int i = 0; i < behaviours.Count; i++)
-                behaviours[i].Update();
+            for (int i = 0; i < components.Count; i++)
+            {
+                if (components[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                {
+                    Behaviour b = (Behaviour)(object)components[i];
+                    b.Update();
+                }
+            }
         }
 
         internal void LateUpdate()
         {
-            for (int i = 0; i < behaviours.Count; i++)
-                behaviours[i].LateUpdate();
+            for (int i = 0; i < components.Count; i++)
+            {
+                if (components[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                {
+                    Behaviour b = (Behaviour)(object)components[i];
+                    b.LateUpdate();
+                }
+            }
         }
 
         public IEnumerator<Behaviour> GetEnumerator()
         {
-            for (int i = 0; i < behaviours.Count; i++)
+            for (int i = 0; i < components.Count; i++)
             {
-                var behaviour = behaviours[i];
-                if (behaviour != null)
-                    yield return behaviour;
+                if (components[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                {
+                    var behaviour = components[i];
+                    if (behaviour != null)
+                        yield return (Behaviour)(object)behaviour;
+                }
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            for (int i = 0; i < behaviours.Count; i++)
+            for (int i = 0; i < components.Count; i++)
             {
-                var behaviour = behaviours[i];
+                var behaviour = components[i];
                 if (behaviour != null)
                     yield return behaviour;
             }

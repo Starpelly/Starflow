@@ -12,7 +12,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -23,6 +23,163 @@
   <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+    <None Remove="MonoGame.ImGui\obj\Debug\MonoGame.ImGui.csproj.FileListAbsolute.txt" />
+    <None Remove="MonoGame.ImGui\obj\Debug\MonoGame.ImGui.dll" />
+    <None Remove="MonoGame.ImGui\obj\Debug\MonoGame.ImGui.pdb" />
+    <None Remove="MonoGame.ImGui\obj\Release\MonoGame.ImGui.csproj.FileListAbsolute.txt" />
+    <None Remove="MonoGame.ImGui\obj\Release\MonoGame.ImGui.dll" />
+    <None Remove="MonoGame.ImGui\obj\Release\MonoGame.ImGui.pdb" />
+    <None Remove="MonoGame.ImGui\packages\ImGui.NET.1.72.0\lib\netstandard2.0\ImGui.NET.dll" />
+    <None Remove="MonoGame.ImGui\packages\ImGui.NET.1.72.0\lib\netstandard2.0\ImGui.NET.xml" />
+    <None Remove="MonoGame.ImGui\packages\ImGui.NET.1.72.0\runtimes\win-x64\native\cimgui.dll" />
+    <None Remove="MonoGame.ImGui\packages\ImGui.NET.1.72.0\runtimes\win-x86\native\cimgui.dll" />
+    <None Remove="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\native\x64\SDL2.dll" />
+    <None Remove="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\native\x64\soft_oal.dll" />
+    <None Remove="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\native\x86\SDL2.dll" />
+    <None Remove="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\native\x86\soft_oal.dll" />
+    <None Remove="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\lib\net45\MonoGame.Framework.dll" />
+    <None Remove="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\lib\net45\MonoGame.Framework.xml" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ApiIntersect.exe" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.Decompiler.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.NRefactory.Cecil.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.NRefactory.CSharp.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.NRefactory.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.NRefactory.Xml.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Cecil.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Cecil.Mdb.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Cecil.Pdb.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Cecil.Rocks.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Options.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.Tasks.dll" />
+    <None Remove="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.Tasks.pdb" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\lib\netstandard1.1\System.Buffers.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\lib\netstandard1.1\System.Buffers.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\LICENSE.TXT" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\net45\System.Buffers.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\net45\System.Buffers.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\netstandard1.1\System.Buffers.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\netstandard1.1\System.Buffers.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\netstandard2.0\System.Buffers.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\netstandard2.0\System.Buffers.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\useSharedDesignerContext.txt" />
+    <None Remove="MonoGame.ImGui\packages\System.Buffers.4.5.0\version.txt" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\netstandard1.0\System.Numerics.Vectors.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\netstandard1.0\System.Numerics.Vectors.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\netstandard2.0\System.Numerics.Vectors.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\netstandard2.0\System.Numerics.Vectors.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\LICENSE.TXT" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\net45\System.Numerics.Vectors.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\net45\System.Numerics.Vectors.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\net46\System.Numerics.Vectors.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\net46\System.Numerics.Vectors.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\netstandard1.0\System.Numerics.Vectors.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\netstandard1.0\System.Numerics.Vectors.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\netstandard2.0\System.Numerics.Vectors.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\netstandard2.0\System.Numerics.Vectors.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\useSharedDesignerContext.txt" />
+    <None Remove="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\version.txt" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netcoreapp2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netcoreapp2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\LICENSE.TXT" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\ref\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\ref\netstandard1.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\ref\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\ref\netstandard2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\useSharedDesignerContext.txt" />
+    <None Remove="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\version.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MonoGame.ImGui\.vs\MonoGame.ImGui\xs\UserPrefs.xml" />
+    <Content Include="MonoGame.ImGui\obj\Debug\MonoGame.ImGui.csproj.FileListAbsolute.txt" />
+    <Content Include="MonoGame.ImGui\obj\Debug\MonoGame.ImGui.dll" />
+    <Content Include="MonoGame.ImGui\obj\Debug\MonoGame.ImGui.pdb" />
+    <Content Include="MonoGame.ImGui\obj\Release\MonoGame.ImGui.csproj.FileListAbsolute.txt" />
+    <Content Include="MonoGame.ImGui\obj\Release\MonoGame.ImGui.dll" />
+    <Content Include="MonoGame.ImGui\obj\Release\MonoGame.ImGui.pdb" />
+    <Content Include="MonoGame.ImGui\packages\ImGui.NET.1.72.0\lib\netstandard2.0\ImGui.NET.dll" />
+    <Content Include="MonoGame.ImGui\packages\ImGui.NET.1.72.0\lib\netstandard2.0\ImGui.NET.xml" />
+    <Content Include="MonoGame.ImGui\packages\ImGui.NET.1.72.0\runtimes\win-x64\native\cimgui.dll" />
+    <Content Include="MonoGame.ImGui\packages\ImGui.NET.1.72.0\runtimes\win-x86\native\cimgui.dll" />
+    <Content Include="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\native\x64\SDL2.dll" />
+    <Content Include="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\native\x64\soft_oal.dll" />
+    <Content Include="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\native\x86\SDL2.dll" />
+    <Content Include="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\build\native\x86\soft_oal.dll" />
+    <Content Include="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\lib\net45\MonoGame.Framework.dll" />
+    <Content Include="MonoGame.ImGui\packages\MonoGame.Framework.DesktopGL.3.7.1.189\lib\net45\MonoGame.Framework.xml" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ApiIntersect.exe" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.Decompiler.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.NRefactory.Cecil.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.NRefactory.CSharp.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.NRefactory.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\ICSharpCode.NRefactory.Xml.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Cecil.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Cecil.Mdb.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Cecil.Pdb.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Cecil.Rocks.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\Mono.Options.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.Tasks.dll" />
+    <Content Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.Tasks.pdb" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\lib\netstandard1.1\System.Buffers.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\lib\netstandard1.1\System.Buffers.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\LICENSE.TXT" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\net45\System.Buffers.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\net45\System.Buffers.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\netstandard1.1\System.Buffers.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\netstandard1.1\System.Buffers.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\netstandard2.0\System.Buffers.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\ref\netstandard2.0\System.Buffers.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\useSharedDesignerContext.txt" />
+    <Content Include="MonoGame.ImGui\packages\System.Buffers.4.5.0\version.txt" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\netstandard1.0\System.Numerics.Vectors.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\netstandard1.0\System.Numerics.Vectors.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\netstandard2.0\System.Numerics.Vectors.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\netstandard2.0\System.Numerics.Vectors.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\LICENSE.TXT" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\net45\System.Numerics.Vectors.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\net45\System.Numerics.Vectors.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\net46\System.Numerics.Vectors.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\net46\System.Numerics.Vectors.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\netstandard1.0\System.Numerics.Vectors.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\netstandard1.0\System.Numerics.Vectors.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\netstandard2.0\System.Numerics.Vectors.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\ref\netstandard2.0\System.Numerics.Vectors.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\useSharedDesignerContext.txt" />
+    <Content Include="MonoGame.ImGui\packages\System.Numerics.Vectors.4.5.0\version.txt" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netcoreapp2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netcoreapp2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\LICENSE.TXT" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\ref\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\ref\netstandard1.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\ref\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\ref\netstandard2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\useSharedDesignerContext.txt" />
+    <Content Include="MonoGame.ImGui\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\version.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -30,6 +187,12 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MonoGame.ImGui\.vs\MonoGame.ImGui\xs\project-cache\MonoGame.ImGui-Debug.json" />
+    <None Include="MonoGame.ImGui\.vs\MonoGame.ImGui\xs\sqlite3\db.lock" />
+    <None Include="MonoGame.ImGui\.vs\MonoGame.ImGui\xs\sqlite3\storage.ide" />
+    <None Include="MonoGame.ImGui\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\GenerateReferenceAssembly.csproj" />
   </ItemGroup>
   <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />

@@ -10,7 +10,8 @@ namespace Tickflow
     {
         public GameObject gameObject = null;
         public Transform transform 
-        { get 
+        { 
+            get 
             {
                 if (gameObject != null)
                 {
@@ -26,5 +27,7 @@ namespace Tickflow
         public Component()
         {
         }
+
+        public virtual void Draw() { }
     }
 }

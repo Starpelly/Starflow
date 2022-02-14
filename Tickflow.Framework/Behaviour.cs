@@ -7,7 +7,7 @@
         /// </summary>
         public virtual void Start() { }
         /// <summary>
-        /// EarlyUpdate is called before all Update functions have been called
+        /// EarlyUpdate is called before all Update functions have been called.
         /// </summary>
         public virtual void EarlyUpdate() { }
         /// <summary>

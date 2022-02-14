@@ -10,7 +10,6 @@ namespace Tickflow
         public bool enabled;
         public string name;
         public Transform transform;
-        public Texture2D texture;
 
         private List<Component> components = new List<Component>();
 

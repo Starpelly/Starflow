@@ -2,15 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
 
 namespace Tickflow
 {
     public abstract class GameManager : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public static SpriteBatch _spriteBatch;
         public static ContentManager ContentManager;
 
         public Color bgColor = Color.Black;
@@ -35,6 +33,9 @@ namespace Tickflow
         protected override void Initialize()
         {
             Graphics.Init(this);
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
             base.Initialize();
             Init();
             IsFixedTimeStep = false; // VSYNC?
@@ -83,7 +84,7 @@ namespace Tickflow
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
             Draw(_spriteBatch, gameTime);
-            Components.Draw(_spriteBatch);
+            Components.Draw();
 
             _spriteBatch.End();
 
