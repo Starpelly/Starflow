@@ -25,6 +25,12 @@
 /processorParam:TextureFormat=Color
 /build:AMONGCOLON.png
 
+#begin corrupted.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:corrupted.ogg
+
 #begin icon.png
 /importer:TextureImporter
 /processor:TextureProcessor
