@@ -8,5 +8,12 @@ namespace Tickflow
         {
             Console.WriteLine(message);
         }
+
+        public static void LogError(object message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }

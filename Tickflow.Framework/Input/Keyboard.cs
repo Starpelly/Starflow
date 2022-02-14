@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Tickflow
 {
@@ -26,6 +27,11 @@ namespace Tickflow
         public bool GetKeyUp(KeyCode key)
         {
             return lastKeys.IsKeyDown((Keys)key) && keys.IsKeyUp((Keys)key);
+        }
+
+        internal static object GetState()
+        {
+            throw new NotImplementedException();
         }
     }
 }

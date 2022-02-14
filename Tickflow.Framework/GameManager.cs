@@ -15,18 +15,26 @@ namespace Tickflow
 
         public static readonly new ComponentList Components = new ComponentList();
 
+        private static Scene currentScene;
+
+        static internal Camera currentCamera;
+
+        public static GameManager Instance { get; set; }
+
         public GameManager()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             ContentManager = Content;
+            Instance = this;
         }
 
         protected override void Initialize()
         {
             Graphics.Init(this);
             base.Initialize();
+            Init();
             IsFixedTimeStep = false; // VSYNC?
         }
 
@@ -55,6 +63,11 @@ namespace Tickflow
             Components.Update();
             Components.LateUpdate();
 
+            if (currentCamera != null)
+            {
+                currentCamera.UpdateCamera(GraphicsDevice.Viewport);
+            }
+
             base.Update(gameTime);
         }
 
@@ -62,8 +75,12 @@ namespace Tickflow
         {
             GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
 
-            _spriteBatch.Begin();
+            if (currentCamera != null)
+                _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, currentCamera.Transform);
+            else
+                _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
+            Draw(_spriteBatch, gameTime);
             Components.Draw(_spriteBatch);
 
             _spriteBatch.End();
@@ -71,6 +88,20 @@ namespace Tickflow
             base.Draw(gameTime);
         }
 
+        public static void ChangeScene(Scene newScene)
+        {
+            currentScene = newScene;
+            currentScene.Init();
+        }
+
+        internal void SetCamera(Camera cam)
+        {
+            cam.Bounds = GraphicsDevice.Viewport.Bounds;
+            currentCamera = cam;
+        }
+
         public abstract void Start();
+        public abstract void Init();
+        public abstract void Draw(SpriteBatch sb, GameTime gameTime);
     }
 }

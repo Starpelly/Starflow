@@ -6,7 +6,6 @@ namespace Tickflow
    public sealed class SpriteRenderer : Component
    {
         public Sprite sprite;
-        public Vector2 offset;
         public Color color = Color.White;
         public bool flipX;
         public bool flipY;
@@ -16,7 +15,8 @@ namespace Tickflow
         {
             get
             {
-                return new Rectangle(transform.position.ToPoint() + offset.ToPoint(), new Point((int)(transform.scale.X * sprite.texture.Bounds.Size.X), (int)(transform.scale.Y * sprite.texture.Bounds.Size.Y)));
+                return new Rectangle(transform.position.ToPoint() + sprite.offset.ToPoint(), 
+                    new Point((int)(transform.scale.X * sprite.texture.Bounds.Size.X), (int)(transform.scale.Y * sprite.texture.Bounds.Size.Y)));
             }
         }
 
@@ -31,7 +31,10 @@ namespace Tickflow
             if (flipX) spriteEffects = SpriteEffects.FlipHorizontally;
             if (flipY) spriteEffects = SpriteEffects.FlipVertically;
 
-            sb.Draw(sprite.texture, Rect, color);
+            // temp solution rn
+            sprite.pivot = new Vector2(sprite.texture.Width / 2, sprite.texture.Height / 2);
+
+            sb.Draw(sprite.texture, Rect, null, color, gameObject.transform.rotation, sprite.pivot, spriteEffects, 0f);
         }
    }
 }

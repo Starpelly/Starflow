@@ -15,17 +15,24 @@ namespace GameExample
 
         public override void Start()
         {
-            Texture2D tex = GameManager.ContentManager.Load<Texture2D>("AMONGCOLON");
+            Texture2D tex = GameManager.ContentManager.Load<Texture2D>("icon");
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = new Sprite(tex);
-            spriteRenderer.offset = new Vector2(-38, -38);
-            gameObject.transform.scale = new Vector2(0.1f, 0.1f);
+            // gameObject.transform.scale = new Vector2(0.5f, 0.5f);
         }
 
         public override void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            gameObject.transform.position = Input.mousePosition;
+            gameObject.transform.rotation = (float)Math.Sin(Time.time);
+            /// gameObject.transform.position = Input.mousePosition;
+            if (Input.GetKey(KeyCode.D))
+                gameObject.transform.position.X += 500f * Time.deltaTime;
+            if (Input.GetKey(KeyCode.A))
+                gameObject.transform.position.X -= 500f * Time.deltaTime;
+            if (Input.GetKey(KeyCode.S))
+                gameObject.transform.position.Y += 500f * Time.deltaTime;
+            if (Input.GetKey(KeyCode.W))
+                gameObject.transform.position.Y -= 500f * Time.deltaTime;
         }
     }
 }

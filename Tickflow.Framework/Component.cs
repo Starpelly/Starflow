@@ -8,8 +8,20 @@ namespace Tickflow
 {
     public class Component
     {
-        public GameObject gameObject;
-        public Transform transform { get { return gameObject.transform; } }
+        public GameObject gameObject = null;
+        public Transform transform 
+        { get 
+            {
+                if (gameObject != null)
+                {
+                    return gameObject.transform; 
+                }
+                else
+                {
+                    return new Transform();
+                }
+            } 
+        }
 
         public Component()
         {

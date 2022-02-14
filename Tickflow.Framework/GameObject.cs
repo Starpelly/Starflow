@@ -14,6 +14,40 @@ namespace Tickflow
 
         private List<Component> components = new List<Component>();
 
+        public T GetComponent<T>() where T : Component, new()
+        {
+            T t = new T();
+            for (int i = 0; i < components.Count; i++)
+            {
+                if (components[i] == t)
+                {
+                    try
+                    {
+                        return (T)(Component)(object)components[i];
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError(ex);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public void RemoveComponent<T>(T componentClass) where T : Component // ill fix later
+        {
+            for (int i = 0; i < components.Count; i++)
+            {
+                Component c = components[i];
+                if (componentClass == c)
+                {
+                    components.RemoveAt(i);
+                    return;
+                }
+            }
+        }
+
         public T AddComponent<T>() where T : Component, new()
         {
             T t = new T();
@@ -41,10 +75,12 @@ namespace Tickflow
         }
     }
 
-    public struct Transform
+    public class Transform : Component
     {
         public Vector2 position;
         public float rotation;
         public Vector2 scale;
+        public Transform parent;
+        public int childCount;
     }
 }
