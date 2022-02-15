@@ -28,12 +28,22 @@ namespace Tickflow
         public override void Draw()
         {
             SpriteEffects spriteEffects = SpriteEffects.None;
-            if (flipX) spriteEffects = SpriteEffects.FlipHorizontally;
-            if (flipY) spriteEffects = SpriteEffects.FlipVertically;
+            if (flipX)
+            {
+                spriteEffects = SpriteEffects.FlipHorizontally;
+                if (flipY)
+                    spriteEffects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+            }
+            else if (flipY)
+            {
+                spriteEffects = SpriteEffects.FlipVertically;
+                if (flipX)
+                    spriteEffects = SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally;
+            }
 
             // temp solution rn
             sprite.pivot = new Vector2(sprite.texture.Width / 2, sprite.texture.Height / 2);
-            GameManager._spriteBatch.Draw(sprite.texture, Rect, null, color, gameObject.transform.rotation, sprite.pivot, spriteEffects, 0f);
+            GameManager._spriteBatch.Draw(sprite.texture, Rect, null, color, MathHelper.ToRadians(gameObject.transform.rotation), sprite.pivot, spriteEffects, 0f);
         }
    }
 }

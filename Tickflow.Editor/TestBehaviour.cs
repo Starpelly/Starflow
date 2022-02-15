@@ -13,8 +13,8 @@ namespace Tickflow.Editor
     public class TestBehaviour : Behaviour
     {
         public float bruh = 0;
-        SpriteRenderer spriteRenderer;
-        SpriteRenderer spriteRenderer2;
+        public SpriteRenderer spriteRenderer;
+        public SpriteRenderer spriteRenderer2;
         private RenderTarget2D renderTarget;
 
         public override void Start()

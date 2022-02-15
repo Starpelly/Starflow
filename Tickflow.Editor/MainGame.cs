@@ -81,7 +81,6 @@ namespace Tickflow.Editor
             currentScene.SceneImGui();
             ImGui.ShowDemoWindow();
             GameViewWindow.imgui();
-            Inspector.imgui();
             // MainMenuBar();
 
             ImGuiRenderer.EndLayout();

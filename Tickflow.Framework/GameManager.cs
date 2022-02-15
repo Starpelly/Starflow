@@ -15,7 +15,7 @@ namespace Tickflow
 
         public static readonly new ComponentList Components = new ComponentList();
 
-        private static Scene currentScene;
+        public static Scene currentScene;
 
         static internal Camera currentCamera;
 

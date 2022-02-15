@@ -5,7 +5,7 @@ namespace Tickflow
     public abstract class Scene
     {
         private bool isRunning = false;
-        protected List<GameObject> gameObjects = new List<GameObject>();
+        public List<GameObject> gameObjects = new List<GameObject>();
         protected GameObject activeGameObject = null;
 
         public Scene()
@@ -15,5 +15,6 @@ namespace Tickflow
 
         public abstract void Init();
         public virtual void SceneImGui() { }
+        public virtual void SetActiveGameObject(GameObject gameObject) { }
     }
 }

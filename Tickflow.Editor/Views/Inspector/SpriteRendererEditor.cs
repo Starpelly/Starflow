@@ -13,6 +13,19 @@ namespace Tickflow.Editor
             {
                 spriteRenderer.color = new Microsoft.Xna.Framework.Color(col.X, col.Y, col.Z, col.W);
             }
+            ImGui.Text("Flip");
+            ImGui.SameLine();
+            bool flipX = spriteRenderer.flipX;
+            if (ImGui.Checkbox("X", ref flipX))
+            {
+                spriteRenderer.flipX = flipX;
+            }
+            ImGui.SameLine();
+            bool flipY = spriteRenderer.flipY;
+            if (ImGui.Checkbox("Y", ref flipY))
+            {
+                spriteRenderer.flipY = flipY;
+            }
         }
     }
 }
