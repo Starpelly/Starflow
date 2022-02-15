@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using ImGuiNET;
-using MonoGame.ImGui;
+﻿using ImGuiNET;
 
 using System.Numerics;
 using System;
 
 namespace Tickflow.Editor
 {
-    public class GameViewWindow
+    public class GameViewWindow : View
     {
         public static void imgui()
         {

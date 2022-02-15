@@ -19,7 +19,7 @@ namespace Tickflow.Editor
 
         public override void Start()
         {
-            Texture2D tex = GameManager.ContentManager.Load<Texture2D>("icon");
+            Texture2D tex = GameManager.ContentManager.Load<Texture2D>("morsh");
             GameObject gameObject2 = new GameObject("t");
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = new Sprite(tex);
@@ -31,11 +31,7 @@ namespace Tickflow.Editor
 
         public override void Update()
         {
-
-            spriteRenderer2.color = new Color(MainGame.testColor.X, MainGame.testColor.Y, MainGame.testColor.Z);
             gameObject.transform.rotation = (float)Math.Sin(Time.time);
-
-            spriteRenderer2.gameObject.transform.position = new Vector2(MainGame.testPosition.X, MainGame.testPosition.Y);
         }
     }
 }

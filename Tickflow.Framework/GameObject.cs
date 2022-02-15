@@ -11,7 +11,7 @@ namespace Tickflow
         public string name;
         public Transform transform;
 
-        private List<Component> components = new List<Component>();
+        public List<Component> components { get; private set; }
 
         public T GetComponent<T>() where T : Component, new()
         {
@@ -71,6 +71,7 @@ namespace Tickflow
                 rotation = 0f,
                 scale = new Vector2(1, 1)
             };
+            components = new List<Component>();
         }
     }
 

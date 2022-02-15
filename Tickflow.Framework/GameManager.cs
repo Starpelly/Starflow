@@ -76,6 +76,7 @@ namespace Tickflow
             Components.EarlyUpdate();
             Components.Update();
             Components.LateUpdate();
+            Update(currentScene);
 
             if (currentCamera != null)
             {
@@ -105,6 +106,7 @@ namespace Tickflow
         private void DrawScene(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
+            // GraphicsDevice.Clear(Color.Cyan);
 
             if (currentCamera != null)
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, currentCamera.Transform);
@@ -129,6 +131,7 @@ namespace Tickflow
         }
 
         public abstract void Start();
+        public abstract void Update(Scene currentScene);
         public abstract void Init();
         public abstract void Draw(SpriteBatch sb, GameTime gameTime);
     }
