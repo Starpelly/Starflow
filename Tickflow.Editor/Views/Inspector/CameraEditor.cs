@@ -7,7 +7,8 @@ namespace Tickflow.Editor
     {
         public override void Imgui(Component component)
         {
-            ImGui.Text("Camera code here");
+            Camera camera = (Camera)component;
+            ImGui.SliderFloat("Zoom", ref camera.Zoom, 0, 5);
         }
     }
 }

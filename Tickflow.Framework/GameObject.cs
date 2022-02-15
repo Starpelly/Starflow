@@ -73,6 +73,7 @@ namespace Tickflow
             };
             components = new List<Component>();
             GameManager.currentScene.gameObjects.Add(this);
+            enabled = true;
         }
     }
 

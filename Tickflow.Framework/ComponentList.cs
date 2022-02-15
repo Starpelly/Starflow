@@ -11,6 +11,11 @@ namespace Tickflow
     {
         private readonly List<Component> components = new List<Component>();
 
+        private List<Component> activeComponents()
+        {
+            return components.FindAll(c => c.gameObject.enabled && c.enabled);
+        }
+
         public void Add<T>(T type)
         {
             components.Add((Component)(object)type);
@@ -18,19 +23,19 @@ namespace Tickflow
 
         internal void Draw()
         {
-            for (int i = 0; i < components.Count; i++)
+            for (int i = 0; i < activeComponents().Count; i++)
             {
-                components[i].Draw();
+                activeComponents()[i].Draw();
             }
         }
 
         internal void EarlyUpdate()
         {
-            for (int i = 0; i < components.Count; i++)
+            for (int i = 0; i < activeComponents().Count; i++)
             {
-                if (components[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(Behaviour)))
                 {
-                    Behaviour b = (Behaviour)(object)components[i];
+                    Behaviour b = (Behaviour)(object)activeComponents()[i];
                     b.EarlyUpdate();
                 }
             }
@@ -38,11 +43,11 @@ namespace Tickflow
 
         internal void Update()
         {
-            for (int i = 0; i < components.Count; i++)
+            for (int i = 0; i < activeComponents().Count; i++)
             {
-                if (components[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(Behaviour)))
                 {
-                    Behaviour b = (Behaviour)(object)components[i];
+                    Behaviour b = (Behaviour)(object)activeComponents()[i];
                     b.Update();
                 }
             }
@@ -50,11 +55,11 @@ namespace Tickflow
 
         internal void LateUpdate()
         {
-            for (int i = 0; i < components.Count; i++)
+            for (int i = 0; i < activeComponents().Count; i++)
             {
-                if (components[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(Behaviour)))
                 {
-                    Behaviour b = (Behaviour)(object)components[i];
+                    Behaviour b = (Behaviour)(object)activeComponents()[i];
                     b.LateUpdate();
                 }
             }
@@ -62,11 +67,11 @@ namespace Tickflow
 
         public IEnumerator<Behaviour> GetEnumerator()
         {
-            for (int i = 0; i < components.Count; i++)
+            for (int i = 0; i < activeComponents().Count; i++)
             {
-                if (components[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(Behaviour)))
                 {
-                    var behaviour = components[i];
+                    var behaviour = activeComponents()[i];
                     if (behaviour != null)
                         yield return (Behaviour)(object)behaviour;
                 }
@@ -75,9 +80,9 @@ namespace Tickflow
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            for (int i = 0; i < components.Count; i++)
+            for (int i = 0; i < activeComponents().Count; i++)
             {
-                var behaviour = components[i];
+                var behaviour = activeComponents()[i];
                 if (behaviour != null)
                     yield return behaviour;
             }

@@ -6,10 +6,10 @@ namespace Tickflow
 {
     public class Camera : Component
     {
-        public float Zoom { get; set; }
-        public Rectangle Bounds { get; set; }
-        public Rectangle VisibleArea { get; protected set; }
-        public Matrix Transform { get; protected set; }
+        public float Zoom;
+        public Rectangle Bounds;
+        public Rectangle VisibleArea;
+        public Matrix Transform;
 
         public Camera()
         {

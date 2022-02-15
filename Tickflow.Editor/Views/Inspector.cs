@@ -13,17 +13,17 @@ namespace Tickflow.Editor
         {
             ImGui.Begin("Inspector");
 
-            ImGui.Checkbox("", ref activeGameObject.enabled);
+            ImGui.Checkbox("##goEnabled", ref activeGameObject.enabled);
             ImGui.SameLine();
-            ImGui.InputText("", ref activeGameObject.name, 64);
+            ImGui.InputText("##label", ref activeGameObject.name, 64);
             ImGui.Separator();
             new TransformEditor().Imgui(activeGameObject);
-            ImGui.Separator();
 
             for (int i = 0; i < activeGameObject.components.Count; i++)
             {
                 Component c = activeGameObject.components[i];
-                ImGui.Text(c.GetType().Name);
+                ImGui.Separator();
+                ImGui.Checkbox(c.GetType().Name, ref c.enabled);
 
                 if (c.GetType().BaseType.Name != "Behaviour") // hacky fix rn
                 {
@@ -50,7 +50,12 @@ namespace Tickflow.Editor
                         }
                     }
                 }
+                else
+                {
+                    new BehaviourEditor().Imgui(c);
+                }
             }
+
             ImGui.End();
         }
 

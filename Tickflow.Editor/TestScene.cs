@@ -15,7 +15,7 @@ namespace Tickflow.Editor
             TestBehaviour testBehaviour = gameObject.AddComponent<TestBehaviour>();
             TestCamera testCamera = cam.AddComponent<TestCamera>();
             testCamera.cam = cam.AddComponent<Camera>();
-            this.activeGameObject = testBehaviour.spriteRenderer2.gameObject;
+            this.activeGameObject = gameObjects[0];
         }
 
         public override void SceneImGui()
@@ -25,10 +25,7 @@ namespace Tickflow.Editor
                 Inspector.Imgui(activeGameObject);
             }
             Hierarchy.Imgui(this); // ah fuck wait
-
-            ImGui.Begin("Console");
-
-            ImGui.End();
+            Console.Imgui();
 
             ImGui.Begin("Asset Browser");
 

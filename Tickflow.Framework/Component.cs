@@ -9,6 +9,7 @@ namespace Tickflow
     public class Component
     {
         public GameObject gameObject = null;
+        public bool enabled = true;
         public Transform transform 
         { 
             get 

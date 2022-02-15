@@ -5,7 +5,7 @@ namespace Tickflow.Editor
     public class TestCamera : Behaviour
     {
         public Camera cam;
-        private float moveSpeed = 350;
+        public float moveSpeed = 350;
 
         public override void Update()
         {

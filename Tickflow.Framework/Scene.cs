@@ -6,7 +6,7 @@ namespace Tickflow
     {
         private bool isRunning = false;
         public List<GameObject> gameObjects = new List<GameObject>();
-        protected GameObject activeGameObject = null;
+        public GameObject activeGameObject = null;
 
         public Scene()
         {

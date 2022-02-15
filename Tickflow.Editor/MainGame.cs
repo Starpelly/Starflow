@@ -19,6 +19,7 @@ namespace Tickflow.Editor
         public override void Start()
         {
             ChangeScene(new TestScene());
+            Window.AllowUserResizing = true;
         }
 
         public override void Init()
@@ -37,74 +38,88 @@ namespace Tickflow.Editor
         public override void Draw(SpriteBatch sb, GameTime gameTime)
         {
             var style = ImGui.GetStyle();
-            style.WindowRounding = 5.3f;
-            style.FrameRounding = 2.3f;
-            style.ScrollbarRounding = 0;
+            style.WindowPadding = new System.Numerics.Vector2(8.00f, 8.00f);
+            style.FramePadding = new System.Numerics.Vector2(5.00f, 2.00f);
+            style.ItemSpacing = new System.Numerics.Vector2(6.00f, 6.00f);
+            style.ItemInnerSpacing = new System.Numerics.Vector2(6.00f, 6.00f);
+            style.TouchExtraPadding = new System.Numerics.Vector2(0.00f, 0.00f);
+            style.IndentSpacing = 25;
+            style.ScrollbarSize = 15;
+            style.GrabMinSize = 10;
+            style.WindowBorderSize = 1;
+            style.ChildBorderSize = 1;
+            style.PopupBorderSize = 1;
+            style.FrameBorderSize = 1;
+            style.TabBorderSize = 1;
+            style.WindowRounding = 7;
+            style.ChildRounding = 4;
+            style.FrameRounding = 3;
+            style.PopupRounding = 4;
+            style.ScrollbarRounding = 9;
+            style.GrabRounding = 3;
+            style.LogSliderDeadzone = 4;
+            style.TabRounding = 4;
 
             var colors = style.Colors;
-            colors[(int)ImGuiCol.TextDisabled] = new System.Numerics.Vector4(0.60f, 0.60f, 0.60f, 1.00f);
-            colors[(int)ImGuiCol.WindowBg] = new System.Numerics.Vector4(0.09f, 0.09f, 0.15f, 1.00f);
-            colors[(int)ImGuiCol.PopupBg] = new System.Numerics.Vector4(0.05f, 0.05f, 0.10f, 0.85f);
-            colors[(int)ImGuiCol.Border] = new System.Numerics.Vector4(0.70f, 0.70f, 0.70f, 0.65f);
-            colors[(int)ImGuiCol.BorderShadow] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.00f);
-            colors[(int)ImGuiCol.FrameBg] = new System.Numerics.Vector4(0.00f, 0.00f, 0.01f, 1.00f);
-            colors[(int)ImGuiCol.FrameBgHovered] = new System.Numerics.Vector4(0.90f, 0.80f, 0.80f, 0.40f);
-            colors[(int)ImGuiCol.FrameBgActive] = new System.Numerics.Vector4(0.90f, 0.65f, 0.65f, 0.45f);
-            colors[(int)ImGuiCol.TitleBg] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.83f);
-            colors[(int)ImGuiCol.TitleBgCollapsed] = new System.Numerics.Vector4(0.40f, 0.40f, 0.80f, 0.20f);
-            colors[(int)ImGuiCol.TitleBgActive] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.87f);
-            colors[(int)ImGuiCol.MenuBarBg] = new System.Numerics.Vector4(0.01f, 0.01f, 0.02f, 0.80f);
-            colors[(int)ImGuiCol.ScrollbarBg] = new System.Numerics.Vector4(0.20f, 0.25f, 0.30f, 0.60f);
-            colors[(int)ImGuiCol.ScrollbarGrab] = new System.Numerics.Vector4(0.55f, 0.53f, 0.55f, 0.51f);
-            colors[(int)ImGuiCol.ScrollbarGrabHovered] = new System.Numerics.Vector4(0.56f, 0.56f, 0.56f, 1.00f);
-            colors[(int)ImGuiCol.ScrollbarGrabActive] = new System.Numerics.Vector4(0.56f, 0.56f, 0.56f, 0.91f);
-            colors[(int)ImGuiCol.CheckMark] = new System.Numerics.Vector4(0.90f, 0.90f, 0.90f, 0.83f);
-            colors[(int)ImGuiCol.SliderGrab] = new System.Numerics.Vector4(0.70f, 0.70f, 0.70f, 0.62f);
-            colors[(int)ImGuiCol.SliderGrabActive] = new System.Numerics.Vector4(0.30f, 0.30f, 0.30f, 0.84f);
-            colors[(int)ImGuiCol.Button] = new System.Numerics.Vector4(0.48f, 0.72f, 0.89f, 0.49f);
-            colors[(int)ImGuiCol.ButtonHovered] = new System.Numerics.Vector4(0.50f, 0.69f, 0.99f, 0.68f);
-            colors[(int)ImGuiCol.ButtonActive] = new System.Numerics.Vector4(0.80f, 0.50f, 0.50f, 1.00f);
-            colors[(int)ImGuiCol.Header] = new System.Numerics.Vector4(0.30f, 0.69f, 1.00f, 0.53f);
-            colors[(int)ImGuiCol.HeaderHovered] = new System.Numerics.Vector4(0.44f, 0.61f, 0.86f, 1.00f);
-            colors[(int)ImGuiCol.HeaderActive] = new System.Numerics.Vector4(0.38f, 0.62f, 0.83f, 1.00f);
-            colors[(int)ImGuiCol.ResizeGrip] = new System.Numerics.Vector4(1.00f, 1.00f, 1.00f, 0.85f);
-            colors[(int)ImGuiCol.ResizeGripHovered] = new System.Numerics.Vector4(1.00f, 1.00f, 1.00f, 0.60f);
-            colors[(int)ImGuiCol.ResizeGripActive] = new System.Numerics.Vector4(1.00f, 1.00f, 1.00f, 0.90f);
-            colors[(int)ImGuiCol.PlotLines] = new System.Numerics.Vector4(1.00f, 1.00f, 1.00f, 1.00f);
-            colors[(int)ImGuiCol.PlotLinesHovered] = new System.Numerics.Vector4(0.90f, 0.70f, 0.00f, 1.00f);
-            colors[(int)ImGuiCol.PlotHistogram] = new System.Numerics.Vector4(0.90f, 0.70f, 0.00f, 1.00f);
-            colors[(int)ImGuiCol.PlotHistogramHovered] = new System.Numerics.Vector4(1.00f, 0.60f, 0.00f, 1.00f);
-            colors[(int)ImGuiCol.TextSelectedBg] = new System.Numerics.Vector4(0.00f, 0.00f, 1.00f, 0.35f);
+            colors[(int)ImGuiCol.Text] = new System.Numerics.Vector4(1.00f, 1.00f, 1.00f, 1.00f);
+            colors[(int)ImGuiCol.TextDisabled] = new System.Numerics.Vector4(0.50f, 0.50f, 0.50f, 1.00f);
+            colors[(int)ImGuiCol.WindowBg] = new System.Numerics.Vector4(0.10f, 0.10f, 0.10f, 1.00f);
+            colors[(int)ImGuiCol.ChildBg] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.00f);
+            colors[(int)ImGuiCol.PopupBg] = new System.Numerics.Vector4(0.19f, 0.19f, 0.19f, 0.92f);
+            colors[(int)ImGuiCol.Border] = new System.Numerics.Vector4(0.19f, 0.19f, 0.19f, 0.29f);
+            colors[(int)ImGuiCol.BorderShadow] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.24f);
+            colors[(int)ImGuiCol.FrameBg] = new System.Numerics.Vector4(0.05f, 0.05f, 0.05f, 0.54f);
+            colors[(int)ImGuiCol.FrameBgHovered] = new System.Numerics.Vector4(0.19f, 0.19f, 0.19f, 0.54f);
+            colors[(int)ImGuiCol.FrameBgActive] = new System.Numerics.Vector4(0.20f, 0.22f, 0.23f, 1.00f);
+            colors[(int)ImGuiCol.TitleBg] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.TitleBgActive] = new System.Numerics.Vector4(0.06f, 0.06f, 0.06f, 1.00f);
+            colors[(int)ImGuiCol.TitleBgCollapsed] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.MenuBarBg] = new System.Numerics.Vector4(0.14f, 0.14f, 0.14f, 1.00f);
+            colors[(int)ImGuiCol.ScrollbarBg] = new System.Numerics.Vector4(0.05f, 0.05f, 0.05f, 0.54f);
+            colors[(int)ImGuiCol.ScrollbarGrab] = new System.Numerics.Vector4(0.34f, 0.34f, 0.34f, 0.54f);
+            colors[(int)ImGuiCol.ScrollbarGrabHovered] = new System.Numerics.Vector4(0.40f, 0.40f, 0.40f, 0.54f);
+            colors[(int)ImGuiCol.ScrollbarGrabActive] = new System.Numerics.Vector4(0.56f, 0.56f, 0.56f, 0.54f);
+            colors[(int)ImGuiCol.CheckMark] = new System.Numerics.Vector4(0.33f, 0.67f, 0.86f, 1.00f);
+            colors[(int)ImGuiCol.SliderGrab] = new System.Numerics.Vector4(0.34f, 0.34f, 0.34f, 0.54f);
+            colors[(int)ImGuiCol.SliderGrabActive] = new System.Numerics.Vector4(0.56f, 0.56f, 0.56f, 0.54f);
+            colors[(int)ImGuiCol.Button] = new System.Numerics.Vector4(0.05f, 0.05f, 0.05f, 0.54f);
+            colors[(int)ImGuiCol.ButtonHovered] = new System.Numerics.Vector4(0.19f, 0.19f, 0.19f, 0.54f);
+            colors[(int)ImGuiCol.ButtonActive] = new System.Numerics.Vector4(0.20f, 0.22f, 0.23f, 1.00f);
+            colors[(int)ImGuiCol.Header] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.52f);
+            colors[(int)ImGuiCol.HeaderHovered] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.36f);
+            colors[(int)ImGuiCol.HeaderActive] = new System.Numerics.Vector4(0.20f, 0.22f, 0.23f, 0.33f);
+            colors[(int)ImGuiCol.Separator] = new System.Numerics.Vector4(0.28f, 0.28f, 0.28f, 0.29f);
+            colors[(int)ImGuiCol.SeparatorHovered] = new System.Numerics.Vector4(0.44f, 0.44f, 0.44f, 0.29f);
+            colors[(int)ImGuiCol.SeparatorActive] = new System.Numerics.Vector4(0.40f, 0.44f, 0.47f, 1.00f);
+            colors[(int)ImGuiCol.ResizeGrip] = new System.Numerics.Vector4(0.28f, 0.28f, 0.28f, 0.29f);
+            colors[(int)ImGuiCol.ResizeGripHovered] = new System.Numerics.Vector4(0.44f, 0.44f, 0.44f, 0.29f);
+            colors[(int)ImGuiCol.ResizeGripActive] = new System.Numerics.Vector4(0.40f, 0.44f, 0.47f, 1.00f);
+            colors[(int)ImGuiCol.Tab] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.52f);
+            colors[(int)ImGuiCol.TabHovered] = new System.Numerics.Vector4(0.14f, 0.14f, 0.14f, 1.00f);
+            colors[(int)ImGuiCol.TabActive] = new System.Numerics.Vector4(0.20f, 0.20f, 0.20f, 0.36f);
+            colors[(int)ImGuiCol.TabUnfocused] = new System.Numerics.Vector4(0.00f, 0.00f, 0.00f, 0.52f);
+            colors[(int)ImGuiCol.TabUnfocusedActive] = new System.Numerics.Vector4(0.14f, 0.14f, 0.14f, 1.00f);
+            colors[(int)ImGuiCol.DockingPreview] = new System.Numerics.Vector4(0.33f, 0.67f, 0.86f, 1.00f);
+            colors[(int)ImGuiCol.DockingEmptyBg] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.PlotLines] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.PlotLinesHovered] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.PlotHistogram] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.PlotHistogramHovered] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.TextSelectedBg] = new System.Numerics.Vector4(0.20f, 0.22f, 0.23f, 1.00f);
+            colors[(int)ImGuiCol.DragDropTarget] = new System.Numerics.Vector4(0.33f, 0.67f, 0.86f, 1.00f);
+            colors[(int)ImGuiCol.NavHighlight] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.NavWindowingHighlight] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 0.70f);
+            colors[(int)ImGuiCol.NavWindowingDimBg] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 0.20f);
+            colors[(int)ImGuiCol.ModalWindowDimBg] = new System.Numerics.Vector4(1.00f, 0.00f, 0.00f, 0.35f);
 
             ImGuiRenderer.BeginLayout(gameTime);
             Dockspace();
             currentScene.SceneImGui();
             ImGui.ShowDemoWindow();
             GameViewWindow.imgui();
-            // MainMenuBar();
+            MainMenuBar.Imgui(this);
 
             ImGuiRenderer.EndLayout();
-        }
-
-        private void MainMenuBar()
-        {
-            if (ImGui.BeginMainMenuBar())
-            {
-                if (ImGui.BeginMenu("File"))
-                {
-                    ImGui.EndMenu();
-                }
-                if (ImGui.BeginMenu("Edit"))
-                {
-                    if (ImGui.MenuItem("Undo", "CTRL+Z"))
-                    {
-                        Debug.Log("na");
-                    }
-                    ImGui.Separator();
-                    ImGui.EndMenu();
-                }
-                ImGui.EndMainMenuBar();
-            }
         }
 
         private void Dockspace()
@@ -113,7 +128,7 @@ namespace Tickflow.Editor
             ImGui.SetNextWindowSize(new System.Numerics.Vector2(Tickflow.Window.width, Tickflow.Window.height));
             ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, 0f);
             ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 0f);
-            ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoMove |
+            ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoMove |
                 ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
 
             ImGui.Begin("Dockspace", ref p_open, dockSpaceFlags);
