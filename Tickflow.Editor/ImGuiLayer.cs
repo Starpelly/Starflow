@@ -15,13 +15,11 @@ namespace Tickflow.Editor
         public void SceneImGui()
         {
             ImGui.ShowDemoWindow();
-            GameViewWindow.imgui();
+            SceneEditorWindow.Imgui();
+            GameViewWindow.Imgui();
             MainMenuBar.Imgui(TickflowEditor.Instance);
 
-            if (currentScene.activeGameObject != null)
-            {
-                Inspector.Imgui(currentScene.activeGameObject);
-            }
+            Inspector.Imgui(currentScene.activeGameObject);
             Hierarchy.Imgui(currentScene);
             Console.Imgui();
             AssetBrowser.Imgui();

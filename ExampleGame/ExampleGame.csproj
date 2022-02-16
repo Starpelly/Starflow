@@ -27,6 +27,6 @@
     <ProjectReference Include="..\Tickflow.Framework\Tickflow.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Folder\" />
+    <Folder Include="Resources\Folder\another folder\" />
   </ItemGroup>
 </Project>

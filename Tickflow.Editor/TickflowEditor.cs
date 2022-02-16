@@ -29,6 +29,7 @@ namespace Tickflow.Editor
             currentEditorScene.name = "te";
             GameObject test = new GameObject("Ass");
             test.AddComponent<SpriteRenderer>();
+            test.AddComponent<ExampleGame.TestBehaviour>();
             currentEditorScene.gameObjects = new System.Collections.Generic.List<GameObject>() 
             { 
                 test
@@ -45,6 +46,7 @@ namespace Tickflow.Editor
         {
             ImGuiRenderer = new ImGUIRenderer(this).Initialize().RebuildFontAtlas();
             ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
+            var font = ImGui.GetIO().Fonts.AddFontFromFileTTF(@"C:\Windows\Fonts\ARIAL.TTF", 13);
 
             Window.Title = "Tickflow Engine";
         }

@@ -13,6 +13,16 @@ namespace Tickflow.Editor
         {
             ImGui.Begin("Inspector");
 
+            if (activeGameObject != null)
+            {
+                GameObject(activeGameObject);
+            }
+
+            ImGui.End();
+        }
+
+        private static void GameObject(GameObject activeGameObject)
+        {
             ImGui.Checkbox("##goEnabled", ref activeGameObject.enabled);
             ImGui.SameLine();
             ImGui.InputText("##label", ref activeGameObject.name, 64);
@@ -55,8 +65,6 @@ namespace Tickflow.Editor
                     new BehaviourEditor().Imgui(c);
                 }
             }
-
-            ImGui.End();
         }
 
         static IEnumerable<Type> GetTypesWithAttribute(Assembly assembly)

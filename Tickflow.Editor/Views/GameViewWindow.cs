@@ -7,9 +7,9 @@ namespace Tickflow.Editor
 {
     public class GameViewWindow : View
     {
-        public static void imgui()
+        public static void Imgui()
         {
-            ImGui.Begin("Game Viewport", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse);
+            ImGui.Begin("Game", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse);
 
             Vector2 windowSize = GetLargestSizeForViewport();
             Vector2 windowPos = GetCenteredPositionForViewport(windowSize);

@@ -10,33 +10,36 @@ namespace Tickflow.Editor
 {
     public static class AssetBrowser
     {
+        private static int nodeClicked = 0;
+
         public static void Imgui()
         {
             string testPath = @"C:\Dev\Tickflow\ExampleGame\Resources";
-
+            string[] files = Directory.GetFiles(testPath, "*", SearchOption.AllDirectories);
+            string[] directories = Directory.GetDirectories(testPath, "*", SearchOption.AllDirectories);
             ImGui.Begin("Asset Browser");
-            // Debug.Log(GameManager.ContentManager.RootDirectory);
-            for (int i = 0; i < LoadAllAssets(testPath).Count; i++)
+
+            ImGuiTreeNodeFlags nodeflags = ImGuiTreeNodeFlags.Leaf | ImGuiTreeNodeFlags.NoTreePushOnOpen;
+            for (int i = 0; i < files.Length; i++)
             {
-                ImGui.Text(LoadAllAssets(testPath)[i]);
+                bool isSelected = (nodeClicked == i);
+                if (isSelected)
+                    nodeflags = ImGuiTreeNodeFlags.Leaf | ImGuiTreeNodeFlags.NoTreePushOnOpen | ImGuiTreeNodeFlags.Selected;
+
+                string fileName = Path.GetFileName(files[i]);
+                ImGui.TreeNodeEx(fileName, nodeflags);
+                if (ImGui.IsItemClicked() && !ImGui.IsItemToggledOpen())
+                {
+                    nodeClicked = i;
+                }
             }
+            foreach (string directory in directories)
+            {
+                string directoryName = Path.GetFileName(Path.GetDirectoryName(directory));
+                ImGui.Text(directoryName);
+            }
+
             ImGui.End();
-        }
-
-        public static List<string> LoadAllAssets(string path)
-        {
-            // ContentManager contentManager = GameManager.ContentManager;
-            DirectoryInfo dir = new DirectoryInfo(path);
-
-            List<string> directories = new List<string>();
-
-            FileInfo[] files = dir.GetFiles("*.*");
-            foreach(FileInfo file in files)
-            {
-                string key = Path.GetFullPath(file.FullName);
-                directories.Add(key);
-            }
-            return directories;
         }
     }
 }

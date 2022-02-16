@@ -23,7 +23,7 @@ namespace Tickflow.Editor
                 {
                     nodeClicked = i;
                     currentScene.SetActiveGameObject(currentScene.gameObjects[i]);
-                    ImGui.TreePop();
+                    // ImGui.TreePop();
                 }
                 if (nodeOpen)
                 {
