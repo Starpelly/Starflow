@@ -1,20 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Tickflow
 {
-    public abstract class Scene
+    public class Scene
     {
-        private bool isRunning = false;
+        public string name;
         public List<GameObject> gameObjects = new List<GameObject>();
-        public GameObject activeGameObject = null;
+        public GameObject activeGameObject { get; private set; }
 
-        public Scene()
+        public void SetActiveGameObject(GameObject gameObject)
         {
-
+            activeGameObject = gameObject;
         }
-
-        public abstract void Init();
-        public virtual void SceneImGui() { }
-        public virtual void SetActiveGameObject(GameObject gameObject) { }
     }
 }

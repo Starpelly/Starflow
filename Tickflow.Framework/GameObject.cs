@@ -72,7 +72,7 @@ namespace Tickflow
                 scale = new Vector2(1, 1)
             };
             components = new List<Component>();
-            GameManager.currentScene.gameObjects.Add(this);
+            // GameManager.currentScene.gameObjects.Add(this);
             enabled = true;
         }
     }

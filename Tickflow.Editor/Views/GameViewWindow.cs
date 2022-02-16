@@ -16,7 +16,7 @@ namespace Tickflow.Editor
 
             ImGui.SetCursorPos(new Vector2(windowPos.X, windowPos.Y));
 
-            IntPtr renderTargetID = MainGame.ImGuiRenderer.BindTexture(GameManager.TestRenderTarget);
+            IntPtr renderTargetID = TickflowEditor.ImGuiRenderer.BindTexture(GameManager.TestRenderTarget);
             ImGui.Image(renderTargetID, new Vector2(windowSize.X, windowSize.Y));
 
             ImGui.End();

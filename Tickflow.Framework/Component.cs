@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace Tickflow
 {
     public class Component
     {
-        public GameObject gameObject = null;
         public bool enabled = true;
+        [JsonIgnore] 
+        public GameObject gameObject = null;
+        [JsonIgnore]
         public Transform transform 
         { 
             get 

@@ -1,16 +1,14 @@
 ﻿using System;
 
-namespace Tickflow.Editor
+namespace ExampleGame
 {
     public static class Program
     {
         [STAThread]
         static void Main()
         {
-            using (var game = new TickflowEditor())
-            {
+            using (var game = new MainGame())
                 game.Run();
-            }
         }
     }
 }

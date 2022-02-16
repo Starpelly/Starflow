@@ -6,20 +6,39 @@ using Tickflow;
 
 using MonoGame.ImGui;
 using ImGuiNET;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Tickflow.Editor
 {
-    public class MainGame : GameManager
+    public class TickflowEditor : GameManager
     {
         public static ImGUIRenderer ImGuiRenderer;
         public static SpriteBatch spriteBatch;
         bool p_open = true;
-        private Scene currentScene;
+        public static new TickflowEditor Instance { get; set; }
+        public Scene currentEditorScene;
+        private ImGuiLayer imGuiLayer;
 
         public override void Start()
         {
-            ChangeScene(new TestScene());
+            Instance = this;
             Window.AllowUserResizing = true;
+
+            currentEditorScene = new Scene();
+            currentEditorScene.name = "te";
+            GameObject test = new GameObject("Ass");
+            test.AddComponent<SpriteRenderer>();
+            currentEditorScene.gameObjects = new System.Collections.Generic.List<GameObject>() 
+            { 
+                test
+            };
+
+            var stringJson = JsonConvert.SerializeObject(currentEditorScene);
+            Debug.Log(stringJson);
+
+            imGuiLayer = new ImGuiLayer();
+            imGuiLayer.Init();
         }
 
         public override void Init()
@@ -30,9 +49,9 @@ namespace Tickflow.Editor
             Window.Title = "Tickflow Engine";
         }
 
-        public override void Update(Scene currentScene)
+        public override void Update(Scene currentScn)
         {
-            this.currentScene = currentScene;
+            // currentScene = currentScn;
         }
 
         public override void Draw(SpriteBatch sb, GameTime gameTime)
@@ -114,10 +133,7 @@ namespace Tickflow.Editor
 
             ImGuiRenderer.BeginLayout(gameTime);
             Dockspace();
-            currentScene.SceneImGui();
-            ImGui.ShowDemoWindow();
-            GameViewWindow.imgui();
-            MainMenuBar.Imgui(this);
+            imGuiLayer.SceneImGui();
 
             ImGuiRenderer.EndLayout();
         }

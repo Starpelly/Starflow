@@ -9,7 +9,7 @@ namespace Tickflow.Editor
 {
     public class MainMenuBar : View
     {
-        public static void Imgui(MainGame mainGame)
+        public static void Imgui(TickflowEditor mainGame)
         {
             if (ImGui.BeginMainMenuBar())
             {

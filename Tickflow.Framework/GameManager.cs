@@ -121,7 +121,7 @@ namespace Tickflow
         public static void ChangeScene(Scene newScene)
         {
             currentScene = newScene;
-            currentScene.Init();
+            // currentScene.Init();
         }
 
         internal void SetCamera(Camera cam)

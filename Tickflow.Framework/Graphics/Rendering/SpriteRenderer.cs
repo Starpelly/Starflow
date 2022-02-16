@@ -15,8 +15,13 @@ namespace Tickflow
         {
             get
             {
-                return new Rectangle(transform.position.ToPoint() + sprite.offset.ToPoint(), 
-                    new Point((int)(transform.scale.X * sprite.texture.Bounds.Size.X), (int)(transform.scale.Y * sprite.texture.Bounds.Size.Y)));
+                if (sprite != null)
+                {
+                    return new Rectangle(transform.position.ToPoint() + sprite.offset.ToPoint(),
+                            new Point((int)(transform.scale.X * sprite.texture.Bounds.Size.X), (int)(transform.scale.Y * sprite.texture.Bounds.Size.Y)));
+                }
+                else
+                    return new Rectangle();
             }
         }
 
@@ -27,6 +32,7 @@ namespace Tickflow
 
         public override void Draw()
         {
+            if (sprite == null) return;
             SpriteEffects spriteEffects = SpriteEffects.None;
             if (flipX)
             {
