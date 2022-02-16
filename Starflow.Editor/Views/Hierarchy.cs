@@ -31,6 +31,16 @@ namespace Starflow.Editor
                     ImGui.TreePop();
                 }
             }
+
+            if (ImGui.BeginPopupContextWindow())
+            {
+                if (ImGui.Selectable("Create Empty"))
+                {
+                    GameObject gameObject = new GameObject("GameObject");
+                }
+                ImGui.EndPopup();
+            }
+
             ImGui.End();
         }
     }

@@ -49,6 +49,9 @@ namespace Starflow.Editor
                         Debug.Log("na");
                     }
                     ImGui.Separator();
+                    if (ImGui.MenuItem("Properties"))
+                    { 
+                    }
                     ImGui.EndMenu();
                 }
                 if (ImGui.BeginMenu("View"))

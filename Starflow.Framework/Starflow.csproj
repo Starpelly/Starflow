@@ -7,8 +7,8 @@
     <ProjectGuid>{96A534B9-F0D7-4221-990A-0B9C086E3475}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tickflow</RootNamespace>
-    <AssemblyName>Tickflow</AssemblyName>
+    <RootNamespace>Starflow</RootNamespace>
+    <AssemblyName>Starflow</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

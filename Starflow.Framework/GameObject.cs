@@ -15,10 +15,9 @@ namespace Starflow
 
         public T GetComponent<T>() where T : Component, new()
         {
-            T t = new T();
             for (int i = 0; i < components.Count; i++)
             {
-                if (components[i] == t)
+                if (components[i].GetType() == typeof(T))
                 {
                     try
                     {
@@ -72,7 +71,8 @@ namespace Starflow
                 scale = new Vector2(1, 1)
             };
             components = new List<Component>();
-            // GameManager.currentScene.gameObjects.Add(this);
+            if (GameManager.currentScene != null)
+            GameManager.currentScene.gameObjects.Add(this);
             enabled = true;
         }
     }

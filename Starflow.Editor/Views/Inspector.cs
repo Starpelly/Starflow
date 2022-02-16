@@ -65,6 +65,11 @@ namespace Starflow.Editor
                     new BehaviourEditor().Imgui(c);
                 }
             }
+            ImGui.Separator();
+            if (ImGui.Button("Add Component"))
+            {
+                Debug.Log("Add Component Menu");
+            }
         }
 
         static IEnumerable<Type> GetTypesWithAttribute(Assembly assembly)
