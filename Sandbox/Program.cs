@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExampleProject
+namespace Sandbox
 {
     public static class Program
     {

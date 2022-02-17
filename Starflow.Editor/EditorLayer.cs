@@ -3,20 +3,21 @@ using ImGuiNET;
 
 namespace Starflow.Editor
 {
-    public class ImGuiLayer
+    public class EditorLayer
     {
         private Scene currentScene;
 
         public void Init()
         {
             currentScene = StarflowEditor.Instance.currentEditorScene;
+            new SceneEditorWindow();
         }
 
         public void SceneImGui()
         {
-            ImGui.ShowDemoWindow();
-            SceneEditorWindow.Imgui();
-            GameViewWindow.Imgui();
+            // ImGui.ShowDemoWindow();
+            SceneEditorWindow.Instance.Imgui();
+            // GameViewWindow.Imgui();
             MainMenuBar.Imgui(StarflowEditor.Instance);
 
             Inspector.Imgui(currentScene.activeGameObject);

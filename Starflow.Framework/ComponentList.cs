@@ -21,7 +21,7 @@ namespace Starflow
             components.Add((Component)(object)type);
         }
 
-        internal void Draw()
+        public void Draw()
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {

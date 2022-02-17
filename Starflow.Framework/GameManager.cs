@@ -10,18 +10,19 @@ namespace Starflow
         private GraphicsDeviceManager _graphics;
         public static SpriteBatch _spriteBatch;
         public static ContentManager ContentManager;
-
         public Color bgColor = Color.Black;
-
         public static readonly new ComponentList Components = new ComponentList();
-
         public static Scene currentScene;
-
         static internal Camera currentCamera;
-
-        public static RenderTarget2D TestRenderTarget;
-
+        // public static RenderTarget2D GameRenderTarget;
         public static GameManager Instance { get; set; }
+
+
+        public virtual void Start() { }
+        public virtual void Update(Scene currentScene) { }
+        public virtual void Init() { }
+        public virtual void PreDrawScene(SpriteBatch sb) { }
+        public virtual void Draw(SpriteBatch sb, GameTime gameTime) { }
 
         public GameManager()
         {
@@ -41,21 +42,12 @@ namespace Starflow
             base.Initialize();
             Init();
             IsFixedTimeStep = false; // VSYNC?
-
-            TestRenderTarget = new RenderTarget2D(
-                GraphicsDevice,
-                GraphicsDevice.PresentationParameters.BackBufferWidth,
-                GraphicsDevice.PresentationParameters.BackBufferHeight,
-                false,
-                GraphicsDevice.PresentationParameters.BackBufferFormat,
-                DepthFormat.Depth24);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            GraphicsDevice.SetRenderTarget(TestRenderTarget);
             Start();
         }
 
@@ -88,24 +80,17 @@ namespace Starflow
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.SetRenderTarget(TestRenderTarget);
-            GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-
             DrawScene(gameTime);
-
-            GraphicsDevice.SetRenderTarget(null);
 
             Draw(_spriteBatch, gameTime);
             base.Draw(gameTime);
-
-            /*_spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            _spriteBatch.Draw(TestRenderTarget, new Rectangle(0, 0, 1280, 720), Color.White);
-            _spriteBatch.End();*/
         }
 
         private void DrawScene(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
+            PreDrawScene(_spriteBatch);
+
+            /*GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
             // GraphicsDevice.Clear(Color.Cyan);
 
             if (currentCamera != null)
@@ -115,13 +100,12 @@ namespace Starflow
 
             Components.Draw();
 
-            _spriteBatch.End();
+            _spriteBatch.End();*/
         }
 
         public static void ChangeScene(Scene newScene)
         {
             currentScene = newScene;
-            // currentScene.Init();
         }
 
         internal void SetCamera(Camera cam)
@@ -129,10 +113,5 @@ namespace Starflow
             cam.Bounds = GraphicsDevice.Viewport.Bounds;
             currentCamera = cam;
         }
-
-        public abstract void Start();
-        public abstract void Update(Scene currentScene);
-        public abstract void Init();
-        public abstract void Draw(SpriteBatch sb, GameTime gameTime);
     }
 }

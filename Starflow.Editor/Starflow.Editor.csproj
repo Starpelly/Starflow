@@ -4,6 +4,7 @@
     <TargetFramework>net472</TargetFramework>
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -206,7 +207,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExampleProject\ExampleProject.csproj" />
+    <ProjectReference Include="..\Sandbox\Sandbox.csproj" />
     <ProjectReference Include="..\Starflow.Framework\Starflow.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Plugins\" />
   </ItemGroup>
 </Project>

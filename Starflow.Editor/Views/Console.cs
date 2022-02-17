@@ -14,7 +14,7 @@ namespace Starflow.Editor
             ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, new System.Numerics.Vector2(0, 1));
 
             ImGui.BeginChild("scrolling");
-            ImGui.TextWrapped(Debug.LogString);
+            ImGui.TextUnformatted(Debug.LogString);
             ImGui.SetScrollHereY(1f);
             ImGui.PopStyleVar();
             ImGui.EndChild();

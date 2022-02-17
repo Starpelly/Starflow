@@ -2,10 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using Starflow;
 
-namespace ExampleProject
+namespace Sandbox
 {
     public class Game1 : GameManager
     {
+
         public override void Draw(SpriteBatch sb, GameTime gameTime)
         {
         }

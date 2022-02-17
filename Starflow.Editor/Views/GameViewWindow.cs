@@ -16,8 +16,8 @@ namespace Starflow.Editor
 
             ImGui.SetCursorPos(new Vector2(windowPos.X, windowPos.Y));
 
-            IntPtr renderTargetID = StarflowEditor.ImGuiRenderer.BindTexture(GameManager.TestRenderTarget);
-            ImGui.Image(renderTargetID, new Vector2(windowSize.X, windowSize.Y));
+            // IntPtr renderTargetID = StarflowEditor.ImGuiRenderer.BindTexture(GameManager.GameRenderTarget);
+            // ImGui.Image(renderTargetID, new Vector2(windowSize.X, windowSize.Y));
 
             ImGui.End();
         }
