@@ -28,8 +28,8 @@ namespace Starflow.Editor
             if (Input.GetKey(KeyCode.D))
             {
                 editorCamera.position.X -= 500 * Time.deltaTime;
-                Debug.Log(editorCamera.position);
             }
+            Debug.Log(editorCamera.Transform);
         }
 
         public void Imgui()

@@ -11,39 +11,28 @@ using Newtonsoft.Json.Serialization;
 
 namespace Starflow.Editor
 {
-    public class StarflowEditor : GameManager
+    public class StarflowEditor : Game
     {
+        private GraphicsDeviceManager _graphics;
+        public static SpriteBatch _spriteBatch;
+
         public static ImGUIRenderer ImGuiRenderer;
         public static SpriteBatch spriteBatch;
         bool p_open = true;
-        public static new StarflowEditor Instance { get; set; }
         public Scene currentEditorScene;
         private EditorLayer imGuiLayer;
         public static RenderTarget2D SceneRenderTarget;
+        public static StarflowEditor Instance { get; set; }
 
-        public override void Start()
+        public StarflowEditor()
         {
+            _graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
             Instance = this;
-            Window.AllowUserResizing = true;
-
-            currentEditorScene = new Scene();
-            currentEditorScene.name = "te";
-            GameObject test = new GameObject("Ass");
-            test.AddComponent<SpriteRenderer>();
-            test.AddComponent<Sandbox.TestBehaviour>();
-            currentEditorScene.gameObjects = new System.Collections.Generic.List<GameObject>() 
-            { 
-                test
-            };
-            ChangeScene(currentEditorScene);
-            var stringJson = JsonConvert.SerializeObject(currentEditorScene);
-            // Debug.Log(stringJson);
-
-            imGuiLayer = new EditorLayer();
-            imGuiLayer.Init();
         }
 
-        public override void Init()
+        protected override void Initialize()
         {
             ImGuiRenderer = new ImGUIRenderer(this).Initialize().RebuildFontAtlas();
             ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
@@ -52,6 +41,8 @@ namespace Starflow.Editor
             Window.Title = "Starflow Engine";
             EditorProperties.DefaultTheme();
 
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+
             SceneRenderTarget = new RenderTarget2D(
                 GraphicsDevice,
                 GraphicsDevice.PresentationParameters.BackBufferWidth,
@@ -59,6 +50,26 @@ namespace Starflow.Editor
                 false,
                 GraphicsDevice.PresentationParameters.BackBufferFormat,
                 DepthFormat.Depth24);
+
+            Instance = this;
+            Window.AllowUserResizing = true;
+
+            currentEditorScene = new Scene();
+            currentEditorScene.name = "te";
+            GameObject test = new GameObject("Ass");
+            test.AddComponent<SpriteRenderer>();
+            test.AddComponent<Sandbox.TestBehaviour>();
+            currentEditorScene.gameObjects = new System.Collections.Generic.List<GameObject>()
+            {
+                test
+            };
+            // ChangeScene(currentEditorScene);
+            var stringJson = JsonConvert.SerializeObject(currentEditorScene);
+            // Debug.Log(stringJson);
+
+            imGuiLayer = new EditorLayer();
+            imGuiLayer.Init();
+            new SceneEditorWindow();
         }
 
         protected override void Update(GameTime gameTime)
@@ -66,18 +77,11 @@ namespace Starflow.Editor
             SceneEditorWindow.Instance.Update();
         }
 
-        public override void PreDrawScene(SpriteBatch sb)
+        protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.SetRenderTarget(SceneRenderTarget);
-            GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+            PreDrawScene();
 
-            SceneEditorWindow.Instance.DrawSceneEditor(sb);
-
-            GraphicsDevice.SetRenderTarget(null);
-        }
-
-        public override void Draw(SpriteBatch sb, GameTime gameTime)
-        {
+            GraphicsDevice.Clear(Color.Black);
             ImGuiRenderer.BeginLayout(gameTime);
             Dockspace();
             imGuiLayer.SceneImGui();
@@ -85,11 +89,21 @@ namespace Starflow.Editor
             ImGuiRenderer.EndLayout();
         }
 
-        private void Dockspace()
+        protected void PreDrawScene()
+        {
+            GraphicsDevice.SetRenderTarget(SceneRenderTarget);
+            GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+
+            SceneEditorWindow.Instance.DrawSceneEditor(_spriteBatch);
+
+            GraphicsDevice.SetRenderTarget(null);
+        }
+
+        protected void Dockspace()
         {
             ImGui.PushStyleVar(ImGuiStyleVar.WindowPadding, new System.Numerics.Vector2(0, 0));
             ImGui.SetNextWindowPos(new System.Numerics.Vector2(0f, 0f), ImGuiCond.Always);
-            ImGui.SetNextWindowSize(new System.Numerics.Vector2(Starflow.Window.width, Starflow.Window.height));
+            ImGui.SetNextWindowSize(new System.Numerics.Vector2(GraphicsDevice.PresentationParameters.BackBufferWidth, GraphicsDevice.PresentationParameters.BackBufferHeight));
             ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, 0f);
             ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 0f);
             ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoMove |

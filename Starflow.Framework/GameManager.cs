@@ -9,19 +9,15 @@ namespace Starflow
     {
         private GraphicsDeviceManager _graphics;
         public static SpriteBatch _spriteBatch;
-        public static ContentManager ContentManager;
         public Color bgColor = Color.Black;
         public static readonly new ComponentList Components = new ComponentList();
         public static Scene currentScene;
         static internal Camera currentCamera;
-        // public static RenderTarget2D GameRenderTarget;
         public static GameManager Instance { get; set; }
 
 
         public virtual void Start() { }
-        public virtual void Update(Scene currentScene) { }
-        public virtual void Init() { }
-        public virtual void PreDrawScene(SpriteBatch sb) { }
+        public virtual void GameUpdate(Scene currentScene) { }
         public virtual void Draw(SpriteBatch sb, GameTime gameTime) { }
 
         public GameManager()
@@ -29,7 +25,6 @@ namespace Starflow
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            ContentManager = Content;
             Instance = this;
         }
 
@@ -40,7 +35,6 @@ namespace Starflow
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
             base.Initialize();
-            Init();
             IsFixedTimeStep = false; // VSYNC?
         }
 
@@ -68,7 +62,7 @@ namespace Starflow
             Components.EarlyUpdate();
             Components.Update();
             Components.LateUpdate();
-            Update(currentScene);
+            GameUpdate(currentScene);
 
             if (currentCamera != null)
             {
@@ -88,8 +82,6 @@ namespace Starflow
 
         private void DrawScene(GameTime gameTime)
         {
-            PreDrawScene(_spriteBatch);
-
             /*GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
             // GraphicsDevice.Clear(Color.Cyan);
 

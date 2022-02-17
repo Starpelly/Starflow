@@ -11,15 +11,11 @@ namespace Sandbox
         {
         }
 
-        public override void Init()
-        {
-        }
-
         public override void Start()
         {
         }
 
-        public override void Update(Scene currentScene)
+        public override void GameUpdate(Scene currentScene)
         {
         }
     }

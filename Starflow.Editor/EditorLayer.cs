@@ -10,7 +10,6 @@ namespace Starflow.Editor
         public void Init()
         {
             currentScene = StarflowEditor.Instance.currentEditorScene;
-            new SceneEditorWindow();
         }
 
         public void SceneImGui()

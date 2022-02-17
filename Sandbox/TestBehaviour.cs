@@ -8,8 +8,12 @@ namespace Sandbox
         public override void Start()
         {
             Debug.Log("Start Call");
-            Sprite sprite = new Sprite(Game1.ContentManager.Load<Texture2D>("morsh"));
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+            // Sprite sprite = new Sprite(GameManager.Instance.Content.Load<Texture2D>("morsh"));
+            // this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        }
+
+        public override void Update()
+        {
         }
     }
 }
