@@ -21,11 +21,11 @@ namespace Starflow
             components.Add((Component)(object)type);
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch sb)
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {
-                activeComponents()[i].Draw();
+                activeComponents()[i].Draw(sb);
             }
         }
 

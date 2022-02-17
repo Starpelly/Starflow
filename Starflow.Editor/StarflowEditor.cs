@@ -15,13 +15,14 @@ namespace Starflow.Editor
     {
         private GraphicsDeviceManager _graphics;
         public static SpriteBatch _spriteBatch;
-
         public static ImGUIRenderer ImGuiRenderer;
         public static SpriteBatch spriteBatch;
-        bool p_open = true;
-        public Scene currentEditorScene;
-        private EditorLayer imGuiLayer;
         public static RenderTarget2D SceneRenderTarget;
+        internal static readonly new ComponentList Components = new ComponentList();
+
+        private EditorLayer imGuiLayer;
+        public Scene currentEditorScene;
+
         public static StarflowEditor Instance { get; set; }
 
         public StarflowEditor()
@@ -34,11 +35,16 @@ namespace Starflow.Editor
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
+            Window.AllowUserResizing = true;
+
             ImGuiRenderer = new ImGUIRenderer(this).Initialize().RebuildFontAtlas();
             ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
             var font = ImGui.GetIO().Fonts.AddFontFromFileTTF(@"C:\Windows\Fonts\ARIAL.TTF", 13);
 
-            Window.Title = "Starflow Engine";
+            Window.Title = $"Starflow Editor - Sandbox";
             EditorProperties.DefaultTheme();
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -74,6 +80,9 @@ namespace Starflow.Editor
 
         protected override void Update(GameTime gameTime)
         {
+            Input.Update();
+            Time.deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             SceneEditorWindow.Instance.Update();
         }
 
@@ -109,6 +118,7 @@ namespace Starflow.Editor
             ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoMove |
                 ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
 
+            bool p_open = true;
             ImGui.Begin("Dockspace", ref p_open, dockSpaceFlags);
             ImGui.PopStyleVar(2);
 

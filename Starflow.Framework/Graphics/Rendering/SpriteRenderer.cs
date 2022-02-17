@@ -30,7 +30,7 @@ namespace Starflow
             GameManager.Components.Add(this);
         }
 
-        public override void Draw()
+        public override void Draw(SpriteBatch sb)
         {
             if (sprite == null) return;
             SpriteEffects spriteEffects = SpriteEffects.None;
@@ -49,7 +49,7 @@ namespace Starflow
 
             // temp solution rn
             sprite.pivot = new Vector2(sprite.texture.Width / 2, sprite.texture.Height / 2);
-            GameManager._spriteBatch.Draw(sprite.texture, Rect, null, color, MathHelper.ToRadians(gameObject.transform.rotation), sprite.pivot, spriteEffects, 0f);
+            sb.Draw(sprite.texture, Rect, null, color, MathHelper.ToRadians(gameObject.transform.rotation), sprite.pivot, spriteEffects, 0f);
         }
    }
 }

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Starflow.Editor.Util;
 
 using Vector2 = System.Numerics.Vector2;
+using System.Collections.Generic;
 
 namespace Starflow.Editor
 {
@@ -25,29 +26,29 @@ namespace Starflow.Editor
 
         public void Update()
         {
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.A))
             {
                 editorCamera.position.X -= 500 * Time.deltaTime;
             }
-            Debug.Log(editorCamera.Transform);
+            if (Input.GetKey(KeyCode.D))
+            {
+                editorCamera.position.X += 500 * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                editorCamera.position.Y += 500 * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                editorCamera.position.Y -= 500 * Time.deltaTime;
+            }
+
+            editorCamera.UpdateCamera(StarflowEditor.Instance.GraphicsDevice.Viewport);
         }
 
         public void Imgui()
         {
             ImGui.Begin("Scene", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse);
-
-            // Vector2 viewportPanelSize = ImGui.GetContentRegionAvail();
-
-            /*if (viewportSize != viewportPanelSize)
-            {
-                viewportSize = viewportPanelSize;
-
-                if (viewportSize.X > 0 && viewportSize.Y > 0)
-                {
-                    StarflowEditor.SceneRenderTarget = new RenderTarget2D(StarflowEditor.Instance.GraphicsDevice, (int)viewportSize.X, (int)viewportSize.Y, false, StarflowEditor.Instance.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-                }
-
-            }*/
 
             Vector2 windowSize = GetLargestSizeForViewport();
             Vector2 windowPos = GetCenteredPositionForViewport(windowSize);
@@ -65,10 +66,22 @@ namespace Starflow.Editor
 
             StarflowEditor.Instance.GraphicsDevice.Clear(Colors.Hex2RGB("3f3d3f"));
 
-            // DrawGrid(sb, (int)viewportSize.X, (int)viewportSize.Y);
+            for (int i = 0; i < StarflowEditor.Instance.currentEditorScene.gameObjects.Count; i++)
+            {
+                List<Component> components = StarflowEditor.Instance.currentEditorScene.gameObjects[i].components;
 
-            GameManager.Components.Draw();
+                for (int j = 0; j < components.Count; j++)
+                {
+                    if (components[j].GetType() == typeof(SpriteRenderer))
+                    {
+                        SpriteRenderer sp = (SpriteRenderer)components[j];
+                        sp.sprite = new Sprite(StarflowEditor.Instance.Content.Load<Texture2D>("morsh"));
+                        sp.Draw(sb);
+                    }
+                }
+            }
 
+            // sb.Draw(StarflowEditor.Instance.Content.Load<Texture2D>("morsh"), new Microsoft.Xna.Framework.Vector2(0, 0), Color.White);
             sb.End();
         }
 
@@ -106,28 +119,6 @@ namespace Starflow.Editor
         public static float TargetAspectRatio()
         {
             return 16.0f / 9.0f;
-        }
-
-        private void DrawGrid(SpriteBatch sb, int width, int height)
-        {
-            Texture2D texture1px = Graphics.Rectangle(Color.White, 1, 1);
-            int cols = 32;
-            int rows = 32;
-            int gridSize = 32;
-            int centerX = width / 2;
-            int centerY = height / 2;
-            Color col = Colors.Hex2RGB("5c5c5c");
-
-            for (int x = -cols; x < cols; x++)
-            {
-                Rectangle rectangle = new Rectangle((centerX + x * gridSize), 0, 1, height);
-                sb.Draw(texture1px, rectangle, col);
-            }
-            for (int y = -rows; y < rows; y++)
-            {
-                Rectangle rectangle = new Rectangle(0, (centerY + y * gridSize), width, 1);
-                sb.Draw(texture1px, rectangle, col);
-            }
         }
     }
 }

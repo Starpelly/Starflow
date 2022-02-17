@@ -36,7 +36,7 @@ namespace Starflow.Editor
             {
                 if (ImGui.Selectable("Create Empty"))
                 {
-                    GameObject gameObject = new GameObject("GameObject");
+                    currentScene.gameObjects.Add(new GameObject("GameObject"));
                 }
                 ImGui.EndPopup();
             }

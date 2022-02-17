@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
 
 namespace Starflow
 {
@@ -27,6 +28,6 @@ namespace Starflow
         {
         }
 
-        public virtual void Draw() { }
+        public virtual void Draw(SpriteBatch sb) { }
     }
 }

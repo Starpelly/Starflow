@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Starflow.Editor.Util
 {
@@ -53,6 +54,12 @@ namespace Starflow.Editor.Util
         public void AdjustZoom(float zoomAmount)
         {
             Zoom += zoomAmount;
+        }
+
+        public void UpdateCamera(Viewport bounds)
+        {
+            Bounds = bounds.Bounds;
+            UpdateMatrix();
         }
     }
 }

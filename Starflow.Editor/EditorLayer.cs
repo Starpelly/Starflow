@@ -5,11 +5,8 @@ namespace Starflow.Editor
 {
     public class EditorLayer
     {
-        private Scene currentScene;
-
         public void Init()
         {
-            currentScene = StarflowEditor.Instance.currentEditorScene;
         }
 
         public void SceneImGui()
@@ -19,8 +16,8 @@ namespace Starflow.Editor
             // GameViewWindow.Imgui();
             MainMenuBar.Imgui(StarflowEditor.Instance);
 
-            Inspector.Imgui(currentScene.activeGameObject);
-            Hierarchy.Imgui(currentScene);
+            Inspector.Imgui(StarflowEditor.Instance.currentEditorScene.activeGameObject);
+            Hierarchy.Imgui(StarflowEditor.Instance.currentEditorScene);
             Console.Imgui();
             AssetBrowser.Imgui();
         }
