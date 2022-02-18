@@ -38,8 +38,8 @@ namespace Starflow.Editor
             Window.Title = $"Starflow Editor - Sandbox";
             Window.AllowUserResizing = true;
 
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.PreferredBackBufferWidth = 1600;
+            _graphics.PreferredBackBufferHeight = 900;
             _graphics.ApplyChanges();
             
             _spriteBatch = new SpriteBatch(GraphicsDevice);

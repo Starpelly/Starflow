@@ -16,10 +16,10 @@ namespace Starflow.Editor.Util
         private bool _isDirty;
 
         private Matrix _view;
-        private Matrix _projection;
+        public Matrix _projection;
 
-        private float _fov;
-        private float _aspect;
+        public float _fov;
+        public float _aspect;
         private float _near;
         private float _far;
 
@@ -115,6 +115,13 @@ namespace Starflow.Editor.Util
             _orientation = _orientation * Quaternion.CreateFromAxisAngle(axis, radians);
             _orientation.Normalize();
             _isDirty = true;
+        }
+
+        public void OnResize(int width, int height, float near, float far)
+        {
+            _near = near;
+            _far = far;
+            _projection = Matrix.CreateOrthographic(width, height, near, far);
         }
     }
 }
