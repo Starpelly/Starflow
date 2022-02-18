@@ -12,7 +12,7 @@ namespace Starflow.Editor
         public void SceneImGui()
         {
             ImGui.ShowDemoWindow();
-            SceneEditorWindow.Instance.Imgui();
+            // SceneEditorWindow.Instance.Imgui();
             // GameViewWindow.Imgui();
             MainMenuBar.Imgui(StarflowEditor.Instance);
 

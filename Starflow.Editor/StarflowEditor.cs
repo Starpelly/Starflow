@@ -89,24 +89,13 @@ namespace Starflow.Editor
 
         protected override void Draw(GameTime gameTime)
         {
-            PreDrawScene();
+            SceneEditorWindow.Instance.DrawSceneEditor(_spriteBatch, _grid, _primitiveBatch);
 
-            GraphicsDevice.Clear(Color.Black);
             ImGuiRenderer.BeginLayout(gameTime);
             Dockspace();
             imGuiLayer.SceneImGui();
 
             ImGuiRenderer.EndLayout();
-        }
-
-        protected void PreDrawScene()
-        {
-            GraphicsDevice.SetRenderTarget(SceneRenderTarget);
-            GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-
-            SceneEditorWindow.Instance.DrawSceneEditor(_spriteBatch, _grid, _primitiveBatch);
-
-            GraphicsDevice.SetRenderTarget(null);
         }
 
         protected void Dockspace()
@@ -117,13 +106,13 @@ namespace Starflow.Editor
             ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, 0f);
             ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 0f);
             ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoMove |
-                ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
+                ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground | ImGuiWindowFlags.NoTitleBar;
 
             bool p_open = true;
             ImGui.Begin("Dockspace", ref p_open, dockSpaceFlags);
             ImGui.PopStyleVar(2);
 
-            ImGui.DockSpace(ImGui.GetID("Dockspace"));
+            ImGui.DockSpace(ImGui.GetID("Dockspace"), new System.Numerics.Vector2(0, 0), ImGuiDockNodeFlags.PassthruCentralNode);
             ImGui.PopStyleVar();
         }
     }
