@@ -5,8 +5,10 @@ namespace Starflow
 {
     public class Mouse
     {
-        public static MouseState mouse;
-        public static MouseState lastMouse;
+        private static MouseState mouse;
+        private static MouseState lastMouse;
+
+        internal static int mouseScrollValue { get { return mouse.ScrollWheelValue; } }
 
         public Vector2 mousePosition;
 

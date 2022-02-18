@@ -12,6 +12,11 @@ namespace Starflow
         /// </summary>
         public static Vector2 mousePosition;
 
+        /// <summary>
+        /// The current mouse scroll value. (Read Only)
+        /// </summary>
+        public static int mouseScrollValue { get { return Mouse.mouseScrollValue; } }
+
         public static void Update()
         {
             keyboard.Update();

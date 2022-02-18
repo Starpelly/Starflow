@@ -33,18 +33,15 @@ namespace Starflow.Editor
 
         protected override void Initialize()
         {
+            Instance = this;
+
+            Window.Title = $"Starflow Editor - Sandbox";
+            Window.AllowUserResizing = true;
+
             _graphics.PreferredBackBufferWidth = 1280;
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
-            Window.AllowUserResizing = true;
-
-            ImGuiRenderer = new ImGUIRenderer(this).Initialize().RebuildFontAtlas();
-            ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
-            var font = ImGui.GetIO().Fonts.AddFontFromFileTTF(@"C:\Windows\Fonts\ARIAL.TTF", 13);
-
-            Window.Title = $"Starflow Editor - Sandbox";
-            EditorProperties.DefaultTheme();
-
+            
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _primitiveBatch = new PrimitiveBatch(GraphicsDevice);
 
@@ -56,8 +53,10 @@ namespace Starflow.Editor
                 GraphicsDevice.PresentationParameters.BackBufferFormat,
                 DepthFormat.Depth24);
 
-            Instance = this;
-            Window.AllowUserResizing = true;
+            ImGuiRenderer = new ImGUIRenderer(this).Initialize().RebuildFontAtlas();
+            ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
+            var font = ImGui.GetIO().Fonts.AddFontFromFileTTF(@"C:\Windows\Fonts\ARIAL.TTF", 13);
+
 
             currentEditorScene = new Scene();
             currentEditorScene.name = "te";
@@ -68,15 +67,16 @@ namespace Starflow.Editor
             {
                 test
             };
-            // ChangeScene(currentEditorScene);
             var stringJson = JsonConvert.SerializeObject(currentEditorScene);
-            // Debug.Log(stringJson);
+
 
             imGuiLayer = new EditorLayer();
             imGuiLayer.Init();
 
             _grid = new DynamicGrid(new DynamicGridSettings() { GridSizeInPixels = 32 });
             new SceneEditorWindow();
+
+            EditorProperties.DefaultTheme();
         }
 
         protected override void Update(GameTime gameTime)

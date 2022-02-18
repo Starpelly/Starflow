@@ -30,21 +30,20 @@ namespace Starflow.Editor
         {
             if (Input.GetKey(KeyCode.D))
             {
-                editorCamera.MoveLocal(new Microsoft.Xna.Framework.Vector3(500 * Time.deltaTime, 0, 0));
+                editorCamera.Move(new Microsoft.Xna.Framework.Vector3(500 * Time.deltaTime, 0, 0));
             }
             if (Input.GetKey(KeyCode.A))
             {
-                editorCamera.MoveLocal(new Microsoft.Xna.Framework.Vector3(-500 * Time.deltaTime, 0, 0));
+                editorCamera.Move(new Microsoft.Xna.Framework.Vector3(-500 * Time.deltaTime, 0, 0));
             }
             if (Input.GetKey(KeyCode.W))
             {
-                editorCamera.MoveLocal(new Microsoft.Xna.Framework.Vector3(0, 500 * Time.deltaTime, 0));
+                editorCamera.Move(new Microsoft.Xna.Framework.Vector3(0, 500 * Time.deltaTime, 0));
             }
             if (Input.GetKey(KeyCode.S))
             {
-                editorCamera.MoveLocal(new Microsoft.Xna.Framework.Vector3(0, -500 * Time.deltaTime, 0));
+                editorCamera.Move(new Microsoft.Xna.Framework.Vector3(0, -500 * Time.deltaTime, 0));
             }
-            // editorCamera.UpdateCamera(StarflowEditor.Instance.GraphicsDevice.Viewport);
 
             _grid.CalculateBestGridSize(zoom);
             _grid.CalculateGridData(data =>
