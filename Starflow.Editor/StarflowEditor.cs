@@ -1,13 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using Starflow;
 
 using MonoGame.ImGui;
 using ImGuiNET;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Starflow.Editor
 {
@@ -15,8 +11,10 @@ namespace Starflow.Editor
     {
         private GraphicsDeviceManager _graphics;
         public static SpriteBatch _spriteBatch;
+        private DynamicGrid _grid;
+        private PrimitiveBatch _primitiveBatch;
+
         public static ImGUIRenderer ImGuiRenderer;
-        public static SpriteBatch spriteBatch;
         public static RenderTarget2D SceneRenderTarget;
         internal static readonly new ComponentList Components = new ComponentList();
 
@@ -48,6 +46,7 @@ namespace Starflow.Editor
             EditorProperties.DefaultTheme();
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _primitiveBatch = new PrimitiveBatch(GraphicsDevice);
 
             SceneRenderTarget = new RenderTarget2D(
                 GraphicsDevice,
@@ -75,6 +74,8 @@ namespace Starflow.Editor
 
             imGuiLayer = new EditorLayer();
             imGuiLayer.Init();
+
+            _grid = new DynamicGrid(new DynamicGridSettings() { GridSizeInPixels = 32 });
             new SceneEditorWindow();
         }
 
@@ -83,7 +84,7 @@ namespace Starflow.Editor
             Input.Update();
             Time.deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            SceneEditorWindow.Instance.Update();
+            SceneEditorWindow.Instance.Update(_grid);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -103,7 +104,7 @@ namespace Starflow.Editor
             GraphicsDevice.SetRenderTarget(SceneRenderTarget);
             GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
 
-            SceneEditorWindow.Instance.DrawSceneEditor(_spriteBatch);
+            SceneEditorWindow.Instance.DrawSceneEditor(_spriteBatch, _grid, _primitiveBatch);
 
             GraphicsDevice.SetRenderTarget(null);
         }

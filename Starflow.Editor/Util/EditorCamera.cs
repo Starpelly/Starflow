@@ -11,55 +11,110 @@ namespace Starflow.Editor.Util
 {
     internal class EditorCamera
     {
-        public float Zoom;
-        public Rectangle Bounds;
-        public Rectangle VisibleArea;
-        public Matrix Transform;
-        public Vector2 position;
+        private Quaternion _orientation = Quaternion.Identity;
+        private Vector3 _translation = Vector3.Zero;
+        private bool _isDirty;
+
+        private Matrix _view;
+        private Matrix _projection;
+
+        private float _fov;
+        private float _aspect;
+        private float _near;
+        private float _far;
+
+        public float Fov => _fov;
+
+        public float Aspect => _aspect;
+
+        public float Near => _near;
+
+        public float Far => _far;
+
+        public Matrix Projection => _projection;
+
+        public Vector3 Position
+        {
+            get => _translation;
+            set
+            {
+                _isDirty = true;
+                _translation = value;
+            }
+        }
+
+        public Matrix View
+        {
+            get
+            {
+                if (!_isDirty)
+                    return _view;
+
+                _view = Matrix.Invert(Matrix.CreateFromQuaternion(_orientation) * Matrix.CreateTranslation(_translation));
+                return _view;
+            }
+        }
 
         public EditorCamera()
         {
-            // Bounds = viewport.Bounds;
-            Zoom = 1f;
-            position = Vector2.Zero;
+            _projection = Matrix.Identity;
         }
 
-
-        private void UpdateVisibleArea()
+        public EditorCamera(int width, int height, float near, float far)
         {
-            var inverseViewMatrix = Matrix.Invert(Transform);
-
-            var tl = Vector2.Transform(Vector2.Zero, inverseViewMatrix);
-            var tr = Vector2.Transform(new Vector2(Bounds.X, 0), inverseViewMatrix);
-            var bl = Vector2.Transform(new Vector2(0, Bounds.Y), inverseViewMatrix);
-            var br = Vector2.Transform(new Vector2(Bounds.Width, Bounds.Height), inverseViewMatrix);
-
-            var min = new Vector2(
-                MathHelper.Min(tl.X, MathHelper.Min(tr.X, MathHelper.Min(bl.X, br.X))),
-                MathHelper.Min(tl.Y, MathHelper.Min(tr.Y, MathHelper.Min(bl.Y, br.Y))));
-            var max = new Vector2(
-                MathHelper.Max(tl.X, MathHelper.Max(tr.X, MathHelper.Max(bl.X, br.X))),
-                MathHelper.Max(tl.Y, MathHelper.Max(tr.Y, MathHelper.Max(bl.Y, br.Y))));
-            VisibleArea = new Rectangle((int)min.X, (int)min.Y, (int)(max.X - min.X), (int)(max.Y - min.Y));
+            _near = near;
+            _far = far;
+            _projection = Matrix.CreateOrthographic(width, height, near, far);
         }
 
-        private void UpdateMatrix()
+        public EditorCamera(float fov, float aspect, float near, float far)
         {
-            Transform = Matrix.CreateTranslation(new Vector3(-position.X, -position.Y, 0)) *
-                    Matrix.CreateScale(Zoom) *
-                    Matrix.CreateTranslation(new Vector3(Bounds.Width * 0.5f, Bounds.Height * 0.5f, 0));
-            UpdateVisibleArea();
+            _fov = fov;
+            _aspect = aspect;
+            _near = near;
+            _far = far;
+            _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(fov), aspect, near, far);
         }
 
-        public void AdjustZoom(float zoomAmount)
+        public Vector3 ScreenToWorld(Viewport viewport, Vector2 mousePosition, bool near = true)
         {
-            Zoom += zoomAmount;
+            return viewport.Unproject(new Vector3(mousePosition, near ? 0 : 1), Projection,
+                View, Matrix.Identity);
         }
 
-        public void UpdateCamera(Viewport bounds)
+        public Vector3 WorldToScreen(Viewport viewport, Vector3 worldPosition)
         {
-            Bounds = bounds.Bounds;
-            UpdateMatrix();
+            return viewport.Project(worldPosition, Projection, View, Matrix.Identity);
+        }
+
+        public void Move(Vector3 movement)
+        {
+            _translation.X += movement.X;
+            _translation.Y += movement.Y;
+            _translation.Z += movement.Z;
+            _isDirty = true;
+        }
+
+        public void MoveLocal(Vector3 movement)
+        {
+            _translation += Vector3.Transform(movement, _orientation);
+            _isDirty = true;
+        }
+
+        public void Rotate(Vector3 axis, float angle)
+        {
+            var radians = MathHelper.ToRadians(angle);
+            _orientation = Quaternion.CreateFromAxisAngle(axis, radians) * _orientation;
+            _orientation.Normalize();
+            _isDirty = true;
+        }
+
+        public void RotateLocal(Vector3 axis, float angle)
+        {
+            var radians = MathHelper.ToRadians(angle);
+            _orientation = _orientation * Quaternion.CreateFromAxisAngle(axis, radians);
+            _orientation.Normalize();
+            _isDirty = true;
         }
     }
 }

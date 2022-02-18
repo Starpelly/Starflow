@@ -15,35 +15,56 @@ namespace Starflow.Editor
     public class SceneEditorWindow : View
     {
         private EditorCamera editorCamera;
+        public int zoom = 1;
 
         public static SceneEditorWindow Instance { get; private set; }
 
         public SceneEditorWindow()
         {
             Instance = this;
-            editorCamera = new EditorCamera();
+            editorCamera = new EditorCamera(StarflowEditor.Instance.GraphicsDevice.Viewport.Width / zoom, StarflowEditor.Instance.GraphicsDevice.Viewport.Height / zoom, -1, 1);
+            editorCamera.Move((Microsoft.Xna.Framework.Vector3.UnitX - Microsoft.Xna.Framework.Vector3.UnitY) * 64);
         }
 
-        public void Update()
+        public void Update(DynamicGrid _grid)
         {
-            if (Input.GetKey(KeyCode.A))
-            {
-                editorCamera.position.X -= 500 * Time.deltaTime;
-            }
             if (Input.GetKey(KeyCode.D))
             {
-                editorCamera.position.X += 500 * Time.deltaTime;
+                editorCamera.MoveLocal(new Microsoft.Xna.Framework.Vector3(500 * Time.deltaTime, 0, 0));
             }
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.A))
             {
-                editorCamera.position.Y += 500 * Time.deltaTime;
+                editorCamera.MoveLocal(new Microsoft.Xna.Framework.Vector3(-500 * Time.deltaTime, 0, 0));
             }
             if (Input.GetKey(KeyCode.W))
             {
-                editorCamera.position.Y -= 500 * Time.deltaTime;
+                editorCamera.MoveLocal(new Microsoft.Xna.Framework.Vector3(0, 500 * Time.deltaTime, 0));
             }
+            if (Input.GetKey(KeyCode.S))
+            {
+                editorCamera.MoveLocal(new Microsoft.Xna.Framework.Vector3(0, -500 * Time.deltaTime, 0));
+            }
+            // editorCamera.UpdateCamera(StarflowEditor.Instance.GraphicsDevice.Viewport);
 
-            editorCamera.UpdateCamera(StarflowEditor.Instance.GraphicsDevice.Viewport);
+            _grid.CalculateBestGridSize(zoom);
+            _grid.CalculateGridData(data =>
+            {
+                var viewport = StarflowEditor.Instance.GraphicsDevice.Viewport;
+                data.GridDim = viewport.Height;
+
+                var worldTopLeft = editorCamera.ScreenToWorld(viewport, new Microsoft.Xna.Framework.Vector2(0, 0));
+                var worldTopRight = editorCamera.ScreenToWorld(viewport, new Microsoft.Xna.Framework.Vector2(viewport.Width, 0));
+                var worldBottomRight = editorCamera.ScreenToWorld(viewport, new Microsoft.Xna.Framework.Vector2(viewport.Width, viewport.Height));
+                var worldBottomLeft = editorCamera.ScreenToWorld(viewport, new Microsoft.Xna.Framework.Vector2(0, viewport.Height));
+
+                Aabb bounds = new Aabb();
+                bounds.Grow(worldTopLeft);
+                bounds.Grow(worldTopRight);
+                bounds.Grow(worldBottomRight);
+                bounds.Grow(worldBottomLeft);
+
+                return bounds;
+            });
         }
 
         public void Imgui()
@@ -60,11 +81,22 @@ namespace Starflow.Editor
             ImGui.End();
         }
 
-        public void DrawSceneEditor(SpriteBatch sb)
+        public void DrawSceneEditor(SpriteBatch sb, DynamicGrid _grid, PrimitiveBatch _primitiveBatch)
         {
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, editorCamera.Transform);
+            StarflowEditor.Instance.GraphicsDevice.Clear(Colors.Hex2RGB("464646"));
 
-            StarflowEditor.Instance.GraphicsDevice.Clear(Colors.Hex2RGB("3f3d3f"));
+            _primitiveBatch.Begin(editorCamera.View, editorCamera.Projection);
+            _grid.Render(_primitiveBatch, Matrix.Identity);
+            _primitiveBatch.End();
+
+            var viewport = StarflowEditor.Instance.GraphicsDevice.Viewport;
+            var translation = editorCamera.View.Translation;
+            var spriteBatchTransformation = Matrix.CreateTranslation(viewport.Width / 2 / zoom, viewport.Height / 2 / zoom, 0) *
+                                            Matrix.CreateTranslation(translation.X, -translation.Y, 0)
+                                            * Matrix.CreateScale(zoom);
+
+            sb.Begin(transformMatrix: spriteBatchTransformation, samplerState: SamplerState.PointClamp);
+
 
             for (int i = 0; i < StarflowEditor.Instance.currentEditorScene.gameObjects.Count; i++)
             {
@@ -80,8 +112,6 @@ namespace Starflow.Editor
                     }
                 }
             }
-
-            // sb.Draw(StarflowEditor.Instance.Content.Load<Texture2D>("morsh"), new Microsoft.Xna.Framework.Vector2(0, 0), Color.White);
             sb.End();
         }
 
