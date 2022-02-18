@@ -9,21 +9,24 @@ namespace Starflow.Editor
     {
         public void Imgui(GameObject gameObject)
         {
-            ImGui.Text("Transform");
-            Vector3 pos = Helpers.XnaVector2Numerics(gameObject.transform.position);
-            if (ImGui.DragFloat3("Position", ref pos))
+            bool open = true;
+            if (ImGui.CollapsingHeader("Transform", ref open))
             {
-                gameObject.transform.position = Helpers.Numerics2XnaVector(pos);
-            }
-            float rot = gameObject.transform.rotation;
-            if (ImGui.DragFloat("Rotation", ref rot))
-            {
-                gameObject.transform.rotation = rot;
-            }
-            Vector3 scale = Helpers.XnaVector2Numerics(gameObject.transform.scale);
-            if (ImGui.DragFloat3("Scale", ref scale))
-            {
-                gameObject.transform.scale = Helpers.Numerics2XnaVector(scale);
+                Vector3 pos = Helpers.XnaVector2Numerics(gameObject.transform.position);
+                if (ImGui.DragFloat3("Position", ref pos))
+                {
+                    gameObject.transform.position = Helpers.Numerics2XnaVector(pos);
+                }
+                float rot = gameObject.transform.rotation;
+                if (ImGui.DragFloat("Rotation", ref rot))
+                {
+                    gameObject.transform.rotation = rot;
+                }
+                Vector3 scale = Helpers.XnaVector2Numerics(gameObject.transform.scale);
+                if (ImGui.DragFloat3("Scale", ref scale))
+                {
+                    gameObject.transform.scale = Helpers.Numerics2XnaVector(scale);
+                }
             }
         }
     }

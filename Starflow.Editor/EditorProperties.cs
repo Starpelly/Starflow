@@ -7,6 +7,9 @@ namespace Starflow.Editor
         public static string ProjectLocation = @"C:\Dev\Starflow\Sandbox";
         public static string[] ExcludeFiles = { "obj/", "bin/", ".mgcb", ".csproj", ".manifest" };
 
+        public static float toolbarSize = 50;
+        public static float menuBarHeight;
+
         public static void DefaultTheme()
         {
             var style = ImGui.GetStyle();

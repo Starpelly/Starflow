@@ -5,6 +5,10 @@ namespace Sandbox
 {
     public class TestBehaviour : Behaviour
     {
+        public float Float;
+        public int Integer;
+        public string String;
+
         public override void Start()
         {
             Debug.Log("Start Call");

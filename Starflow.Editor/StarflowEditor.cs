@@ -21,6 +21,7 @@ namespace Starflow.Editor
         private EditorLayer imGuiLayer;
         public Scene currentEditorScene;
 
+
         public static StarflowEditor Instance { get; set; }
 
         public StarflowEditor()
@@ -60,13 +61,17 @@ namespace Starflow.Editor
 
             currentEditorScene = new Scene();
             currentEditorScene.name = "te";
-            GameObject test = new GameObject("Ass");
-            test.AddComponent<SpriteRenderer>();
-            test.AddComponent<Sandbox.TestBehaviour>();
-            currentEditorScene.gameObjects = new System.Collections.Generic.List<GameObject>()
+            System.Collections.Generic.List<GameObject> gameObjects = new System.Collections.Generic.List<GameObject>();
+            for (int i = 0; i < 120; i++)
             {
-                test
-            };
+                gameObjects.Add(new GameObject($"Test{i}"));
+                if (i == 0)
+                {
+                    gameObjects[0].AddComponent<SpriteRenderer>();
+                    gameObjects[0].AddComponent<Sandbox.TestBehaviour>();
+                }
+            }
+            currentEditorScene.gameObjects = gameObjects;
             var stringJson = JsonConvert.SerializeObject(currentEditorScene);
 
 
@@ -106,11 +111,12 @@ namespace Starflow.Editor
             ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, 0f);
             ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 0f);
             ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoMove |
-                ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground | ImGuiWindowFlags.NoTitleBar;
+                ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground;
 
             bool p_open = true;
             ImGui.Begin("Dockspace", ref p_open, dockSpaceFlags);
             ImGui.PopStyleVar(2);
+
 
             ImGui.DockSpace(ImGui.GetID("Dockspace"), new System.Numerics.Vector2(0, 0), ImGuiDockNodeFlags.PassthruCentralNode);
             ImGui.PopStyleVar();

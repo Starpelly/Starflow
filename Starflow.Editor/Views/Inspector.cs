@@ -33,37 +33,41 @@ namespace Starflow.Editor
             {
                 Component c = activeGameObject.components[i];
                 ImGui.Separator();
-                ImGui.Checkbox(c.GetType().Name, ref c.enabled);
 
-                if (c.GetType().BaseType.Name != "Behaviour") // hacky fix rn
+                bool open = true;
+                if (ImGui.CollapsingHeader(c.GetType().Name, ref open))
                 {
-                    var types = GetTypesWithAttribute(Assembly.GetExecutingAssembly());
-                    foreach (var type in types)
+                    if (c.GetType().BaseType.Name != "Behaviour") // hacky fix rn
                     {
-                        if (type.GetCustomAttribute<CustomEditor>().m_InspectedType == c.GetType())
+                        var types = GetTypesWithAttribute(Assembly.GetExecutingAssembly());
+                        foreach (var type in types)
                         {
-                            MethodInfo methodInfo = type.GetMethod("Imgui");
-                            if (methodInfo != null)
+                            if (type.GetCustomAttribute<CustomEditor>().m_InspectedType == c.GetType())
                             {
-                                ParameterInfo[] parameters = methodInfo.GetParameters();
-                                object classInstance = Activator.CreateInstance(type, null);
-                                if (parameters.Length == 0)
+                                MethodInfo methodInfo = type.GetMethod("Imgui");
+                                if (methodInfo != null)
                                 {
-                                    methodInfo.Invoke(classInstance, null);
-                                }
-                                else
-                                {
-                                    object[] parametersArray = new object[] { c };
-                                    methodInfo.Invoke(classInstance, parametersArray);
+                                    ParameterInfo[] parameters = methodInfo.GetParameters();
+                                    object classInstance = Activator.CreateInstance(type, null);
+                                    if (parameters.Length == 0)
+                                    {
+                                        methodInfo.Invoke(classInstance, null);
+                                    }
+                                    else
+                                    {
+                                        object[] parametersArray = new object[] { c };
+                                        methodInfo.Invoke(classInstance, parametersArray);
+                                    }
                                 }
                             }
                         }
                     }
+                    else
+                    {
+                        new BehaviourEditor().Imgui(c);
+                    }
                 }
-                else
-                {
-                    new BehaviourEditor().Imgui(c);
-                }
+                // ImGui.Checkbox(c.GetType().Name, ref c.enabled);
             }
             ImGui.Separator();
             if (ImGui.Button("Add Component"))
