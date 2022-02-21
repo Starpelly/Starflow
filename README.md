@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://ducktapeengine.github.io/" target="_blank">
+    <a href="" target="_blank">
         <img src="https://raw.githubusercontent.com/Starpelly/Tickflow/main/Branding/Logo.png" alt="logo" width="600px"/>
     </a>
 <p/>
