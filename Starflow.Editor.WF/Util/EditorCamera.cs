@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Starflow.Editor.WF
+namespace Starflow.Editor
 {
     internal class EditorCamera
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Starflow.Editor.WF.Properties
+namespace Starflow.Editor.Properties
 {
 
 

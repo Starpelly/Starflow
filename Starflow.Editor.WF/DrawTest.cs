@@ -5,32 +5,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Starflow.Editor.WF
+namespace Starflow.Editor
 {
     internal class DrawTest : MonoGame.Forms.Controls.MonoGameControl
     {
-        string WelcomeMessage = "Hello MonoGame.Forms!";
-        public Scene currentEditorScene;
         EditorCamera editorCamera;
         public int zoom = 1;
 
         protected override void Initialize()
         {
             base.Initialize();
-
-            currentEditorScene = new Scene();
-            currentEditorScene.name = "te";
-            List<GameObject> gameObjects = new System.Collections.Generic.List<GameObject>();
-            for (int i = 0; i < 120; i++)
-            {
-                gameObjects.Add(new GameObject($"Test{i}"));
-                if (i == 0)
-                {
-                    gameObjects[0].AddComponent<SpriteRenderer>();
-                    gameObjects[0].AddComponent<Sandbox.TestBehaviour>();
-                }
-            }
-            currentEditorScene.gameObjects = gameObjects;
 
             editorCamera = new EditorCamera(GraphicsDevice.Viewport.Width / zoom, GraphicsDevice.Viewport.Height / zoom, -1, 1);
             editorCamera.Move((Microsoft.Xna.Framework.Vector3.UnitX - Microsoft.Xna.Framework.Vector3.UnitY) * 64);
@@ -73,9 +57,9 @@ namespace Starflow.Editor.WF
 
             Editor.spriteBatch.Begin(transformMatrix: spriteBatchTransformation);
 
-            for (int i = 0; i < currentEditorScene.gameObjects.Count; i++)
+            for (int i = 0; i < EditorWindow.Instance.currentEditorScene.gameObjects.Count; i++)
             {
-                List<Component> components = currentEditorScene.gameObjects[i].components;
+                List<Component> components = EditorWindow.Instance.currentEditorScene.gameObjects[i].components;
 
                 for (int j = 0; j < components.Count; j++)
                 {

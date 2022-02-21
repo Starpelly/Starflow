@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Starflow.Editor.WF
+namespace Starflow.Editor
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace Starflow.Editor.WF
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new EditorWindow());
         }
     }
 }
