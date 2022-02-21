@@ -8,14 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using ICSharpCode.TextEditor;
-using ICSharpCode.TextEditor.Document;
-
+using System.Windows.Forms.Integration;
 using Newtonsoft.Json;
+using WPFControls;
 
 namespace Starflow.Editor
 {
+	// todo: Loading and saving scenes, (TYPES are not serialized)
+	// some inspector code
+	// general cleaning up
+	// read a bible
+	// parenting objects
+	// proper icons and structure for the asset browser
     public partial class EditorWindow : Form
     {
 		public Scene currentEditorScene;
@@ -26,30 +30,49 @@ namespace Starflow.Editor
 			InitializeComponent();
 			Instance = this;
 
-			Scene debugScene = JsonConvert.DeserializeObject<Scene>(File.ReadAllText(EditorProperties.ProjectLocation + @"\TestScene.starflow"));
-			currentEditorScene = debugScene;
+			// currentEditorScene = JsonConvert.DeserializeObject<Scene>(File.ReadAllText(EditorProperties.ProjectLocation + @"\TestScene.starflow"));
 
-			for (int i = 0; i < debugScene.gameObjects.Count; i++)
+			currentEditorScene = new Scene();
+			currentEditorScene.name = "te";
+			System.Collections.Generic.List<GameObject> gameObjects = new System.Collections.Generic.List<GameObject>();
+			for (int i = 0; i < 120; i++)
+			{
+				gameObjects.Add(new GameObject($"Test{i}"));
+				if (i == 0)
+				{
+					gameObjects[0].AddComponent<SpriteRenderer>();
+					gameObjects[0].AddComponent<Sandbox.TestBehaviour>();
+				}
+			}
+			currentEditorScene.gameObjects = gameObjects;
+			var stringJson = JsonConvert.SerializeObject(currentEditorScene, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects });
+			// File.WriteAllText(EditorProperties.ProjectLocation + @"\TestScene.starflow", stringJson);
+
+			for (int i = 0; i < currentEditorScene.gameObjects.Count; i++)
             {
-				hierarchyTree.Nodes.Add(debugScene.gameObjects[i].name);
+				hierarchyTree.Nodes.Add(currentEditorScene.gameObjects[i].name);
             }
 
             string fileStr = $@"{EditorProperties.ProjectLocation}\TestBehaviour.cs";
             var tab = new TabPage(System.IO.Path.GetFileName(fileStr));
-            var editor = new TextEditorControl();
-            editor.Dock = System.Windows.Forms.DockStyle.Fill;
-            tab.Controls.Add(editor);
-            mainTabs.Controls.Add(tab);
-            editor.LoadFile(fileStr);
 
-			editor.Document.FoldingManager.FoldingStrategy = new RegionFoldingStrategy();
-			editor.Document.FoldingManager.UpdateFoldings(null, null);
+			var editor = new AvalonEditControl();
+			var host = new ElementHost();
+			host.Dock = DockStyle.Fill;
+			host.Child = editor;
 
-			TreeNode spritesNode = assetTree.Nodes.Add("Sprites");
-			TreeNode scriptsNode = assetTree.Nodes.Add("Scripts");
-			TreeNode soundsNode = assetTree.Nodes.Add("Sounds");
+			editor.TextEditor.Text = File.ReadAllText(fileStr);
+			editor.TextEditor.ShowLineNumbers = true;
+
+			tab.Controls.Add(host);
+			mainTabs.Controls.Add(tab);
+
+			TreeNode animationsNode = assetTree.Nodes.Add("Animations");
+			TreeNode audioNode = assetTree.Nodes.Add("Audio");
 			TreeNode fontsNode = assetTree.Nodes.Add("Fonts");
 			TreeNode scenesNode = assetTree.Nodes.Add("Scenes");
+			TreeNode scriptsNode = assetTree.Nodes.Add("Scripts");
+			TreeNode spritesNode = assetTree.Nodes.Add("Sprites");
 
 			string[] files = Directory.GetFiles(EditorProperties.ProjectLocation, "*", SearchOption.AllDirectories);
 			foreach (var file in files)
@@ -88,7 +111,7 @@ namespace Starflow.Editor
 					case ".ogg":
 					case ".mp3":
 					case ".wav":
-						soundsNode.Nodes.Add(new TreeNode(fileName));
+						audioNode.Nodes.Add(new TreeNode(fileName));
 						break;
 					case ".ttf":
 					case ".otf":
@@ -112,55 +135,4 @@ namespace Starflow.Editor
         }
         #endregion
     }
-
-    /// <summary>
-    /// The class to generate the foldings, it implements ICSharpCode.TextEditor.Document.IFoldingStrategy
-    /// </summary>
-    public class RegionFoldingStrategy : IFoldingStrategy
-	{
-		/// <summary>
-		/// Generates the foldings for our document.
-		/// </summary>
-		/// <param name="document">The current document.</param>
-		/// <param name="fileName">The filename of the document.</param>
-		/// <param name="parseInformation">Extra parse information, not used in this sample.</param>
-		/// <returns>A list of FoldMarkers.</returns>
-		public List<FoldMarker> GenerateFoldMarkers(IDocument document, string fileName, object parseInformation)
-		{
-			List<FoldMarker> list = new List<FoldMarker>();
-
-			Stack<int> startLines = new Stack<int>();
-
-			// Create foldmarkers for the whole document, enumerate through every line.
-			for (int i = 0; i < document.TotalNumberOfLines; i++)
-			{
-				var seg = document.GetLineSegment(i);
-				int offs, end = document.TextLength;
-				char c;
-				for (offs = seg.Offset; offs < end && ((c = document.GetCharAt(offs)) == ' ' || c == '\t'); offs++)
-				{ }
-				if (offs == end)
-					break;
-				int spaceCount = offs - seg.Offset;
-
-				// now offs points to the first non-whitespace char on the line
-				if (document.GetCharAt(offs) == '#')
-				{
-					string text = document.GetText(offs, seg.Length - spaceCount);
-					if (text.StartsWith("#region"))
-						startLines.Push(i);
-					if (text.StartsWith("#endregion") && startLines.Count > 0)
-					{
-						// Add a new FoldMarker to the list.
-						int start = startLines.Pop();
-						list.Add(new FoldMarker(document, start,
-							document.GetLineSegment(start).Length,
-							i, spaceCount + "#endregion".Length));
-					}
-				}
-			}
-
-			return list;
-		}
-	}
 }
