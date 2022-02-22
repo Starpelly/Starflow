@@ -82,17 +82,17 @@ namespace Starflow
 
         private void DrawScene(GameTime gameTime)
         {
-            /*GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
-            // GraphicsDevice.Clear(Color.Cyan);
+            // GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
+            GraphicsDevice.Clear(Color.OrangeRed);
 
             if (currentCamera != null)
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, currentCamera.Transform);
             else
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
-            Components.Draw();
+            Components.Draw(_spriteBatch);
 
-            _spriteBatch.End();*/
+            _spriteBatch.End();
         }
 
         public static void ChangeScene(Scene newScene)

@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Starflow.Editor", "Starflow.Editor\Starflow.Editor.csproj", "{053A475A-F11A-4254-AC26-96763DF3BC1A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starflow", "Starflow.Framework\Starflow.csproj", "{96A534B9-F0D7-4221-990A-0B9C086E3475}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Sandbox\Sandbox.csproj", "{226D5E5E-6D65-4A61-B334-B52DD4C76242}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starflow.Editor.WF", "Starflow.Editor.WF\Starflow.Editor.WF.csproj", "{060E60FD-A838-4CA3-B9FE-97B09BA08A44}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFControls", "WPFControls\WPFControls.csproj", "{4781B289-FCCF-41BC-8027-7F681FA419AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starflow.Editor", "Starflow.Editor\Starflow.Editor.csproj", "{060E60FD-A838-4CA3-B9FE-97B09BA08A44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{053A475A-F11A-4254-AC26-96763DF3BC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{053A475A-F11A-4254-AC26-96763DF3BC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{053A475A-F11A-4254-AC26-96763DF3BC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{053A475A-F11A-4254-AC26-96763DF3BC1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96A534B9-F0D7-4221-990A-0B9C086E3475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96A534B9-F0D7-4221-990A-0B9C086E3475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96A534B9-F0D7-4221-990A-0B9C086E3475}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,14 +25,14 @@ Global
 		{226D5E5E-6D65-4A61-B334-B52DD4C76242}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{226D5E5E-6D65-4A61-B334-B52DD4C76242}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{226D5E5E-6D65-4A61-B334-B52DD4C76242}.Release|Any CPU.Build.0 = Release|Any CPU
-		{060E60FD-A838-4CA3-B9FE-97B09BA08A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{060E60FD-A838-4CA3-B9FE-97B09BA08A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{060E60FD-A838-4CA3-B9FE-97B09BA08A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{060E60FD-A838-4CA3-B9FE-97B09BA08A44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4781B289-FCCF-41BC-8027-7F681FA419AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4781B289-FCCF-41BC-8027-7F681FA419AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4781B289-FCCF-41BC-8027-7F681FA419AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4781B289-FCCF-41BC-8027-7F681FA419AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{060E60FD-A838-4CA3-B9FE-97B09BA08A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060E60FD-A838-4CA3-B9FE-97B09BA08A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060E60FD-A838-4CA3-B9FE-97B09BA08A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060E60FD-A838-4CA3-B9FE-97B09BA08A44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
