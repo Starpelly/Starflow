@@ -17,6 +17,7 @@ namespace Starflow
         {
             Console.WriteLine(message);
             AppendString(message, LogType.Normal);
+            // System.Diagnostics.Debug.WriteLine(message);
         }
 
         public static void LogError(object message)

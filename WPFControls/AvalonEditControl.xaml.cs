@@ -25,8 +25,6 @@ namespace WPFControls
     /// </summary>
     public partial class AvalonEditControl : UserControl
     {
-        public ICSharpCode.AvalonEdit.TextEditor TextEditor { get; set; }
-
         public AvalonEditControl()
         {
             InitializeComponent();
@@ -36,11 +34,13 @@ namespace WPFControls
             textEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
         }
 
+        public ICSharpCode.AvalonEdit.TextEditor TextEditor { get; set; }
+
         CompletionWindow completionWindow;
 
         void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
         {
-            if (e.Text == ".")
+            if (e.Text == "asasdasdsda")
             {
                 // Open code completion after the user has pressed dot:
                 completionWindow = new CompletionWindow(textEditor.TextArea);

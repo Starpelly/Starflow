@@ -66,7 +66,7 @@ namespace Starflow.Editor
                     if (components[j].GetType() == typeof(SpriteRenderer))
                     {
                         SpriteRenderer sp = (SpriteRenderer)components[j];
-                        sp.sprite = new Sprite(LoadTexture(@"C:\Dev\Starflow\Sandbox\Content\morsh.png"));
+                        sp.sprite = new Sprite(LoadTexture($@"{EditorProperties.ProjectLocation}\Content\AMONGCOLON.png"));
                         sp.Draw(Editor.spriteBatch);
                     }
                 }

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 using Microsoft.Build.Evaluation;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using WPFControls;
 
 namespace Starflow.Editor
 {
@@ -50,8 +53,8 @@ namespace Starflow.Editor
 
 		private void Init()
         {
-			CodeEditor.Open($@"{EditorProperties.ProjectLocation}\TestBehaviour.cs");
-			CodeEditor.Open($@"{EditorProperties.ProjectLocation}\Program.cs");
+			new CodeEditor().Open($@"{EditorProperties.ProjectLocation}\TestBehaviour.cs");
+			new CodeEditor().Open($@"{EditorProperties.ProjectLocation}\Program.cs");
 
 			hierarchy.Init();
 		}
@@ -81,14 +84,31 @@ namespace Starflow.Editor
 			cmd.StandardInput.Close();
 			cmd.WaitForExit();
 		}
-        #endregion
 
-        private void mainTabs_DrawItem(object sender, DrawItemEventArgs e)
+		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// it's obviously gonna get more complex as time goes on
+			CodeEditor editor = ActiveEditor;
+			if (editor != null)
+				editor.DoSave();
+		}
+		#endregion
+
+		private void mainTabs_DrawItem(object sender, DrawItemEventArgs e)
         {
 			e.Graphics.DrawString(this.mainTabs.TabPages[e.Index].Text, e.Font, Brushes.Black, e.Bounds.Left + 12, e.Bounds.Top + 4);
 			e.Graphics.DrawString("x", e.Font, Brushes.Black, e.Bounds.Right - 15, e.Bounds.Top + 4);
 			e.DrawFocusRectangle();
 			
 		}
-    }
+
+		private CodeEditor ActiveEditor
+		{
+			get
+			{
+				if (MainTabs.TabPages.Count == 0) return null;
+				return MainTabs.SelectedTab.Controls.OfType<CodeEditor>().FirstOrDefault();
+			}
+		}
+	}
 }

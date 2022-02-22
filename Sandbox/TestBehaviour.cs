@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 using Starflow;
 
 namespace Sandbox
@@ -11,13 +11,18 @@ namespace Sandbox
 
         public override void Start()
         {
-            Debug.Log("Start Call");
+            Debug.Log("Start Calls?");
             Sprite sprite = new Sprite(GameManager.Instance.Content.Load<Texture2D>("AMONGCOLON"));
             this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+            this.gameObject.transform.position = new Microsoft.Xna.Framework.Vector2(370, 10);
         }
 
         public override void Update()
         {
+        	if (Input.GetKeyDown(KeyCode.Z))
+        	{
+        		
+        	}
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Starflow.Editor
         {
 			if (e.Node.Text.Contains(".cs"))
             {
-				CodeEditor.Open(EditorProperties.ProjectLocation + $@"\{e.Node.Text}");
+				new CodeEditor().Open(EditorProperties.ProjectLocation + $@"\{e.Node.Text}");
             }
 		}
     }

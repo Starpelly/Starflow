@@ -13,6 +13,7 @@ namespace Starflow
         public static readonly new ComponentList Components = new ComponentList();
         public static Scene currentScene;
         static internal Camera currentCamera;
+        static internal bool debug { get; set; }
         public static GameManager Instance { get; set; }
 
 
