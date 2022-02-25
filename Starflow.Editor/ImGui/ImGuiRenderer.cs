@@ -216,8 +216,8 @@ namespace Starflow.Editor
         {
             var io = ImGui.GetIO();
 
-            var mouse = Mouse.GetState();
-            var keyboard = Keyboard.GetState();
+            var mouse = Microsoft.Xna.Framework.Input.Mouse.GetState();
+            var keyboard = Microsoft.Xna.Framework.Input.Keyboard.GetState();
 
             for (int i = 0; i < _keys.Count; i++)
             {
