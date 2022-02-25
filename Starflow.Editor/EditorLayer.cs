@@ -16,10 +16,10 @@ namespace Starflow.Editor
             // GameViewWindow.Imgui();
             MainMenuBar.Imgui();
 // 
-            // Inspector.Imgui(StarflowEditor.Instance.currentEditorScene.activeGameObject);
-            // Hierarchy.Imgui(StarflowEditor.Instance.currentEditorScene);
-            // Console.Imgui();
-            // AssetBrowser.Imgui();
+            Inspector.Imgui(StarflowEditor.currentEditorScene.activeGameObject);
+            Hierarchy.Imgui(StarflowEditor.currentEditorScene);
+            Console.Imgui();
+            AssetBrowser.Imgui();
         }
     }
 }

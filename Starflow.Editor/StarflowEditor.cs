@@ -13,6 +13,9 @@ namespace Starflow.Editor
         public ImGuiRenderer Renderer;
         private EditorLayer imGuiLayer;
         
+        // Propreties
+        internal static Scene currentEditorScene;
+        
         public static StarflowEditor instance { get; set; }
         
         public StarflowEditor()
@@ -38,6 +41,21 @@ namespace Starflow.Editor
             imGuiLayer.Init();
             
             EditorProperties.DefaultTheme();
+            
+            currentEditorScene = new Scene();
+            currentEditorScene.name = "te";
+            System.Collections.Generic.List<GameObject> gameObjects = new System.Collections.Generic.List<GameObject>();
+            for (int i = 0; i < 120; i++)
+            {
+                gameObjects.Add(new GameObject($"Test{i}"));
+                if (i == 0)
+                {
+                    gameObjects[0].AddComponent<SpriteRenderer>();
+                    gameObjects[0].AddComponent<AudioSource>();
+
+                }
+            }
+            currentEditorScene.gameObjects = gameObjects;
         }
 
         protected override void LoadContent()
@@ -78,7 +96,7 @@ namespace Starflow.Editor
             ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, 0f);
             ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 0f);
             ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
-                                              ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground | ImGuiWindowFlags.NoTitleBar;
+                                              ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground;
 
             bool p_open = true;
             ImGui.Begin("Dockspace", ref p_open, dockSpaceFlags);

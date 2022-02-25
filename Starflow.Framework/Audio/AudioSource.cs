@@ -2,10 +2,13 @@
 {
     public class AudioSource : Component
     {
-        public AudioClip clip { get; set; }
-        public float pitch { get; set; }
-        public float time { get; set; }
-        public float volume { get; set; }
+        public AudioClip clip;
+        public bool mute;
+        public bool playOnAwake;
+        public bool loop;
+        public float pitch;
+        public float time;
+        public float volume;
         
         public AudioSource()
         {
