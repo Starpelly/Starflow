@@ -18,7 +18,7 @@ namespace Sandbox
             this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
             // this.gameObject.transform.position = new Microsoft.Xna.Framework.Vector2(370, 10);
             ass = this.gameObject.AddComponent<AudioSource>();
-            ass.clip = new AudioClip(@"C:\Users\Braedon\Music\Brain Opwer.mp3");
+            ass.clip = new AudioClip(@"C:\Users\Braedon\Music\Big Rock Finish H.mp3");
         }
 
         public override void Update()
