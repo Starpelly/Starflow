@@ -33,6 +33,18 @@ namespace Starflow
             outputDevice.Play();
         }
 
+        internal void Stop()
+        {
+            if (outputDevice != null)
+            {
+                outputDevice.Stop();   
+            }
+            else
+            {
+                Debug.LogError("No Output Device!");
+            }
+        }
+
         private void OnPlaybackStopped(object sender, StoppedEventArgs args)
         {
             outputDevice.Dispose();

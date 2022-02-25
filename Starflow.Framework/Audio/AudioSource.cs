@@ -29,7 +29,7 @@
 
         public void Stop()
         {
-            
+            clip.Stop();
         }
     }
 }
