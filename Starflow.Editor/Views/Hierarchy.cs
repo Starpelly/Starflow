@@ -43,7 +43,7 @@ namespace Starflow.Editor
         private unsafe static bool doTreeNode(List<GameObject> gameObjects, GameObject gameObject, int i)
         {
             ImGui.PushID(i);
-            bool treeNodeOpen = ImGui.TreeNodeEx(gameObject.name, ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.FramePadding | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.SpanAvailWidth, gameObject.name);
+            bool treeNodeOpen = ImGui.TreeNodeEx(gameObject.name, ImGuiTreeNodeFlags.FramePadding | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.SpanAvailWidth, gameObject.name);
             ImGui.PopID();
 
             if (ImGui.BeginDragDropSource())
