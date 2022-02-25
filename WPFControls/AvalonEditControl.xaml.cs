@@ -27,7 +27,7 @@ namespace WPFControls
     {
         public AvalonEditControl()
         {
-            InitializeComponent();
+            // InitializeComponent();
             TextEditor = textEditor;
 
             textEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;

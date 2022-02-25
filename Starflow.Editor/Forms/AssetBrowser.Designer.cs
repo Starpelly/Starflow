@@ -64,11 +64,15 @@
             // 
             this.assetTree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.assetTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.assetTree.HideSelection = false;
             this.assetTree.ImageIndex = 0;
             this.assetTree.ImageList = this.assetBrowserSprites;
             this.assetTree.Location = new System.Drawing.Point(3, 3);
             this.assetTree.Name = "assetTree";
             this.assetTree.SelectedImageIndex = 0;
+            this.assetTree.ShowLines = false;
+            this.assetTree.ShowPlusMinus = false;
+            this.assetTree.ShowRootLines = false;
             this.assetTree.Size = new System.Drawing.Size(175, 209);
             this.assetTree.TabIndex = 0;
             this.assetTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.assetTree_NodeMouseDoubleClick);

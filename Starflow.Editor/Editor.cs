@@ -53,6 +53,7 @@ namespace Starflow.Editor
 
 		private void Init()
         {
+			Text = Text + " - " + EditorProperties.ProjectLocation;
 			new CodeEditor().Open($@"{EditorProperties.ProjectLocation}\TestBehaviour.cs");
 			new CodeEditor().Open($@"{EditorProperties.ProjectLocation}\Program.cs");
 

@@ -16,5 +16,11 @@ namespace Starflow.Editor
                 hierarchyTree.Nodes.Add(EditorWindow.Instance.currentEditorScene.gameObjects[i].name);
             }
         }
+
+        private void hierarchyTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            EditorWindow.Instance.currentEditorScene.SetActiveGameObject(EditorWindow.Instance.currentEditorScene.gameObjects[(int)e.Node.Index]);
+            Inspector.instance.OnGameObjectSelect();
+        }
     }
 }

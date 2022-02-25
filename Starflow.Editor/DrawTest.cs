@@ -42,6 +42,8 @@ namespace Starflow.Editor
             {
                 editorCamera.Move(new Microsoft.Xna.Framework.Vector3(0, -500 * Time.deltaTime, 0));
             }
+
+            EditorWindow.Instance.Update();
         }
 
         protected override void Draw()

@@ -47,28 +47,27 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainTabs = new System.Windows.Forms.TabControl();
             this.sceneView = new System.Windows.Forms.TabPage();
-            this.inspectorControl = new System.Windows.Forms.TabControl();
-            this.inspectorTab = new System.Windows.Forms.TabPage();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.playButton = new System.Windows.Forms.ToolStripButton();
-            this.playfromstartButton = new System.Windows.Forms.ToolStripButton();
+            this.runGameButton = new System.Windows.Forms.ToolStripButton();
+            this.runSceneButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.buildButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.packageButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.infoButton = new System.Windows.Forms.ToolStripButton();
+            this.inspector1 = new Starflow.Editor.Inspector();
             this.hierarchy = new Starflow.Editor.Hierarchy();
             this.assetBrowser = new Starflow.Editor.AssetBrowser();
             this.drawTest1 = new Starflow.Editor.DrawTest();
             this.menuStrip1.SuspendLayout();
             this.mainTabs.SuspendLayout();
             this.sceneView.SuspendLayout();
-            this.inspectorControl.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.Window;
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
@@ -91,6 +90,7 @@
             this.saveAsToolStripMenuItem,
             this.toolStripSeparator3,
             this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -145,6 +145,7 @@
             this.redoToolStripMenuItem,
             this.toolStripSeparator4,
             this.deleteToolStripMenuItem});
+            this.editToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -174,18 +175,21 @@
             // 
             // viewToolStripMenuItem
             // 
+            this.viewToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // toolsToolStripMenuItem
             // 
+            this.toolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -196,44 +200,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTabs.Controls.Add(this.sceneView);
-            this.mainTabs.Location = new System.Drawing.Point(207, 71);
+            this.mainTabs.Location = new System.Drawing.Point(533, 82);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
-            this.mainTabs.Size = new System.Drawing.Size(839, 582);
+            this.mainTabs.Size = new System.Drawing.Size(719, 502);
             this.mainTabs.TabIndex = 1;
             this.mainTabs.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.mainTabs_DrawItem);
             // 
             // sceneView
             // 
             this.sceneView.Controls.Add(this.drawTest1);
-            this.sceneView.Location = new System.Drawing.Point(4, 22);
+            this.sceneView.Location = new System.Drawing.Point(4, 24);
             this.sceneView.Name = "sceneView";
             this.sceneView.Padding = new System.Windows.Forms.Padding(3);
-            this.sceneView.Size = new System.Drawing.Size(831, 556);
+            this.sceneView.Size = new System.Drawing.Size(711, 474);
             this.sceneView.TabIndex = 0;
-            this.sceneView.Text = "Scene";
+            this.sceneView.Text = "Scene Editor";
             this.sceneView.UseVisualStyleBackColor = true;
-            // 
-            // inspectorControl
-            // 
-            this.inspectorControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inspectorControl.Controls.Add(this.inspectorTab);
-            this.inspectorControl.Location = new System.Drawing.Point(1048, 71);
-            this.inspectorControl.Name = "inspectorControl";
-            this.inspectorControl.SelectedIndex = 0;
-            this.inspectorControl.Size = new System.Drawing.Size(204, 582);
-            this.inspectorControl.TabIndex = 4;
-            // 
-            // inspectorTab
-            // 
-            this.inspectorTab.Location = new System.Drawing.Point(4, 22);
-            this.inspectorTab.Name = "inspectorTab";
-            this.inspectorTab.Padding = new System.Windows.Forms.Padding(3);
-            this.inspectorTab.Size = new System.Drawing.Size(196, 556);
-            this.inspectorTab.TabIndex = 0;
-            this.inspectorTab.Text = "Inspector";
-            this.inspectorTab.UseVisualStyleBackColor = true;
             // 
             // toolStrip
             // 
@@ -241,63 +224,76 @@
             this.toolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.playButton,
-            this.playfromstartButton,
+            this.runGameButton,
+            this.runSceneButton,
             this.toolStripSeparator1,
-            this.buildButton,
+            this.toolStripButton1,
+            this.packageButton,
             this.toolStripSeparator2,
             this.infoButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1264, 44);
+            this.toolStrip.Size = new System.Drawing.Size(1264, 51);
             this.toolStrip.TabIndex = 5;
             this.toolStrip.Text = "toolStrip";
             // 
-            // playButton
+            // runGameButton
             // 
-            this.playButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.playButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.Image = ((System.Drawing.Image)(resources.GetObject("playButton.Image")));
-            this.playButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.playButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.playButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
-            this.playButton.Name = "playButton";
-            this.playButton.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.playButton.Size = new System.Drawing.Size(38, 41);
-            this.playButton.Text = "Play";
-            this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            this.runGameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.runGameButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.runGameButton.Image = ((System.Drawing.Image)(resources.GetObject("runGameButton.Image")));
+            this.runGameButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.runGameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.runGameButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
+            this.runGameButton.Name = "runGameButton";
+            this.runGameButton.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.runGameButton.Size = new System.Drawing.Size(38, 48);
+            this.runGameButton.Text = "Run Game";
+            this.runGameButton.Click += new System.EventHandler(this.playButton_Click);
             // 
-            // playfromstartButton
+            // runSceneButton
             // 
-            this.playfromstartButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.playfromstartButton.Image = ((System.Drawing.Image)(resources.GetObject("playfromstartButton.Image")));
-            this.playfromstartButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.playfromstartButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.playfromstartButton.Name = "playfromstartButton";
-            this.playfromstartButton.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.playfromstartButton.Size = new System.Drawing.Size(38, 41);
-            this.playfromstartButton.Text = "Play from Start";
+            this.runSceneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.runSceneButton.Image = ((System.Drawing.Image)(resources.GetObject("runSceneButton.Image")));
+            this.runSceneButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.runSceneButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.runSceneButton.Name = "runSceneButton";
+            this.runSceneButton.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.runSceneButton.Size = new System.Drawing.Size(38, 48);
+            this.runSceneButton.Text = "Run Scene";
             // 
             // toolStripSeparator1
             // 
+            this.toolStripSeparator1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 51);
             // 
-            // buildButton
+            // toolStripButton1
             // 
-            this.buildButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buildButton.Image = ((System.Drawing.Image)(resources.GetObject("buildButton.Image")));
-            this.buildButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buildButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buildButton.Name = "buildButton";
-            this.buildButton.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.buildButton.Size = new System.Drawing.Size(42, 41);
-            this.buildButton.Text = "Build";
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.toolStripButton1.Size = new System.Drawing.Size(42, 48);
+            this.toolStripButton1.Text = "Build";
+            // 
+            // packageButton
+            // 
+            this.packageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.packageButton.Image = ((System.Drawing.Image)(resources.GetObject("packageButton.Image")));
+            this.packageButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.packageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.packageButton.Name = "packageButton";
+            this.packageButton.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.packageButton.Size = new System.Drawing.Size(42, 48);
+            this.packageButton.Text = "Package/Export";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 51);
             // 
             // infoButton
             // 
@@ -307,23 +303,32 @@
             this.infoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.infoButton.Name = "infoButton";
             this.infoButton.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.infoButton.Size = new System.Drawing.Size(42, 41);
+            this.infoButton.Size = new System.Drawing.Size(42, 48);
             this.infoButton.Text = "Info";
+            // 
+            // inspector1
+            // 
+            this.inspector1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.inspector1.Location = new System.Drawing.Point(207, 82);
+            this.inspector1.Name = "inspector1";
+            this.inspector1.Size = new System.Drawing.Size(320, 680);
+            this.inspector1.TabIndex = 8;
             // 
             // hierarchy
             // 
-            this.hierarchy.Location = new System.Drawing.Point(12, 71);
+            this.hierarchy.Location = new System.Drawing.Point(12, 82);
             this.hierarchy.Name = "hierarchy";
-            this.hierarchy.Size = new System.Drawing.Size(189, 351);
+            this.hierarchy.Size = new System.Drawing.Size(189, 405);
             this.hierarchy.TabIndex = 7;
             // 
             // assetBrowser
             // 
             this.assetBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.assetBrowser.Location = new System.Drawing.Point(12, 428);
+            this.assetBrowser.Location = new System.Drawing.Point(12, 494);
             this.assetBrowser.Name = "assetBrowser";
-            this.assetBrowser.Size = new System.Drawing.Size(189, 225);
+            this.assetBrowser.Size = new System.Drawing.Size(189, 268);
             this.assetBrowser.TabIndex = 6;
             // 
             // drawTest1
@@ -332,32 +337,32 @@
             this.drawTest1.Location = new System.Drawing.Point(3, 3);
             this.drawTest1.MouseHoverUpdatesOnly = false;
             this.drawTest1.Name = "drawTest1";
-            this.drawTest1.Size = new System.Drawing.Size(825, 550);
+            this.drawTest1.Size = new System.Drawing.Size(705, 468);
             this.drawTest1.TabIndex = 0;
             this.drawTest1.Text = "drawTest1";
             // 
             // EditorWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1264, 786);
+            this.Controls.Add(this.inspector1);
             this.Controls.Add(this.hierarchy);
             this.Controls.Add(this.assetBrowser);
             this.Controls.Add(this.toolStrip);
-            this.Controls.Add(this.inspectorControl);
             this.Controls.Add(this.mainTabs);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(653, 508);
+            this.MinimumSize = new System.Drawing.Size(653, 580);
             this.Name = "EditorWindow";
             this.Text = "Starflow SDK";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.mainTabs.ResumeLayout(false);
             this.sceneView.ResumeLayout(false);
-            this.inspectorControl.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -375,13 +380,11 @@
         private System.Windows.Forms.TabControl mainTabs;
         private System.Windows.Forms.TabPage sceneView;
         private DrawTest drawTest1;
-        private System.Windows.Forms.TabControl inspectorControl;
-        private System.Windows.Forms.TabPage inspectorTab;
         private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.ToolStripButton playButton;
-        private System.Windows.Forms.ToolStripButton playfromstartButton;
+        private System.Windows.Forms.ToolStripButton runGameButton;
+        private System.Windows.Forms.ToolStripButton runSceneButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton buildButton;
+        private System.Windows.Forms.ToolStripButton packageButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton infoButton;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
@@ -397,6 +400,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private AssetBrowser assetBrowser;
         private Hierarchy hierarchy;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private Inspector inspector1;
     }
 }
 
