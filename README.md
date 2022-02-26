@@ -5,4 +5,4 @@
 <p/>
 <h1 align="center">The official game engine used by Boxsubmus.</h1>
 
-![image](https://user-images.githubusercontent.com/24588691/155125132-11772632-3b48-4625-90fa-b08f2511a8eb.png)
+![image](https://user-images.githubusercontent.com/24588691/155840390-7c132a64-c329-41f0-a438-4bcceb8cca6b.png)
