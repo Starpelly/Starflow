@@ -23,6 +23,7 @@ namespace Starflow.Editor
             style.TabBorderSize = 1.0f;
             style.TabRounding = 0.0f;
             style.WindowRounding = 0.0f;
+            style.WindowBorderSize = 1.0f;
 
             var colors = style.Colors;
             colors[(int)ImGuiCol.Text]                   = new System.Numerics.Vector4(1.000f, 1.000f, 1.000f, 1.000f);

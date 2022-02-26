@@ -10,11 +10,12 @@ namespace Starflow.Editor
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public ImGuiRenderer Renderer;
+        public ImGuiRenderer ImGuiRenderer;
         private EditorLayer imGuiLayer;
         
         // Propreties
         internal static Scene currentEditorScene;
+        private float menuBarHeight;
         
         public static StarflowEditor instance { get; set; }
         
@@ -24,24 +25,24 @@ namespace Starflow.Editor
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
+            Window.AllowUserResizing = true;
         }
 
         protected override void Initialize()
         {
-            Renderer = new ImGuiRenderer(this);
-            Renderer.RebuildFontAtlas();
+            ImGuiRenderer = new ImGuiRenderer(this);
+            ImGuiRenderer.RebuildFontAtlas();
             ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
             base.Initialize();
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1646;
+            graphics.PreferredBackBufferHeight = 922;
             graphics.ApplyChanges();
+            Window.Title = $"Starflow Software Development Kit - {EditorProperties.ProjectLocation}";
             
             imGuiLayer = new EditorLayer();
             imGuiLayer.Init();
-            
-            EditorProperties.DefaultTheme();
-            
+
             currentEditorScene = new Scene();
             currentEditorScene.name = "te";
             System.Collections.Generic.List<GameObject> gameObjects = new System.Collections.Generic.List<GameObject>();
@@ -78,33 +79,13 @@ namespace Starflow.Editor
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
-            Renderer.BeforeLayout(gameTime);
+            ImGuiRenderer.BeforeLayout(gameTime);
             
-            Dockspace();
             imGuiLayer.SceneImGui();
 
-            Renderer.AfterLayout();
+            ImGuiRenderer.AfterLayout();
             
             base.Draw(gameTime);
-        }
-        
-        private void Dockspace()
-        {
-            ImGui.PushStyleVar(ImGuiStyleVar.WindowPadding, new System.Numerics.Vector2(0, 0));
-            ImGui.SetNextWindowPos(new System.Numerics.Vector2(0f, 0f), ImGuiCond.Always);
-            ImGui.SetNextWindowSize(new System.Numerics.Vector2(GraphicsDevice.PresentationParameters.BackBufferWidth, GraphicsDevice.PresentationParameters.BackBufferHeight));
-            ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, 0f);
-            ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 0f);
-            ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
-                                              ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus | ImGuiWindowFlags.NoBackground;
-
-            bool p_open = true;
-            ImGui.Begin("Dockspace", ref p_open, dockSpaceFlags);
-            ImGui.PopStyleVar(2);
-
-
-            ImGui.DockSpace(ImGui.GetID("Dockspace"), new System.Numerics.Vector2(0, 0), ImGuiDockNodeFlags.PassthruCentralNode);
-            ImGui.PopStyleVar();
         }
     }
 }

@@ -32,12 +32,11 @@ namespace Starflow.Editor
             for (int i = 0; i < activeGameObject.components.Count; i++)
             {
                 Component c = activeGameObject.components[i];
-                ImGui.Separator();
 
                 bool open = true;
                 if (ImGui.CollapsingHeader(c.GetType().Name, ref open))
                 {
-                    if (c.GetType().BaseType.Name != "Behaviour") // hacky fix rn
+                    if (c.GetType().BaseType.Name != "Behaviour" || c.GetType().Namespace == "Starflow") // hacky fix rn
                     {
                         var types = GetTypesWithAttribute(Assembly.GetExecutingAssembly());
                         foreach (var type in types)
@@ -69,7 +68,6 @@ namespace Starflow.Editor
                 }
                 // ImGui.Checkbox(c.GetType().Name, ref c.enabled);
             }
-            ImGui.Separator();
             if (ImGui.Button("Add Component"))
             {
                 Debug.Log("Add Component Menu");

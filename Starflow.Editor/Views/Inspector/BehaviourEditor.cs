@@ -9,7 +9,7 @@ namespace Starflow.Editor
     {
         public override void Imgui(Component component)
         {
-            Behaviour b = (Behaviour)component;
+            /*Behaviour b = (Behaviour)component;
             var fieldValues = b.GetType().GetFields().Select(field => field.GetValue(b)).ToList();
             var fieldNames = b.GetType().GetFields().Select(field => field.Name).ToList();
             for (int i = 0; i < fieldValues.Count; i++)
@@ -31,7 +31,7 @@ namespace Starflow.Editor
                 {
                     // ImGui.Button(fieldName); // also shows fields form Component.cs, which is obviously a problem
                 }
-            }
+            }*/
         }
     }
 }
