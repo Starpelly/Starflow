@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using ImGuiNET;
+using Starflow.Editor.Utils;
 
 namespace Starflow.Editor
 {
@@ -12,11 +13,14 @@ namespace Starflow.Editor
         SpriteBatch spriteBatch;
         public ImGuiRenderer ImGuiRenderer;
         private EditorLayer imGuiLayer;
+        public static readonly new ComponentList Components = new ComponentList();
         
         // Propreties
         internal static Scene currentEditorScene;
         private float menuBarHeight;
         public RenderTarget2D sceneRenderTarget;
+        private GameObject editorCamObj;
+        private EditorCameraComponent editorCamera;
         
         public static StarflowEditor instance { get; set; }
         
@@ -27,6 +31,9 @@ namespace Starflow.Editor
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
             Window.AllowUserResizing = true;
+            editorCamObj = new GameObject("");
+            EditorCameraComponent ec = editorCamObj.AddComponent<EditorCameraComponent>();
+            editorCamera = ec;
         }
 
         protected override void Initialize()
@@ -74,24 +81,36 @@ namespace Starflow.Editor
         protected override void Update(GameTime gameTime)
         {
             Input.Update();
+            Time.deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Time.frameCount++;
+            
+            editorCamera.Update();
             
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            StarflowEditor.instance.UpdateRenderTexture((int)SceneView.wSize.X, (int)SceneView.wSize.Y);
+            
             GraphicsDevice.SetRenderTarget(sceneRenderTarget);
             GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
             
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            SceneEditor.Draw(spriteBatch);
+            GraphicsDevice.Clear(Colors.Hex2RGB("474747"));
+            
+            var viewport = GraphicsDevice.Viewport;
+            var translation = editorCamera.View.Translation;
+            var spriteBatchTransformation = Matrix.CreateTranslation(viewport.Width / 2 / 1, viewport.Height / 2 / 1, 0) *
+                                            Matrix.CreateTranslation(translation.X, -translation.Y, 0)
+                                            * Matrix.CreateScale(1);
+            
+            spriteBatch.Begin(transformMatrix: spriteBatchTransformation);
+            SceneEditor.Draw(spriteBatch, editorCamera);
             spriteBatch.End();
             
             GraphicsDevice.SetRenderTarget(null);
-            
+
             ImGuiRenderer.BeforeLayout(gameTime);
-            
             imGuiLayer.SceneImGui();
 
             ImGuiRenderer.AfterLayout();
@@ -101,6 +120,9 @@ namespace Starflow.Editor
 
         public void UpdateRenderTexture(int width, int height)
         {
+            if (sceneRenderTarget != null)
+                sceneRenderTarget.Dispose();
+            
             sceneRenderTarget = new RenderTarget2D(
                 GraphicsDevice,
                 width,

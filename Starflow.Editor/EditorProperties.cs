@@ -9,6 +9,8 @@ namespace Starflow.Editor
 
         public static float toolbarSize = 50;
         public static float menuBarHeight;
+        public static int GRID_WIDTH = 64;
+        public static int GRID_HEIGHT = 64;
 
         public static void DefaultTheme()
         {

@@ -19,6 +19,21 @@ namespace Starflow
             Input.mousePosition = new Vector2(mouse.X, mouse.Y);
         }
 
+        public bool GetMouseButton(int button)
+        {
+            switch (button)
+            {
+                case 0:
+                    return mouse.LeftButton == ButtonState.Pressed;
+                case 1:
+                    return mouse.RightButton == ButtonState.Pressed;
+                case 2:
+                    return mouse.MiddleButton == ButtonState.Pressed;
+                default:
+                    return mouse.LeftButton == ButtonState.Pressed;
+            }
+        }
+        
         public bool GetMouseButtonDown(int button)
         {
             switch (button)

@@ -29,7 +29,7 @@ namespace Starflow
             }
         }
 
-        internal void EarlyUpdate()
+        public void EarlyUpdate()
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {
@@ -41,7 +41,7 @@ namespace Starflow
             }
         }
 
-        internal void Update()
+        public void Update()
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {
@@ -53,7 +53,7 @@ namespace Starflow
             }
         }
 
-        internal void LateUpdate()
+        public void LateUpdate()
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {

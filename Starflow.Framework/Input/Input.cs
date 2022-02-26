@@ -5,7 +5,7 @@ namespace Starflow
     public class Input
     {
         public static readonly Keyboard keyboard = new Keyboard();
-        private static readonly Mouse mouse = new Mouse();
+        public static readonly Mouse mouse = new Mouse();
 
         /// <summary>
         /// The current mouse position in pixel coordinates.
@@ -37,6 +37,11 @@ namespace Starflow
         public static bool GetKey(KeyCode key)
         {
             return keyboard.GetKey(key);
+        }
+
+        public static bool GetMouseButton(int button)
+        {
+            return mouse.GetMouseButton(button);
         }
 
         /// <summary>

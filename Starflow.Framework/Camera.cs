@@ -16,7 +16,7 @@ namespace Starflow
             // Bounds = viewport.Bounds;
             Zoom = 1f;
             transform.position = Vector2.Zero;
-            GameManager.Instance.SetCamera(this);
+            // GameManager.Instance.SetCamera(this);
         }
 
 
@@ -40,7 +40,8 @@ namespace Starflow
 
         private void UpdateMatrix()
         {
-            Transform = Matrix.CreateTranslation(new Vector3(-transform.position.X, -transform.position.Y, 0)) *
+            Transform = Matrix.CreateTranslation(new Vector3(transform.position.X, transform.position.Y, 0f)) * 
+                    Matrix.CreateRotationZ(transform.rotation) *
                     Matrix.CreateScale(Zoom) *
                     Matrix.CreateTranslation(new Vector3(Bounds.Width * 0.5f, Bounds.Height * 0.5f, 0));
             UpdateVisibleArea();
