@@ -16,6 +16,7 @@ namespace Starflow.Editor
         // Propreties
         internal static Scene currentEditorScene;
         private float menuBarHeight;
+        public RenderTarget2D sceneRenderTarget;
         
         public static StarflowEditor instance { get; set; }
         
@@ -42,6 +43,8 @@ namespace Starflow.Editor
             
             imGuiLayer = new EditorLayer();
             imGuiLayer.Init();
+            
+            UpdateRenderTexture(GraphicsDevice.PresentationParameters.BackBufferWidth, GraphicsDevice.PresentationParameters.BackBufferHeight);
 
             currentEditorScene = new Scene();
             currentEditorScene.name = "te";
@@ -77,7 +80,15 @@ namespace Starflow.Editor
 
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.SetRenderTarget(sceneRenderTarget);
+            GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+            
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            SceneEditor.Draw(spriteBatch);
+            spriteBatch.End();
+            
+            GraphicsDevice.SetRenderTarget(null);
             
             ImGuiRenderer.BeforeLayout(gameTime);
             
@@ -86,6 +97,17 @@ namespace Starflow.Editor
             ImGuiRenderer.AfterLayout();
             
             base.Draw(gameTime);
+        }
+
+        public void UpdateRenderTexture(int width, int height)
+        {
+            sceneRenderTarget = new RenderTarget2D(
+                GraphicsDevice,
+                width,
+                height,
+                false,
+                GraphicsDevice.PresentationParameters.BackBufferFormat,
+                DepthFormat.Depth24);
         }
     }
 }

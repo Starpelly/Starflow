@@ -10,7 +10,7 @@ namespace Starflow.Editor
         
         public void Init()
         {
-            EditorProperties.SteamTheme();
+            EditorProperties.DefaultTheme();
             Toolbar.Init();
         }
 
@@ -18,7 +18,7 @@ namespace Starflow.Editor
         {
             Dockspace();
             ImGui.ShowDemoWindow();
-            // SceneEditorWindow.Instance.Imgui();
+            SceneView.Imgui();
             // GameViewWindow.Imgui();
             MainMenuBar.Imgui();
             Toolbar.Imgui(menuBarHeight);
@@ -31,13 +31,13 @@ namespace Starflow.Editor
         
         private void Dockspace()
         {
-            ImGui.PushStyleVar(ImGuiStyleVar.WindowPadding, new System.Numerics.Vector2(0, 25));
-            ImGui.SetNextWindowPos(new System.Numerics.Vector2(0f, 25), ImGuiCond.Always);
+            ImGui.PushStyleVar(ImGuiStyleVar.WindowPadding, new System.Numerics.Vector2(0, 22));
+            ImGui.SetNextWindowPos(new System.Numerics.Vector2(0f, 22), ImGuiCond.Always);
             ImGui.SetNextWindowSize(new System.Numerics.Vector2(StarflowEditor.instance.GraphicsDevice.PresentationParameters.BackBufferWidth, StarflowEditor.instance.GraphicsDevice.PresentationParameters.BackBufferHeight));
             ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, 0f);
             ImGui.PushStyleVar(ImGuiStyleVar.WindowBorderSize, 0f);
             ImGuiWindowFlags dockSpaceFlags = ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse |
-                                              ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBackground | ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
+                                              ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
 
             bool p_open = true;
             ImGui.Begin("Dockspace", ref p_open, dockSpaceFlags);

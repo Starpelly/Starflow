@@ -30,7 +30,7 @@ namespace Starflow.Editor
         
         public static void Imgui(float menuBarHeight)
         {
-            float toolbarSize = 50;
+            float toolbarSize = 46;
             ImGuiViewportPtr viewport = ImGui.GetMainViewport();
             ImGui.SetNextWindowPos(new Vector2(viewport.Pos.X, viewport.Pos.Y + menuBarHeight - 1));
             ImGui.SetNextWindowSize(new Vector2(viewport.Size.X, toolbarSize));
