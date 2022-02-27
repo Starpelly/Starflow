@@ -141,6 +141,8 @@ namespace Starflow.Editor.Utils
             }
             else if (Input.GetMouseButton(2))
             {
+                // KeepMouseConfined(ref mousePos);
+                
                 Vector3 delta = mousePos - clickOrigin;
                 Position -= (delta * Time.deltaTime) * (dragSensitivity);
                 // clickOrigin = Vector3.Lerp(clickOrigin, mousePos, Time.deltaTime);
@@ -150,6 +152,39 @@ namespace Starflow.Editor.Utils
             if (dragDebounce <= 0.0f && !Input.GetMouseButton(2))
             {
                 dragDebounce = 0.1f;
+            }
+        }
+
+        private void KeepMouseConfined(ref Vector3 mousePos)
+        {
+            bool mouseMoved = false;
+            Vector3 lastMousePos = mousePos;
+            if (Input.mousePosition.X < SceneView.wPos.X - StarflowEditor.instance.Window.Position.X)
+            {
+                mouseMoved = true;
+                OS.User32.SetCursorPos((int)SceneView.wPos.X + (int)SceneView.wSize.X, (int)Input.mousePosition.Y);
+            }
+            else if (Input.mousePosition.X > (SceneView.wPos.X - StarflowEditor.instance.Window.Position.X) + SceneView.wSize.X)
+            {
+                mouseMoved = true;
+                OS.User32.SetCursorPos((int)SceneView.wPos.X, (int)Input.mousePosition.Y);
+            }
+            else if (Input.mousePosition.Y < (SceneView.wPos.Y - StarflowEditor.instance.Window.Position.Y))
+            {
+                mouseMoved = true;
+                OS.User32.SetCursorPos((int)Input.mousePosition.X, (int)SceneView.wPos.Y + (int)SceneView.wSize.Y);
+            }
+            else if (Input.mousePosition.Y > (SceneView.wPos.Y - StarflowEditor.instance.Window.Position.Y) + SceneView.wSize.Y)
+            {
+                mouseMoved = true;
+                OS.User32.SetCursorPos((int)Input.mousePosition.X, (int)SceneView.wPos.Y);
+            }
+
+            if (mouseMoved)
+            {
+                mousePos = ScreenToWorld(StarflowEditor.instance.GraphicsDevice.Viewport, Input.mousePosition);
+                mousePos = new Vector3(Input.mousePosition.X, -Input.mousePosition.Y, 0);
+                mousePos = mousePos - new Vector3(SceneView.wPos.X, SceneView.wPos.Y, 0);
             }
         }
     }
