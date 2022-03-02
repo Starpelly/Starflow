@@ -18,7 +18,7 @@ namespace Starflow.Editor
                     if (components[j].GetType() == typeof(SpriteRenderer))
                     {
                         SpriteRenderer sp = (SpriteRenderer)components[j];
-                        sp.sprite = new Sprite(Texture2D.FromFile(StarflowEditor.instance.GraphicsDevice, EditorProperties.ProjectLocation + @"\Content\morsh.png"));
+                        sp.sprite = new Sprite(Texture2D.FromFile(StarflowEditor.instance.GraphicsDevice, EditorProperties.ProjectLocation + @"\Content\AMONGCOLON.png"));
                         sp.Draw(sb);
                     }
                 }

@@ -12,20 +12,13 @@ namespace Starflow.Editor
         public static void Imgui(Scene currentScene)
         {
             ImGui.Begin("Hierarchy");
+
             for (int i = 0; i < currentScene.gameObjects.Count; i++)
             {
                 GameObject gameObject = currentScene.gameObjects[i];
                 bool treeNodeOpen = doTreeNode(currentScene.gameObjects, gameObject, i);
 
-                if (treeNodeOpen)
-                {
-                    ImGui.TreePop();
-                }
-
-                if (ImGui.IsItemClicked() && !ImGui.IsItemToggledOpen())
-                {
-                    currentScene.SetActiveGameObject(currentScene.gameObjects[i]);
-                }
+                BasicTreeNodeChecks(currentScene, gameObject, treeNodeOpen);
             }
 
             if (ImGui.BeginPopupContextWindow())
@@ -38,6 +31,25 @@ namespace Starflow.Editor
             }
 
             ImGui.End();
+        }
+
+        private static void BasicTreeNodeChecks(Scene scene, GameObject setActiveGameObject, bool gameObjectOpen)
+        {
+
+            if (ImGui.IsItemClicked() && !ImGui.IsItemToggledOpen())
+            {
+                scene.SetActiveGameObject(setActiveGameObject);
+            }
+
+            if (gameObjectOpen)
+            {
+                for (int c = 0; c < setActiveGameObject.transform.childCount; c++)
+                {
+                    bool childOpen = doTreeNode(setActiveGameObject.transform.children, setActiveGameObject.transform.GetChild(c).gameObject, c);
+                    BasicTreeNodeChecks(scene, setActiveGameObject.transform.GetChild(c).gameObject, childOpen);
+                }
+                ImGui.TreePop();
+            }
         }
 
         private unsafe static bool doTreeNode(List<GameObject> gameObjects, GameObject gameObject, int i)

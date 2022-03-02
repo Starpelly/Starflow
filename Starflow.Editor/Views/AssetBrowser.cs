@@ -6,7 +6,7 @@ namespace Starflow.Editor
     {
         public static void Imgui()
         {
-            string[] files = Directory.GetFiles(EditorProperties.ProjectLocation, "*", SearchOption.AllDirectories);
+            string[] files = Directory.GetFileSystemEntries(EditorProperties.ProjectLocation, "*.*", SearchOption.AllDirectories);
             ImGuiTreeNodeFlags nodeflags = ImGuiTreeNodeFlags.Leaf | ImGuiTreeNodeFlags.NoTreePushOnOpen;
 
             ImGui.Begin("Asset Browser");
@@ -25,8 +25,16 @@ namespace Starflow.Editor
                 }
                 if (cont) continue;
 
+
                 string fileName = Path.GetFileName(file);
-                ImGui.TreeNodeEx(fileName, nodeflags);
+                if (Directory.Exists(file))
+                {
+                    if (ImGui.TreeNode(relative))
+                    {
+
+                        ImGui.TreePop();
+                    }
+                }
             }
 
             ImGui.End();

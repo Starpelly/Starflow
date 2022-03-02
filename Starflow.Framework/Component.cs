@@ -24,10 +24,6 @@ namespace Starflow
             } 
         }
 
-        public Component()
-        {
-        }
-
         public virtual void Draw(SpriteBatch sb) { }
     }
 }

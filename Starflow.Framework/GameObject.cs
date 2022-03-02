@@ -61,7 +61,7 @@ namespace Starflow
             return t;
         }
 
-        public GameObject(string name)
+        public GameObject(string name = "GameObject")
         {
             this.name = name;
             transform = new Transform()
@@ -70,6 +70,7 @@ namespace Starflow
                 rotation = 0f,
                 scale = new Vector2(1, 1)
             };
+            transform.gameObject = this;
             components = new List<Component>();
             if (GameManager.currentScene != null)
             GameManager.currentScene.gameObjects.Add(this);

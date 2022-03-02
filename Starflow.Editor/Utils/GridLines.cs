@@ -20,26 +20,29 @@ namespace Starflow.Editor.Utils
 
             int firstX = ((int)(cameraPos.X / EditorProperties.GRID_WIDTH) * EditorProperties.GRID_HEIGHT);
             int firstY = ((int)(cameraPos.Y / EditorProperties.GRID_HEIGHT) * EditorProperties.GRID_HEIGHT);
-            
-            // Debug.Log(firstX + "   " + firstY);
-            
+
             for (float x = -32; x < 32; x++)
             {
                 Rectangle rectangle = new Rectangle((int)(firstX + x * EditorProperties.GRID_WIDTH), (-firstY - 32 * 16), 1, 1080);
                 Color col;
-                if ((x + firstX / EditorProperties.GRID_WIDTH) % 8 == 0)
+                if ((x + firstX / EditorProperties.GRID_WIDTH) % 8 == 0 && x + firstX / EditorProperties.GRID_WIDTH != 0)
                     col = Colors.Hex2RGB("636363");
+                else if (x + firstX / EditorProperties.GRID_WIDTH == 0)
+                    col = Colors.Hex2RGB("929292");
                 else
                     col = Colors.Hex2RGB("515151");
                 
                 sb.Draw(texture1px, rectangle, col);
             }
+            
             for (float y = -32; y < 32; y++)
             {
                 Rectangle rectangle = new Rectangle(firstX - 32 * 32, (int)(-firstY + y * EditorProperties.GRID_HEIGHT), 1920, 1);
                 Color col;
-                if ((y - firstY / EditorProperties.GRID_HEIGHT) % 8 == 0)
+                if ((y - firstY / EditorProperties.GRID_HEIGHT) % 8 == 0 && y - firstY / EditorProperties.GRID_HEIGHT != 0)
                     col = Colors.Hex2RGB("636363");
+                else if (y - firstY / EditorProperties.GRID_HEIGHT == 0)
+                    col = Colors.Hex2RGB("929292");
                 else
                     col = Colors.Hex2RGB("515151");
                 sb.Draw(texture1px, rectangle, col);

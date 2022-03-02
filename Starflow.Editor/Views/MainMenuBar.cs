@@ -58,11 +58,11 @@ namespace Starflow.Editor
                 {
                     ImGui.EndMenu();
                 }
-                if (ImGui.BeginMenu("Help"))
+                if (ImGui.BeginMenu("Tools"))
                 {
                     ImGui.EndMenu();
                 }
-                if (ImGui.BeginMenu("Tools"))
+                if (ImGui.BeginMenu("Help"))
                 {
                     ImGui.EndMenu();
                 }

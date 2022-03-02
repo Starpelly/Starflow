@@ -66,6 +66,15 @@ namespace Starflow.Editor
 
                 }
             }
+            GameObject childObj1 = new GameObject("childObj1");
+            childObj1.transform.SetParent(gameObjects[0].transform);
+
+            GameObject childObj2 = new GameObject("childObj2");
+            childObj2.transform.SetParent(gameObjects[0].transform);
+
+            GameObject childObj3 = new GameObject("childObj3");
+            childObj3.transform.SetParent(childObj1.transform);
+
             currentEditorScene.gameObjects = gameObjects;
         }
 

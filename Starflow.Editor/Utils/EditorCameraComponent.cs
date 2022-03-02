@@ -129,9 +129,6 @@ namespace Starflow.Editor.Utils
         {
             Vector3 mousePos = ScreenToWorld(StarflowEditor.instance.GraphicsDevice.Viewport, Input.mousePosition);
             mousePos = new Vector3(Input.mousePosition.X, -Input.mousePosition.Y, 0);
-
-            if (Input.GetKey(KeyCode.A))
-            Position -= new Vector3(5 * Time.deltaTime, 0, 0);
             
             if (Input.GetMouseButton(2) && dragDebounce > 0)
             {

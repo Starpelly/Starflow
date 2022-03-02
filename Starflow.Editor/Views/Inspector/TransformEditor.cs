@@ -19,10 +19,10 @@ namespace Starflow.Editor
                 {
                     gameObject.transform.position = Helpers.Numerics2XnaVector(pos);
                 }
-                float rot = gameObject.transform.rotation;
-                if (ImGui.DragFloat("Rotation", ref rot))
+                Vector3 rot = new Vector3(0, 0, gameObject.transform.rotation);
+                if (ImGui.DragFloat3("Rotation", ref rot))
                 {
-                    gameObject.transform.rotation = rot;
+                    gameObject.transform.rotation = rot.Z;
                 }
                 Vector3 scale = Helpers.XnaVector2Numerics(gameObject.transform.scale);
                 if (ImGui.DragFloat3("Scale", ref scale))
