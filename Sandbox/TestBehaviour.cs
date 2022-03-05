@@ -21,6 +21,12 @@ namespace Sandbox
             ass = this.gameObject.AddComponent<AudioSource>();
             ass.clip = new AudioClip(@"C:\Users\Braedon\Music\Big Rock Finish H.mp3");
             ass.playOnAwake = true;
+
+
+            new GameObject().transform.SetParent(this.transform);
+
+            this.gameObject.transform.GetChild(0).gameObject.AddComponent<SpriteRenderer>().sprite = new Sprite(GameManager.Instance.Content.Load<Texture2D>("morsh"));
+            this.gameObject.transform.GetChild(0).transform.position = new Vector2(400, 0);
         }
 
         public override void Update()

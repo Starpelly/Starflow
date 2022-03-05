@@ -16,7 +16,7 @@ namespace Starflow.Editor
             for (int i = 0; i < currentScene.gameObjects.Count; i++)
             {
                 GameObject gameObject = currentScene.gameObjects[i];
-                bool treeNodeOpen = doTreeNode(currentScene.gameObjects, gameObject, i);
+                bool treeNodeOpen = doTreeNode(currentScene.gameObjects, gameObject, i, currentScene);
 
                 BasicTreeNodeChecks(currentScene, gameObject, treeNodeOpen);
             }
@@ -45,17 +45,23 @@ namespace Starflow.Editor
             {
                 for (int c = 0; c < setActiveGameObject.transform.childCount; c++)
                 {
-                    bool childOpen = doTreeNode(setActiveGameObject.transform.children, setActiveGameObject.transform.GetChild(c).gameObject, c);
+                    bool childOpen = doTreeNode(setActiveGameObject.transform.children, setActiveGameObject.transform.GetChild(c).gameObject, c, scene);
                     BasicTreeNodeChecks(scene, setActiveGameObject.transform.GetChild(c).gameObject, childOpen);
                 }
                 ImGui.TreePop();
             }
         }
 
-        private unsafe static bool doTreeNode(List<GameObject> gameObjects, GameObject gameObject, int i)
+        private unsafe static bool doTreeNode(List<GameObject> gameObjects, GameObject gameObject, int i, Scene currentScene)
         {
             ImGui.PushID(i);
-            bool treeNodeOpen = ImGui.TreeNodeEx(gameObject.name, ImGuiTreeNodeFlags.FramePadding | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.SpanAvailWidth, gameObject.name);
+            ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags.FramePadding | ImGuiTreeNodeFlags.SpanAvailWidth | ImGuiTreeNodeFlags.Leaf;
+            if (gameObject.transform.childCount > 0) flags = ImGuiTreeNodeFlags.FramePadding | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.SpanAvailWidth;
+
+            if (currentScene.activeGameObject == gameObject)
+                flags |= ImGuiTreeNodeFlags.Selected;
+
+            bool treeNodeOpen = ImGui.TreeNodeEx(gameObject.name, flags, gameObject.name);
             ImGui.PopID();
 
             if (ImGui.BeginDragDropSource())
