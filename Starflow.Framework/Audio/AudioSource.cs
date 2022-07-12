@@ -4,7 +4,7 @@ using NAudio.Wave;
 
 namespace Starflow
 {
-    public class AudioSource : Behaviour
+    public class AudioSource : MonoBehaviour
     {
         /// <summary>
         /// The default AudioClip to play.
@@ -13,7 +13,7 @@ namespace Starflow
         /// <summary>
         /// Un- / Mutes the AudioSource. Mute sets the volume=0, Un-Mute restore the original volume.
         /// </summary>
-        public bool mute;
+        public bool mute { get; set; }
         /// <summary>
         /// If set to true, the audio source will automatically start playing on awake.
         /// </summary>
@@ -21,11 +21,11 @@ namespace Starflow
         /// <summary>
         /// Is the audio clip looping?
         /// </summary>
-        public bool loop;
+        public bool loop { get; set; }
         /// <summary>
         /// The pitch of the audio source.
         /// </summary>
-        public float pitch;
+        public float pitch { get; set; }
         /// <summary>
         /// Playback position in seconds.
         /// </summary>
@@ -34,18 +34,43 @@ namespace Starflow
             get => Time();
             set {}
         }
-        public float volume;
+        /// <summary>
+        /// Playback position in seconds. (Read Only)
+        /// </summary>
+        public bool isPlaying 
+        {
+            get
+            {
+                if (outputDevice != null)
+                    return outputDevice.PlaybackState == PlaybackState.Playing;
+                else return false;
+            }
+        }
+        /// <summary>
+        /// The volume of the audio source (0.0 to 1.0).
+        /// </summary>
+        public float volume
+        {
+            get
+            {
+                if (outputDevice != null)
+                    return outputDevice.Volume;
+                else return 0f;
+            }
+            set
+            {
+                if (outputDevice != null)
+                    outputDevice.Volume = value;
+            }
+        }
 
         private double Time()
         {
             if (this.outputDevice != null && audioFile != null)
             {
-                if (outputDevice.PlaybackState == PlaybackState.Playing)
-                    return (this.outputDevice.GetPosition() * 1000.0 /
-                        this.outputDevice.OutputWaveFormat.BitsPerSample / this.outputDevice.OutputWaveFormat.Channels *
-                        8 / this.outputDevice.OutputWaveFormat.SampleRate) / 1000.0;
-                else
-                    return 0;
+                return (this.outputDevice.GetPosition() * 1000.0 /
+                    this.outputDevice.OutputWaveFormat.BitsPerSample / this.outputDevice.OutputWaveFormat.Channels *
+                    8 / this.outputDevice.OutputWaveFormat.SampleRate) / 1000.0;
             }
             else
             {
@@ -69,24 +94,17 @@ namespace Starflow
                 outputDevice.PlaybackStopped += OnPlaybackStopped;
             }
 
-            if (audioFile == null)
+            if (audioFile == null && clip != null)
             {
                 audioFile = new AudioFileReader(clip.audioFileURL);
                 outputDevice.Init(audioFile);
+                outputDevice.Play();
             }
-            
-            outputDevice.Play();
         }
         
-
         public void Pause()
         {
-            
-        }
-
-        public void UnPause()
-        {
-            
+            outputDevice.Pause();
         }
 
         public void Stop()
@@ -109,7 +127,7 @@ namespace Starflow
             audioFile = null;
         }
 
-        public override void Awake()
+        public override void Start()
         {
             if (playOnAwake)
             {

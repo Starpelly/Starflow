@@ -1,0 +1,61 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <PlatformTarget>x64</PlatformTarget>
+      <Prefer32bit>false</Prefer32bit>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <PlatformTarget>x64</PlatformTarget>
+      <Prefer32bit>true</Prefer32bit>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ImGui.NET" Version="1.87.2" />
+      <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Resources\Fonts\Roboto-Regular.ttf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\Icons\build.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\Icons\info.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\Icons\package.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\Icons\playfromstart.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\Icons\playscene.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\Fonts\UI.ttf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Sandbox\Sandbox.csproj" />
+      <ProjectReference Include="..\Starflow.Framework\Starflow.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MonoGameContentReference Include="Content\Content.mgcb" />
+    </ItemGroup>
+
+</Project>

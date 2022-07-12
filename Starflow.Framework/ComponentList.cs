@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Starflow
 {
-    public class ComponentList : IEnumerable<Behaviour>
+    public class ComponentList : IEnumerable<MonoBehaviour>
     {
         private readonly List<Component> components = new List<Component>();
 
@@ -33,9 +33,9 @@ namespace Starflow
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {
-                if (activeComponents()[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(MonoBehaviour)))
                 {
-                    Behaviour b = (Behaviour)(object)activeComponents()[i];
+                    MonoBehaviour b = (MonoBehaviour)(object)activeComponents()[i];
                     b.EarlyUpdate();
                 }
             }
@@ -45,9 +45,9 @@ namespace Starflow
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {
-                if (activeComponents()[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(MonoBehaviour)))
                 {
-                    Behaviour b = (Behaviour)(object)activeComponents()[i];
+                    MonoBehaviour b = (MonoBehaviour)(object)activeComponents()[i];
                     b.Update();
                 }
             }
@@ -57,23 +57,23 @@ namespace Starflow
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {
-                if (activeComponents()[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(MonoBehaviour)))
                 {
-                    Behaviour b = (Behaviour)(object)activeComponents()[i];
+                    MonoBehaviour b = (MonoBehaviour)(object)activeComponents()[i];
                     b.LateUpdate();
                 }
             }
         }
 
-        public IEnumerator<Behaviour> GetEnumerator()
+        public IEnumerator<MonoBehaviour> GetEnumerator()
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {
-                if (activeComponents()[i].GetType().IsSubclassOf(typeof(Behaviour)))
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(MonoBehaviour)))
                 {
-                    var behaviour = activeComponents()[i];
-                    if (behaviour != null)
-                        yield return (Behaviour)(object)behaviour;
+                    var MonoBehaviour = activeComponents()[i];
+                    if (MonoBehaviour != null)
+                        yield return (MonoBehaviour)(object)MonoBehaviour;
                 }
             }
         }
@@ -82,9 +82,9 @@ namespace Starflow
         {
             for (int i = 0; i < activeComponents().Count; i++)
             {
-                var behaviour = activeComponents()[i];
-                if (behaviour != null)
-                    yield return behaviour;
+                var MonoBehaviour = activeComponents()[i];
+                if (MonoBehaviour != null)
+                    yield return MonoBehaviour;
             }
         }
     }

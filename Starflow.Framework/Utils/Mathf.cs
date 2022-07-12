@@ -290,5 +290,15 @@ namespace Starflow
         {
             return (-lhs.Y * rhs.X) + (lhs.X * rhs.Y);
         }
+
+        public static float Clamp(this float val, float min, float max)
+        {
+            return MathHelper.Clamp(val, min, max);
+        }
+
+        public static float Clamp01(this float val)
+        {
+            return Clamp(val, 0.0f, 1.0f);
+        }
     }
 }

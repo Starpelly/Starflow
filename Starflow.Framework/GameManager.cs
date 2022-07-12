@@ -85,7 +85,7 @@ namespace Starflow
         private void DrawScene(GameTime gameTime)
         {
             // GraphicsDevice.Clear(new Color((float)Math.Sin(Time.time), 1, 0, 255));
-            GraphicsDevice.Clear(Color.OrangeRed);
+            GraphicsDevice.Clear(Colors.Hex2RGB("304B76")); 
 
             if (currentCamera != null)
                 _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, currentCamera.Transform);

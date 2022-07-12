@@ -4,7 +4,7 @@ namespace Starflow
 {
     public class AudioClip
     {
-        internal string audioFileURL { get; set; }
+        public string audioFileURL { get; set; }
         
         public float length { get; }
 

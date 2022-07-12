@@ -50,9 +50,9 @@ namespace Starflow
         {
             T t = new T();
             t.gameObject = this;
-            if (t.GetType().IsSubclassOf(typeof(Behaviour)))
+            if (t.GetType().IsSubclassOf(typeof(MonoBehaviour)))
             {
-                Behaviour b = (Behaviour)(object)t;
+                MonoBehaviour b = (MonoBehaviour)(object)t;
                 b.Start();
                 GameManager.Components.Add(b);
             }
