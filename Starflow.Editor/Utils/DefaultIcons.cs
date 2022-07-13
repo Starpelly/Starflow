@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Starflow.Editor.Utils
+namespace StarflowEditor.Utils
 {
     public static class DefaultIcons
     {

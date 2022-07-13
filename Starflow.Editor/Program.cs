@@ -1,4 +1,4 @@
-namespace Starflow.Editor
+namespace StarflowEditor
 {
     internal static class Program
     {

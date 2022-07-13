@@ -22,9 +22,13 @@ namespace Starflow
             BottomRight
         }
 
-        public Sprite(Texture2D texture)
+        public Sprite(string filePath)
         {
-            this.texture = texture;
+            if (GameRuntime.GraphicsDevice != null)
+            {
+                var texture = Texture2D.FromFile(GameRuntime.GraphicsDevice, filePath);
+                this.texture = texture;
+            }
         }
     }
 }

@@ -29,6 +29,19 @@ namespace Starflow
             }
         }
 
+        public void Start()
+        {
+            for (int i = 0; i < activeComponents().Count; i++)
+            {
+                if (activeComponents()[i].GetType().IsSubclassOf(typeof(MonoBehaviour)))
+                {
+                    MonoBehaviour b = (MonoBehaviour)(object)activeComponents()[i];
+                    b.Start();
+                }
+            }
+        }
+
+
         public void EarlyUpdate()
         {
             for (int i = 0; i < activeComponents().Count; i++)

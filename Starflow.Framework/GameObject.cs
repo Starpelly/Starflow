@@ -53,7 +53,8 @@ namespace Starflow
             if (t.GetType().IsSubclassOf(typeof(MonoBehaviour)))
             {
                 MonoBehaviour b = (MonoBehaviour)(object)t;
-                b.Start();
+                if (GameManager.currentScene != null)
+                    b.Start();
                 GameManager.Components.Add(b);
             }
 

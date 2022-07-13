@@ -12,7 +12,7 @@ namespace Starflow
         public static SpriteBatch _spriteBatch;
         public Color bgColor = Color.Black;
         public static readonly new ComponentList Components = new ComponentList();
-        public static Scene currentScene;
+        public static Scene currentScene { get; private set; }
         static internal Camera currentCamera;
         static internal bool debug { get; set; }
         public static GameManager Instance { get; set; }
@@ -43,7 +43,6 @@ namespace Starflow
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             Start();
         }
 
@@ -100,6 +99,7 @@ namespace Starflow
         public static void ChangeScene(Scene newScene)
         {
             currentScene = newScene;
+            Components.Start();
         }
 
         internal void SetCamera(Camera cam)

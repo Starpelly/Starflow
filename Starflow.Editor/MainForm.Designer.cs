@@ -1,4 +1,4 @@
-﻿namespace Starflow.Editor
+﻿namespace StarflowEditor
 {
     partial class MainForm
     {
@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Node1");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node1");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,11 +60,13 @@
             this.infoButton = new System.Windows.Forms.ToolStripButton();
             this.assetBrowser = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.TabsHolder = new System.Windows.Forms.TabControl();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -274,12 +276,12 @@
             this.assetBrowser.Location = new System.Drawing.Point(0, 0);
             this.assetBrowser.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.assetBrowser.Name = "assetBrowser";
-            treeNode5.Name = "Node1";
-            treeNode5.Text = "Node1";
-            treeNode6.Name = "Node0";
-            treeNode6.Text = "Node0";
+            treeNode1.Name = "Node1";
+            treeNode1.Text = "Node1";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Node0";
             this.assetBrowser.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode2});
             this.assetBrowser.Size = new System.Drawing.Size(186, 542);
             this.assetBrowser.TabIndex = 2;
             this.assetBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.assetBrowser_AfterSelect);
@@ -294,9 +296,22 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.assetBrowser);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.TabsHolder);
             this.splitContainer1.Size = new System.Drawing.Size(1079, 542);
             this.splitContainer1.SplitterDistance = 186;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // TabsHolder
+            // 
+            this.TabsHolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TabsHolder.Location = new System.Drawing.Point(0, 0);
+            this.TabsHolder.Name = "TabsHolder";
+            this.TabsHolder.SelectedIndex = 0;
+            this.TabsHolder.Size = new System.Drawing.Size(889, 542);
+            this.TabsHolder.TabIndex = 0;
             // 
             // imageList
             // 
@@ -323,6 +338,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -360,5 +376,6 @@
         private ToolStripMenuItem exitToolStripMenuItem;
         private SplitContainer splitContainer1;
         private ImageList imageList;
+        private TabControl TabsHolder;
     }
 }

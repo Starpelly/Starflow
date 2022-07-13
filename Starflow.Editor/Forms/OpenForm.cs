@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Starflow.Editor.Forms
+namespace StarflowEditor.Forms
 {
     public static class OpenForm
     {

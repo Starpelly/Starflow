@@ -1,4 +1,4 @@
-﻿namespace Starflow.Editor.Forms
+﻿namespace StarflowEditor.Forms
 {
     partial class GamePlayer
     {

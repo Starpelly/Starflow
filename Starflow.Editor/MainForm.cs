@@ -1,10 +1,11 @@
 using Newtonsoft.Json;
-using Starflow.Editor.Core.Data;
-using Starflow.Editor.Forms;
-using Starflow.Editor.Utils;
+using ScintillaNET;
+using StarflowEditor.Core.Data;
+using StarflowEditor.Forms;
+using StarflowEditor.Utils;
 using System.Diagnostics;
 
-namespace Starflow.Editor
+namespace StarflowEditor
 {
     public partial class MainForm : Form
     {
@@ -88,14 +89,27 @@ namespace Starflow.Editor
             }
             else if (Extensions.CodeExtensions.Contains(Path.GetExtension(nodeName).ToUpperInvariant()))
             {
-                new Process
+                /*new Process
                 {
                     StartInfo = new ProcessStartInfo(nodeName)
                     {
                         UseShellExecute = true
                     }
                 }.Start();
+                */
+                OpenTab(nodeName);
             }
+        }
+
+        public void OpenTab(string file)
+        {
+            TabPage tab = new TabPage();
+            tab.Text = Path.GetFileName(file);
+            var codeEditor = new CodeEditor(file);
+            codeEditor.Dock = DockStyle.Fill;
+            tab.Controls.Add(codeEditor);
+
+            TabsHolder.TabPages.Add(tab);
         }
 
         private void assetBrowser_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -104,12 +118,7 @@ namespace Starflow.Editor
 
         private void playTestButton_Click(object sender, EventArgs e)
         {
-            // new Thread(() => Sandbox.Program.Main(new string[0])).Start();
-            var game = new Starflow.Runtime.GameRuntime();
-            game.StartingScene = TestScene();
-            game.ApplicationTitle = $"SSDK - [{CurrentProject.Name}] (Play Test)";
-            using (game)
-                game.Run();
+            new Thread(() => RunGame()).Start();
 
             // game.StartingScene = TestScene();
 
@@ -119,12 +128,37 @@ namespace Starflow.Editor
             // JsonConvert.DeserializeObject<Starflow.Data.Scene>(File.ReadAllText(projectPath + @"\scenes\" + "scene.scene")).ToScene();
         }
 
+        private void RunGame()
+        {
+            try
+            {
+                var game = new Starflow.GameRuntime();
+                Starflow.Data.Scene dataScene = new Starflow.Data.Scene();
+                dataScene.GameObjects = TestScene().gameObjects;
+                File.WriteAllText(projectPath + @"\scenes\" + "scene.scene", JsonConvert.SerializeObject(dataScene));
+                var loadedScene = JsonConvert.DeserializeObject<Starflow.Data.Scene>(File.ReadAllText(projectPath + @"\scenes\" + "scene.scene")).ToScene();
+                game.StartingScene = loadedScene;
+                game.ApplicationTitle = $"SSDK - [{CurrentProject.Name}] (Play Test)";
+                using (game)
+                    game.Run();
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is ThreadAbortException))
+                {
+                    //Do exception handling.
+                }
+            }
+        }
+
         private Starflow.Scene TestScene()
         {
             var scene = new Starflow.Scene();
             scene.gameObjects = new List<Starflow.GameObject>();
             Starflow.GameObject gameObject = new Starflow.GameObject();
             gameObject.AddComponent<Sandbox.TestMonoBehaviour>();
+            gameObject.transform.position = new Microsoft.Xna.Framework.Vector2(640, 360);
+
             scene.gameObjects.Add(gameObject);
 
             return scene;

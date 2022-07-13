@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Starflow.Editor.Utils
+namespace StarflowEditor.Utils
 {
     public static class Extensions
     {

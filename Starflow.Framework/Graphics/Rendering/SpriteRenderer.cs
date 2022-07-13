@@ -48,8 +48,11 @@ namespace Starflow
             }
 
             // temp solution rn
-            sprite.pivot = new Vector2(sprite.texture.Width / 2, sprite.texture.Height / 2);
-            sb.Draw(sprite.texture, Rect, null, color, MathHelper.ToRadians(gameObject.transform.rotation), sprite.pivot, spriteEffects, 0f);
+            if (sprite.texture != null)
+            {
+                sprite.pivot = new Vector2(sprite.texture.Width / 2, sprite.texture.Height / 2);
+                sb.Draw(sprite.texture, Rect, null, color, MathHelper.ToRadians(gameObject.transform.rotation), sprite.pivot, spriteEffects, 0f);
+            }
         }
    }
 }

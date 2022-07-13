@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Starflow.Editor.Core.Data
+namespace StarflowEditor.Core.Data
 {
     public class Project
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Starflow.Editor.Forms
+namespace StarflowEditor.Forms
 {
     public partial class InfoForm : Form
     {
