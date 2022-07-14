@@ -98,7 +98,6 @@
     <Compile Include="Audio\AudioClip.cs" />
     <Compile Include="Audio\AudioSource.cs" />
     <Compile Include="Core\Convert.cs" />
-    <Compile Include="Core\Vector2.cs" />
     <Compile Include="Data\Scene.cs" />
     <Compile Include="MonoBehaviour.cs" />
     <Compile Include="Camera.cs" />

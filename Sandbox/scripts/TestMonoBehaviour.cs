@@ -9,17 +9,18 @@ public class TestMonoBehaviour : MonoBehaviour
     {
         ass = gameObject.AddComponent<AudioSource>();
         var sprite = gameObject.AddComponent<SpriteRenderer>();
-        sprite.sprite = new Sprite(@"C:\Dev\Starflow\Sandbox\sprites\sunic.png");
+        sprite.sprite = new Sprite(@"C:\Dev\Starflow\Sandbox\sprites\schizo.png");
         ass.clip = new AudioClip(@"C:\Users\Braedon\Music\MDK - Interlaced [HD].mp3");
-        ass.volume = 0.2f;
+        ass.volume = 0.1f;
         ass.playOnAwake = true;
         ass.Play();
-        transform.position = new Vector2(640, 360);
+        // transform.position = new Vector2(640, 360);
     }
 
     public override void Update()
     {
-        float speed = 250;
+        /*
+        float speed = 650;
         Vector2 dir = Vector2.Zero;
 
         if (Input.GetKey(KeyCode.Left))
@@ -34,6 +35,7 @@ public class TestMonoBehaviour : MonoBehaviour
             dir.Normalize();
 
         transform.position += dir * Time.deltaTime * speed;
+        */
     }
 }
 

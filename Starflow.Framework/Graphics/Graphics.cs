@@ -30,14 +30,14 @@ namespace Starflow
             Vector2 edge = end - start;
             // calculate angle to rotate line
             float angle =
-                (float)Math.Atan2(edge.y , edge.x);
+                (float)Math.Atan2(edge.Y , edge.X);
 
             Texture2D tex = new Texture2D(game.GraphicsDevice, 1, 1);
 
             sb.Draw(tex,
                 new Rectangle(// rectangle defines shape of line and position of start of line
-                    (int)start.x,
-                    (int)start.y,
+                    (int)start.X,
+                    (int)start.Y,
                     (int)edge.Length(), //sb will strech the texture to fill this rectangle
                     1), //width of line, change this to make thicker line
                 null,

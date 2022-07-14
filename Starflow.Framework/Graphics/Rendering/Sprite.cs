@@ -28,11 +28,6 @@ namespace Starflow
             {
                 var texture = Texture2D.FromFile(GameRuntime.GraphicsDevice, filePath);
                 this.texture = texture;
-                Debug.Log("abs");
-            }
-            else
-            {
-                Debug.Log("a");
             }
         }
     }

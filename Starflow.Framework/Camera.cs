@@ -30,17 +30,17 @@ namespace Starflow
             var br = Vector2.Transform(new Vector2(Bounds.Width, Bounds.Height), inverseViewMatrix);
 
             var min = new Vector2(
-                MathHelper.Min(tl.x, MathHelper.Min(tr.x, MathHelper.Min(bl.x, br.x))),
-                MathHelper.Min(tl.y, MathHelper.Min(tr.y, MathHelper.Min(bl.y, br.y))));
+                MathHelper.Min(tl.X, MathHelper.Min(tr.X, MathHelper.Min(bl.X, br.X))),
+                MathHelper.Min(tl.Y, MathHelper.Min(tr.Y, MathHelper.Min(bl.Y, br.Y))));
             var max = new Vector2(
-                MathHelper.Max(tl.x, MathHelper.Max(tr.x, MathHelper.Max(bl.x, br.x))),
-                MathHelper.Max(tl.y, MathHelper.Max(tr.y, MathHelper.Max(bl.y, br.y))));
-            VisibleArea = new Rectangle((int)min.x, (int)min.y, (int)(max.x - min.x), (int)(max.y - min.y));
+                MathHelper.Max(tl.X, MathHelper.Max(tr.X, MathHelper.Max(bl.X, br.X))),
+                MathHelper.Max(tl.Y, MathHelper.Max(tr.Y, MathHelper.Max(bl.Y, br.Y))));
+            VisibleArea = new Rectangle((int)min.X, (int)min.Y, (int)(max.X - min.X), (int)(max.Y - min.Y));
         }
 
         private void UpdateMatrix()
         {
-            Transform = Matrix.CreateTranslation(new Vector3(transform.position.x, transform.position.y, 0f)) * 
+            Transform = Matrix.CreateTranslation(new Vector3(transform.position.X, transform.position.Y, 0f)) * 
                     Matrix.CreateRotationZ(transform.rotation) *
                     Matrix.CreateScale(Zoom) *
                     Matrix.CreateTranslation(new Vector3(Bounds.Width * 0.5f, Bounds.Height * 0.5f, 0));
