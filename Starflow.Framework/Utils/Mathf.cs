@@ -190,8 +190,8 @@ namespace Starflow
             if (tMax < 0 || tMin > tMax)
                 return false;
 
-            tVector.X = tMin;
-            tVector.Y = tMax;
+            tVector.x = tMin;
+            tVector.y = tMax;
 
             return true;
         }
@@ -288,7 +288,7 @@ namespace Starflow
 
         public static float DotPerp(this ref Vector2 lhs, ref Vector2 rhs)
         {
-            return (-lhs.Y * rhs.X) + (lhs.X * rhs.Y);
+            return (-lhs.y * rhs.x) + (lhs.x * rhs.y);
         }
 
         public static float Clamp(this float val, float min, float max)

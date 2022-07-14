@@ -18,7 +18,7 @@ namespace Starflow
                 if (sprite != null)
                 {
                     return new Rectangle(transform.position.ToPoint() + sprite.offset.ToPoint(),
-                            new Point((int)(transform.scale.X * sprite.texture.Bounds.Size.X), (int)(transform.scale.Y * sprite.texture.Bounds.Size.Y)));
+                            new Point((int)(transform.scale.x * sprite.texture.Bounds.Size.X), (int)(transform.scale.y * sprite.texture.Bounds.Size.Y)));
                 }
                 else
                     return new Rectangle();
@@ -51,7 +51,7 @@ namespace Starflow
             if (sprite.texture != null)
             {
                 sprite.pivot = new Vector2(sprite.texture.Width / 2, sprite.texture.Height / 2);
-                sb.Draw(sprite.texture, Rect, null, color, MathHelper.ToRadians(gameObject.transform.rotation), sprite.pivot, spriteEffects, 0f);
+                sb.Draw(sprite.texture, Rect, null, color, MathHelper.ToRadians(gameObject.transform.rotation), sprite.pivot.ToXNA(), spriteEffects, 0f);
             }
         }
    }

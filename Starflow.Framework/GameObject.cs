@@ -62,6 +62,22 @@ namespace Starflow
             return t;
         }
 
+        public T AddComponent<T>(T type) where T : Component, new()
+        {
+            T t = new T();
+            t.gameObject = this;
+            if (t.GetType().IsSubclassOf(typeof(MonoBehaviour)))
+            {
+                MonoBehaviour b = (MonoBehaviour)(object)t;
+                if (GameManager.currentScene != null)
+                    b.Start();
+                GameManager.Components.Add(b);
+            }
+
+            components.Add(t);
+            return t;
+        }
+
         public GameObject(string name = "GameObject")
         {
             this.name = name;

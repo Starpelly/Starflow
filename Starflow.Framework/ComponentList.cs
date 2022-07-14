@@ -13,7 +13,7 @@ namespace Starflow
 
         private List<Component> activeComponents()
         {
-            return components.FindAll(c => c.gameObject.enabled && c.enabled);
+            return components.FindAll(c => c.gameObject != null && c.gameObject.enabled && c.enabled);
         }
 
         public void Add<T>(T type)

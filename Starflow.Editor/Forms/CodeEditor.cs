@@ -4,9 +4,13 @@ namespace StarflowEditor.Forms
 {
     public partial class CodeEditor : UserControl
     {
+        public string currentFilePath;
+
         public CodeEditor(string file)
         {
             InitializeComponent();
+
+            currentFilePath = file;
 
             if (File.Exists(file))
             {
@@ -170,6 +174,15 @@ namespace StarflowEditor.Forms
             const int padding = 2;
             scintilla.Margins[0].Width = scintilla.TextWidth(Style.LineNumber, new string('9', maxLineNumberCharLength + 1)) + padding;
             this.maxLineNumberCharLength = maxLineNumberCharLength;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileInfo f = new FileInfo(currentFilePath);
+            using (TextWriter textWriter = new StreamWriter(f.Open(FileMode.Truncate)))
+            {
+                textWriter.Write(scintilla.Text);
+            }
         }
     }
 }

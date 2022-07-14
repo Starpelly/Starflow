@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -9,13 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CS-Script.Core" Version="2.0.0" />
     <PackageReference Include="MonoGame.Forms.DX" Version="3.0.0" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Scintilla.NET" Version="5.1.5.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sandbox\Sandbox.csproj" />
     <ProjectReference Include="..\Starflow.Framework\Starflow.csproj" />
   </ItemGroup>
 

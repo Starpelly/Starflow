@@ -1,9 +1,12 @@
+using CSScriptLib;
 using Newtonsoft.Json;
 using ScintillaNET;
 using StarflowEditor.Core.Data;
 using StarflowEditor.Forms;
 using StarflowEditor.Utils;
 using System.Diagnostics;
+using System.Reflection;
+using Project = StarflowEditor.Core.Data.Project;
 
 namespace StarflowEditor
 {
@@ -119,13 +122,6 @@ namespace StarflowEditor
         private void playTestButton_Click(object sender, EventArgs e)
         {
             new Thread(() => RunGame()).Start();
-
-            // game.StartingScene = TestScene();
-
-            /*Starflow.Data.Scene dataScene = new Starflow.Data.Scene();
-            dataScene.GameObjects = game.StartingScene.gameObjects;
-            File.WriteAllText(projectPath + @"\scenes\" + "scene.scene", JsonConvert.SerializeObject(dataScene));*/
-            // JsonConvert.DeserializeObject<Starflow.Data.Scene>(File.ReadAllText(projectPath + @"\scenes\" + "scene.scene")).ToScene();
         }
 
         private void RunGame()
@@ -133,11 +129,15 @@ namespace StarflowEditor
             try
             {
                 var game = new Starflow.GameRuntime();
+
+                /*
                 Starflow.Data.Scene dataScene = new Starflow.Data.Scene();
                 dataScene.GameObjects = TestScene().gameObjects;
                 File.WriteAllText(projectPath + @"\scenes\" + "scene.scene", JsonConvert.SerializeObject(dataScene));
                 var loadedScene = JsonConvert.DeserializeObject<Starflow.Data.Scene>(File.ReadAllText(projectPath + @"\scenes\" + "scene.scene")).ToScene();
-                game.StartingScene = loadedScene;
+                game.StartingScene = loadedScene;*/
+                Core.Compiler.Compiler.CompileScripts(@$"{projectPath}\scripts");
+                game.StartingScene = TestScene();
                 game.ApplicationTitle = $"SSDK - [{CurrentProject.Name}] (Play Test)";
                 using (game)
                     game.Run();
@@ -156,8 +156,6 @@ namespace StarflowEditor
             var scene = new Starflow.Scene();
             scene.gameObjects = new List<Starflow.GameObject>();
             Starflow.GameObject gameObject = new Starflow.GameObject();
-            gameObject.AddComponent<Sandbox.TestMonoBehaviour>();
-            gameObject.transform.position = new Microsoft.Xna.Framework.Vector2(640, 360);
 
             scene.gameObjects.Add(gameObject);
 

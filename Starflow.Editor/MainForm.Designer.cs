@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node1");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
+            treeNode3});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,10 +52,10 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.playTestButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.playSceneButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.buildButton = new System.Windows.Forms.ToolStripButton();
+            this.exportButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.infoButton = new System.Windows.Forms.ToolStripButton();
             this.assetBrowser = new System.Windows.Forms.TreeView();
@@ -199,10 +199,10 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.playTestButton,
-            this.toolStripButton2,
+            this.playSceneButton,
             this.toolStripSeparator1,
-            this.toolStripButton3,
-            this.toolStripButton4,
+            this.buildButton,
+            this.exportButton,
             this.toolStripSeparator2,
             this.infoButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
@@ -223,37 +223,37 @@
             this.playTestButton.Text = "Play";
             this.playTestButton.Click += new System.EventHandler(this.playTestButton_Click);
             // 
-            // toolStripButton2
+            // playSceneButton
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(34, 34);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.playSceneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.playSceneButton.Image = ((System.Drawing.Image)(resources.GetObject("playSceneButton.Image")));
+            this.playSceneButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.playSceneButton.Name = "playSceneButton";
+            this.playSceneButton.Size = new System.Drawing.Size(34, 34);
+            this.playSceneButton.Text = "Play Scene";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
-            // toolStripButton3
+            // buildButton
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(34, 34);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.buildButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buildButton.Image = ((System.Drawing.Image)(resources.GetObject("buildButton.Image")));
+            this.buildButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buildButton.Name = "buildButton";
+            this.buildButton.Size = new System.Drawing.Size(34, 34);
+            this.buildButton.Text = "Build";
             // 
-            // toolStripButton4
+            // exportButton
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(34, 34);
-            this.toolStripButton4.Text = "toolStripButton4";
+            this.exportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.exportButton.Image = ((System.Drawing.Image)(resources.GetObject("exportButton.Image")));
+            this.exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(34, 34);
+            this.exportButton.Text = "Export";
             // 
             // toolStripSeparator2
             // 
@@ -267,7 +267,7 @@
             this.infoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.infoButton.Name = "infoButton";
             this.infoButton.Size = new System.Drawing.Size(34, 34);
-            this.infoButton.Text = "toolStripButton5";
+            this.infoButton.Text = "Info";
             this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
             // 
             // assetBrowser
@@ -276,12 +276,12 @@
             this.assetBrowser.Location = new System.Drawing.Point(0, 0);
             this.assetBrowser.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.assetBrowser.Name = "assetBrowser";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "Node1";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Node0";
+            treeNode3.Name = "Node1";
+            treeNode3.Text = "Node1";
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Node0";
             this.assetBrowser.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.assetBrowser.Size = new System.Drawing.Size(186, 542);
             this.assetBrowser.TabIndex = 2;
             this.assetBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.assetBrowser_AfterSelect);
@@ -357,9 +357,9 @@
         private ToolStrip toolStrip1;
         private TreeView assetBrowser;
         private ToolStripButton playTestButton;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton3;
-        private ToolStripButton toolStripButton4;
+        private ToolStripButton playSceneButton;
+        private ToolStripButton buildButton;
+        private ToolStripButton exportButton;
         private ToolStripButton infoButton;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripSeparator toolStripSeparator2;
